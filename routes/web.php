@@ -18,3 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/user/setting','UserController@showSetting');
+Route::post('/user/setting', 'UserController@storeSetting')->name('setting.store');
