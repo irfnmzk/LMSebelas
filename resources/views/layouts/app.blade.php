@@ -70,7 +70,7 @@
       <ul class="sidebar-menu" data-widget="tree">
           <li class="header"><h4 class="text-center sidebar-menu">Menu</h4></li>
         <li>
-          <a href="../widgets.html">
+          <a href="{{route('login')}}">
             <h4 class="sidebar-menu"><i class="fa fa-home"></i> <span>Dashboard</span></h4>
           </a>
         </li>
