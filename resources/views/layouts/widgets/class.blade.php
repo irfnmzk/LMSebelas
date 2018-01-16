@@ -14,7 +14,6 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <h4><a href="asdas"><i class="fa fa-book"></i> Sebelas RPL 1 <b>(Administrator Kelas)</b></a></h4><hr>
-                
             </div>
             <!-- /.box-body -->
           </div>
