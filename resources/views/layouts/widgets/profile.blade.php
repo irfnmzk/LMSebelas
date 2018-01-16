@@ -9,7 +9,7 @@
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <h5> Jumlah Kelas <a class="pull-right bold">1,322</a></h5>
+                  <h5> Jumlah Kelas <a class="pull-right bold">0</a></h5>
                 </li>
               </ul>
               <a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-default"><b><i class="fa fa-plus"></i> Gabung Kelas</b></a>
