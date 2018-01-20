@@ -17,7 +17,7 @@ class CreateModulTable extends Migration
             $table->increments('id');
             $table->string('judul');
             $table->string('materi_id');
-            $table->integer('accessable');
+            $table->integer('accessable')->default(0);
             $table->string('link');
             $table->timestamps();
         });
