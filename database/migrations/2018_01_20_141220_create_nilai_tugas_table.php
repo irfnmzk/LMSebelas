@@ -16,6 +16,7 @@ class CreateNilaiTugasTable extends Migration
         Schema::create('nilai_tugas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('jawaban_tugas_id');
+            $table->integer('nilai');
             $table->string('ket');
             $table->timestamps();
         });
