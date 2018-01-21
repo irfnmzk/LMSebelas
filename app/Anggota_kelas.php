@@ -12,11 +12,11 @@ class Anggota_kelas extends Model
 
     public function user()
     {
-    	return $this->belongsTo('App\User','id');
+    	return $this->belongsTo('App\User','user_id');
     }
 
     public function kelas()
     {
-    	return $this->belongsTo('App\Kelas','id');
+    	return $this->belongsTo('App\Kelas','kelas_id');
     }
 }

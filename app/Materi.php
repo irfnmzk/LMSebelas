@@ -12,11 +12,11 @@ class Materi extends Model
 
     public function creator()
     {
-    	return $this->belongsTo('App\User','id');
+    	return $this->belongsTo('App\Anggota_kelas','creator_id');
     }
 
     public function kelas()
     {
-    	return $this->belongsTo('App\Kelas','id');
+    	return $this->belongsTo('App\Kelas','kelas_id');
     }
 }
