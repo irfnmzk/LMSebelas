@@ -19,4 +19,19 @@ class Anggota_kelas extends Model
     {
     	return $this->belongsTo('App\Kelas','kelas_id');
     }
+
+    public function materi()
+    {
+        return $this->hasMany('App\Materi');
+    }
+
+    public function tugas()
+    {
+        return $this->hasMany('App\Tugas');
+    }
+
+    public function jawaban_tugas()
+    {
+        return $this->hasMany('App\jawaban_tugas');
+    }
 }

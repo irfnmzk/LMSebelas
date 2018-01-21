@@ -19,4 +19,9 @@ class Jawaban_tugas extends Model
     {
     	return $this->belongsTo('App\Tugas','tugas_id');
     }
+
+    public function nilai_tugas()
+    {
+        return $this->hasMany('App\Nilai_tugas');
+    }
 }

@@ -19,4 +19,14 @@ class Materi extends Model
     {
     	return $this->belongsTo('App\Kelas','kelas_id');
     }
+
+    public function tugas()
+    {
+        return $this->hasMany('App\Tugas');
+    }
+
+    public function modul()
+    {
+        return $this->hasMany('App\Modul');
+    }
 }
