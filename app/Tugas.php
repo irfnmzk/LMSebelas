@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Modul extends Model
+class Tugas extends Model
 {
     protected $fillable = [
-    	'judul', 'deskripsi','creator_id', 'materi_id', 'deadline', 'link'
+    	'judul','deskripsi', 'creator_id', 'materi_id', 'deadline', 'link'
     ];
 
     public function creator()
