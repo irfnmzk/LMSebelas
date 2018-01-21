@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role','active','sekolah','picture'
+        'name', 'no_identitas', 'email', 'password','role','active','sekolah','picture'
     ];
 
     /**
@@ -30,5 +30,15 @@ class User extends Authenticatable
     public function isActive()
     {
         return $this->active == 1;
+    }
+
+    public function anggota_kelas()
+    {
+        return $this->hasMany('App\Anggota_kelas');
+    }
+
+    public function kelas()
+    {
+        return $this->hasMany('App\Kelas');
     }
 }
