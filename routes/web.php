@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/user/setting','UserController@showSetting');
 Route::post('/user/setting', 'UserController@storeSetting')->name('setting.store');
+
+Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');
