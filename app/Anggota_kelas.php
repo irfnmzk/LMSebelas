@@ -10,8 +10,13 @@ class Anggota_kelas extends Model
     	'user_id','kelas_id'
     ];
 
-    public function creator()
+    public function user()
     {
     	return $this->belongsTo('App\User','id');
+    }
+
+    public function kelas()
+    {
+    	return $this->belongsTo('App\Kelas','id');
     }
 }
