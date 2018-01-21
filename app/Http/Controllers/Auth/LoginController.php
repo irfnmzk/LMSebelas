@@ -60,6 +60,7 @@ class LoginController extends Controller
             $newUser = \App\User::create([
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
+                'picture' => $user->getAvatar(),
                 'password' => bcrypt(microtime()),
             ]);
             Auth::login($newUser);
