@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->active == 1;
     }
+
+    public function anggota_kelas()
+    {
+        return $this->hasMany('App\Anggota_kelas');
+    }
 }
