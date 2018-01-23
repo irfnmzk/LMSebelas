@@ -17,6 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Disable sementara untuk register
+Route::match(['get', 'post'], 'register', function(){
+    return redirect('/');
+});
+
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/user/setting','UserController@showSetting');
 Route::post('/user/setting', 'UserController@storeSetting')->name('setting.store');
