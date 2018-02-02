@@ -1,82 +1,371 @@
 @extends('layouts.app')
-
 @section('content')
-<!-- Content Header (Page header) -->
-<section class="content-header">
-      <h1>
-        Dashboard
-      </h1>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-      <div class="row">
-        <div class="col-md-4">
-
-          @include('layouts.widgets.profile')
-
-          @include('layouts.widgets.class')
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-9 col-md-6 col-sm-12">
+      <div class="card profile">
+        <div class="profpic">
+          <img src="{{ asset('assets/img/catfall.jpeg') }}" class="avatar"/>
         </div>
-        <!-- /.col -->
-        <div class="col-md-8">
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="active tab-pane" id="activity">
-                <div class="row">
-                  <div class="col-md-12 text-center">
-                    <p>Timeline kamu kosong silahkan bergabung ke kelas</p>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal-default">Gabung Ke kelas</button>
-                  </div>
-                </div>
-
-                
-              </div>
-            </div>
-            <!-- /.tab-content -->
-          </div>
-          <!-- /.nav-tabs-custom -->
+        <div class="me-name">His Nameis Really Dude</div>
+        <div class="card-content">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td>
+                  <i style="color:#2678cc;font-size:20px;margin:0 2px;" class="zmdi zmdi-account"></i> Full Name
+                                
+                </td>
+                <td>He Is Dude</td>
+              </tr>
+              <tr>
+                <td>
+                  <i style="color:#ff0;font-size:20px;margin:0 2px;" class="zmdi zmdi-star"></i> Current Level
+                                
+                </td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>
+                  <i style="color:#f44;font-size:20px;margin:0 2px;" class="zmdi zmdi-email"></i> Email
+                                
+                </td>
+                <td>dudemail@.com</td>
+              </tr>
+              <tr>
+                <td>
+                  <i style="color:#ff6022;font-size:20px;margin:0 2px;" class="zmdi zmdi-cake"></i> Birthday
+                                
+                </td>
+                <td>May 20th 1996</td>
+              </tr>
+              <tr>
+                <td>
+                  <i style="color:#09bb90;font-size:20px;margin:0 2px;" class="zmdi zmdi-graduation-cap"></i> Status
+                                
+                </td>
+                <td>Student</td>
+              </tr>
+              <tr>
+                <td>
+                  <i style="color:#0b0;font-size:20px;margin:0 2px;" class="zmdi zmdi-map"></i> Address
+                                
+                </td>
+                <td>Strettm, st 219, California, Uganda</td>
+              </tr>
+              <tr>
+                <td>
+                  <i style="color:#33f;font-size:20px;margin:0 2px;" class="zmdi zmdi-facebook-box"></i> Facebook
+                                
+                </td>
+                <td>Dude7teen</td>
+              </tr>
+              <tr>
+                <td>
+                  <i style="color:#f22;font-size:20px;margin:0 2px;" class="zmdi zmdi-google-plus-box"></i> Google +
+                                
+                </td>
+                <td>DudeMedude</td>
+              </tr>
+              <tr>
+                <td>
+                  <i style="color:#a2a;font-size:20px;margin:0 2px;" class="zmdi zmdi-instagram"></i> Instagram
+                                
+                </td>
+                <td>@dudesit</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="profile-data.html">
+            <button class="btn btn-info" style="padding:5px 10px;">
+              <i style="font-size:17px;margin:0 3px 0 0;" class="zmdi zmdi-edit"></i> Edit Your Profile
+                            
+            </button>
+          </a>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
-
-    </section>
-    <!-- /.content -->
-
-    <div class="modal fade text-center" id="modal-default">
-          <div class="modal-dialog" style="max-width: 300px;">
-            <div class="modal-content">
-              <form action="{{ route('setting.store') }}" method="post" class="horizntal-form">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Gabung Ke kelas</h4>
-              </div>
-              <div class="modal-body">
-                    {{ csrf_field() }}
-                      <div class="form-group {{$errors->has('code')?'has-error':''}}">
-                        <label for="email" class="col-sm-2 text-center">Kode</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" placeholder="kode kelas" name="code" value="">
-                        </div>
-                        <span class="help-block">{{$errors->first('code')}}</span>
-                      </div><br>
-                      <br>
-              </div>
-              <div class="modal-footer">
-                <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Bergabung</button>
-                </div>
-              </div>
-            </form>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats clocks">
+        <div class="card-header card-header-icon">
+          <i class="icon icon-warning zmdi zmdi-alarm" style="font-size:50px;margin:15px 0;"></i>
         </div>
-        <!-- /.modal -->
-    @endsection
+        <div class="card-content">
+          <h4 class="card-title">Current time</h4>
+          <div class="clock" style="font-size:30px;">
+            <strong>07:05:12</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notif">
+      <div class="notifs col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats card-notif">
+          <div class="card-header card-header-icon">
+            <i class="icon icon-info zmdi zmdi-timer" style="font-size:50px;margin:3px 0;"></i>
+          </div>
+          <div class="card-content">
+            <div class="todocount" style="position:relative;width:100%;text-align:right;">
+              <strong>
+                    1 hours left until "Ulangan WebDin"
+                  </strong>
+            </div>
+          </div>
+        </div>
+        <div class="card card-stats card-notif">
+          <div class="card-header card-header-icon">
+            <i class="icon icon-info zmdi zmdi-info" style="font-size:50px;"></i>
+          </div>
+          <div class="card-content">
+            <div class="todocount" style="position:relative;width:100%;text-align:right;">
+              <strong>
+                    Get Signature after dzuhur
+                  </strong>
+            </div>
+          </div>
+        </div>
+        <div class="card card-stats card-notif">
+          <div class="card-header card-header-icon">
+            <i class="icon icon-warning zmdi zmdi-alert-triangle" style="font-size:50px;margin:3px 0;"></i>
+          </div>
+          <div class="card-content">
+            <div class="todocount" style="position:relative;width:100%;text-align:right;">
+              <strong>
+                    Project OOP must be done today at 4 p.m
+                  </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-5 col-md-6 col-sm-6">
+      <div class="card todolist">
+        <div class="card-content">
+          <h3>Your Tasks Today: </h3>
+          <i style="position:absolute;right:0;top:0;padding:10px 20px;background:#2678dd;font-size:40px;color:#fff;border-radius:0 0 0 4px;" class="zmdi zmdi-assignment"></i>
+          <ul class="todos" style="list-style:;">
+            <li>Ulangan Webdin at 8 a.m
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>Do the OOP Project
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>Attend meeting at 2 p.m
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>Collect books from library
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>Get Principle Signature
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>English Test at 1 p.m
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>Ulangan Webdin at 8 a.m
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>Do the OOP Project
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>Attend meeting at 2 p.m
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>Collect books from library
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>Get Principle Signature
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+            <li>English Test at 1 p.m
+                              
+              <span class="todo-stat">
+                <i class="icon icon-success zmdi zmdi-check"></i>
+                <i class="icon icon-danger zmdi zmdi-close"></i>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a href="#">
+            <button class="btn btn-info">
+              <i style="font-size:17px;margin:0 3px 0 0;" class="zmdi zmdi-edit"></i> Write Something Else
+                            
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 col-md-12">
+      <div class="card activities" style="min-height:200px;max-height: 500px">
+        <div class="card-header">
+          <h4 class="card-title">Activities</h4>
+        </div>
+        <div class="card-content">
+          <div class="streamline">
+            <div class="sl-item sl-primary">
+              <div class="sl-content">
+                <small class="text-muted">5 mins ago</small>
+                <p>Williams has just joined Project X</p>
+              </div>
+            </div>
+            <div class="sl-item sl-danger">
+              <div class="sl-content">
+                <small class="text-muted">25 mins ago</small>
+                <p>Jane has sent a request for access to the project folder</p>
+              </div>
+            </div>
+            <div class="sl-item sl-success">
+              <div class="sl-content">
+                <small class="text-muted">40 mins ago</small>
+                <p>Kate added you to her team</p>
+              </div>
+            </div>
+            <div class="sl-item">
+              <div class="sl-content">
+                <small class="text-muted">45 minutes ago</small>
+                <p>John has finished his task</p>
+              </div>
+            </div>
+            <div class="sl-item sl-warning">
+              <div class="sl-content">
+                <small class="text-muted">55 mins ago</small>
+                <p>Jim shared a folder with you</p>
+              </div>
+            </div>
+            <div class="sl-item">
+              <div class="sl-content">
+                <small class="text-muted">60 minutes ago</small>
+                <p>John has finished his task</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="card groups" style="min-height:200px;max-height: 500px">
+        <div class="card-header">
+          <h4 class="card-title">Joined Groups</h4>
+        </div>
+        <div class="card-content">
+          <!-- To Add Group, Add it inside div.group-data -->
+          <div class="group-data">
+            <div class="group-img">
+              <img src="{{ asset('assets/img/catfall.jpeg') }}" style="height:100%"/>
+            </div>
+            <div class="group-abt">
+              <div id="group-name">
+                <strong>12 RPL 1</strong>
+              </div>
+              <div id="group-stat">
+                <span>29 Members</span>
+              </div>
+            </div>
+          </div>
+          <div class="group-data">
+            <div class="group-img">
+              <img src="{{ asset('assets/img/catfall.jpeg') }}" style="height:100%"/>
+            </div>
+            <div class="group-abt">
+              <div id="group-name">
+                <strong>BASIS DATA</strong>
+              </div>
+              <div id="group-stat">
+                <span>157 Members</span>
+              </div>
+            </div>
+          </div>
+          <div class="group-data">
+            <div class="group-img">
+              <img src="{{ asset('assets/img/catfall.jpeg') }}" style="height:100%"/>
+            </div>
+            <div class="group-abt">
+              <div id="group-name">
+                <strong>Webdin</strong>
+              </div>
+              <div id="group-stat">
+                <span>112 Members</span>
+              </div>
+            </div>
+          </div>
+          <div class="group-data">
+            <div class="group-img">
+              <img src="{{ asset('assets/img/catfall.jpeg') }}" style="height:100%"/>
+            </div>
+            <div class="group-abt">
+              <div id="group-name">
+                <strong>Jalisum</strong>
+              </div>
+              <div id="group-stat">
+                <span>1,8k Members</span>
+              </div>
+            </div>
+          </div>
+          <div class="group-data">
+            <div class="group-img">
+              <img src="{{ asset('assets/img/catfall.jpeg') }}" style="height:100%"/>
+            </div>
+            <div class="group-abt">
+              <div id="group-name">
+                <strong>Googles</strong>
+              </div>
+              <div id="group-stat">
+                <span>290k Members</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

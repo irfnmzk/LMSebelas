@@ -1,131 +1,246 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'Laravel') }}</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="{{ asset('bower_components/Ionicons/css/ionicons.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css') }}">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
-<body class="hold-transition skin-blue fixed">
-<div class="wrapper">
-
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="{{ route('dashboard') }}" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>LMS</b>ebelas</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-        <div class="user-panel">
-            <div class="pull-left image">
-              <img src="{{ Auth::User()->picture }}" class="img-circle" alt="User Image">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.html') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>L-even</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Bootstrap core CSS     -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <!--  Material Dashboard CSS    -->
+    <link href="{{ asset('assets/css/turbo.css') }}" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+      <link href="{{ asset('assets/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        </head>
+        <body>
+          <div class="wrapper">
+            <div class="sidebar">
+              <div class="logo">
+                <a href="index.html" class="simple-text">
+                  <i class="zmdi zmdi-boat" style="font-size:40px;color:#2678ff;"></i>
+                </a>
+              </div>
+              <div class="logo logo-mini">
+                <a href="index.html" class="simple-text">
+                  <i class="zmdi zmdi-boat" style="font-size:30px;color:#2678ff;"></i>
+                </a>
+              </div>
+              <div class="sidebar-wrapper">
+                <ul class="nav">
+                  <li class="active">
+                    <a href="index.html">
+                      <i class="zmdi zmdi-nature-people"></i>
+                      <p>Home</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="class.html">
+                      <i class="zmdi zmdi-home"></i>
+                      <p>Classroom</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="group.html">
+                      <i class="zmdi zmdi-accounts-alt"></i>
+                      <p>Group</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="course.html">
+                      <i class="zmdi zmdi-book"></i>
+                      <p>Courses</p>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="pull-left info">
-              <h4>
-              <p>{{ Auth::User()->name }}</p>
-              
-            </h4>
+            <div class="main-panel">
+              <nav class="navbar navbar-default navbar-absolute" data-topbar-color="blue">
+                <div class="container-fluid">
+                  <div class="navbar-minimize">
+                    <button id="minimizeSidebar" class="btn btn-round btn-white btn-fill btn-just-icon">
+                      <i class="material-icons visible-on-sidebar-regular f-26 zmdi zmdi-chevron-left"></i>
+                      <i class="material-icons visible-on-sidebar-mini f-26 zmdi zmdi-chevron-right"></i>
+                    </button>
+                  </div>
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"> Home </a>
+                  </div>
+                  <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                          <i class="zmdi zmdi-notifications" style="font-size:25px;"></i>
+                          <span class="notification" style="border-radius:50%;">6</span>
+                          <p class="hidden-lg hidden-md">
+                                        Notifications
+                                        
+                            
+                            <b class="caret"></b>
+                          </p>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a href="#">You have 5 new messages</a>
+                          </li>
+                          <li>
+                            <a href="#">You're now friend with Mike</a>
+                          </li>
+                          <li>
+                            <a href="#">Wish Mary on her birthday!</a>
+                          </li>
+                          <li>
+                            <a href="#">5 warnings in Server Console</a>
+                          </li>
+                          <li>
+                            <a href="#">Jane completed 'Induction Training'</a>
+                          </li>
+                          <li>
+                            <a href="#">'Prepare Marketing Report' is overdue</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                          <!--i class="zmdi zmdi-account-circle" style="font-size:25px;"></i-->
+                          <div class="profile-picture">
+                            <img src="{{ asset('assets/img/photocovercat.jpg') }}"/>
+                          </div>
+                          <span class="caret" style="margin-top:-15px;"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a href="profile.html">
+                              <i class="zmdi zmdi-account" style="font-size:20px;margin-right:10px;"></i>
+                              <span>Profile</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="zmdi zmdi-settings" style="font-size:20px;margin-right:10px;"></i>
+                              <span>Settings</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="zmdi zmdi-power" style="font-size:20px;margin-right:10px;"></i>
+                              <span>Logout</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="separator hidden-lg hidden-md"></li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+              <div class="content">
+                @yield('content')
+              </div>
+              <footer class="footer">
+                <div class="container-fluid">
+                  <nav class="pull-left">
+                    <ul>
+                      <li>
+                        <a href="#">
+                                    Home
+                                </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                                    Company
+                                </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                                    Portfolio
+                                </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                                    Contact
+                                </a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <p class="copyright pull-right">
+                        &copy;
+                        
+                    
+                    <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                    <a href="#">Leven</a> Learning Management System
+                    
+                  
+                  </p>
+                </div>
+              </footer>
             </div>
           </div>
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-          <li class="header"><h4 class="text-center sidebar-menu">Menu</h4></li>
-        <li>
-          <a href="{{route('login')}}">
-            <h4 class="sidebar-menu"><i class="fa fa-home"></i> <span>Dashboard</span></h4>
-          </a>
-        </li>
-        <li>
-            <a href="../widgets.html">
-              <h4 class="sidebar-menu"><i class="fa fa-book"></i> <span>Kelas</span></h4>
-            </a>
-        </li>
-        <li>
-          <a href="../widgets.html">
-            <h4 class="sidebar-menu"><i class="fa fa-user"></i> <span>Profile</span></h4>
-          </a>
-        </li>
-        <li>
-            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-              <h4 class="sidebar-menu"><i class="fa fa-power-off"></i> <span>Logout</span></h4>
-            </a>
+        </body>
+        <!--   Core JS Files   -->
+        <script src="{{ asset('assets/vendors/jquery-3.1.1.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/vendors/jquery-ui.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/vendors/bootstrap.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/vendors/material.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/vendors/perfect-scrollbar.jquery.min.js') }}" type="text/javascript"></script>
+        <!-- Forms Validations Plugin -->
+        <script src="{{ asset('assets/vendors/jquery.validate.min.js') }}"></script>
+        <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+        <script src="{{ asset('assets/vendors/moment.min.js') }}"></script>
+        <!--  Charts Plugin -->
+        <script src="{{ asset('assets/vendors/charts/flot/jquery.flot.js') }}"></script>
+        <script src="{{ asset('assets/vendors/charts/flot/jquery.flot.resize.js') }}"></script>
+        <script src="{{ asset('assets/vendors/charts/flot/jquery.flot.pie.js') }}"></script>
+        <script src="{{ asset('assets/vendors/charts/flot/jquery.flot.stack.js') }}"></script>
+        <script src="{{ asset('assets/vendors/charts/flot/jquery.flot.categories.js') }}"></script>
+        <script src="{{ asset('assets/vendors/charts/chartjs/Chart.min.js') }}" type="text/javascript"></script>
+        <!--  Plugin for the Wizard -->
+        <script src="{{ asset('assets/vendors/jquery.bootstrap-wizard.js') }}"></script>
+        <!--  Notifications Plugin    -->
+        <script src="{{ asset('assets/vendors/bootstrap-notify.js') }}"></script>
+        <!-- DateTimePicker Plugin -->
+        <script src="{{ asset('assets/vendors/bootstrap-datetimepicker.js') }}"></script>
+        <!-- Vector Map plugin -->
+        <script src="{{ asset('assets/vendors/jquery-jvectormap.js') }}"></script>
+        <!-- Sliders Plugin -->
+        <script src="{{ asset('assets/vendors/nouislider.min.js') }}"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAurmSUEQDwY86-wOG3kCp855tCI8lHL-I"></script>
+        <!-- Select Plugin -->
+        <script src="{{ asset('assets/vendors/jquery.select-bootstrap.js') }}"></script>
+        <!--  DataTables.net Plugin    -->
+        <script src="{{ asset('assets/vendors/jquery.datatables.js') }}"></script>
+        <!-- Sweet Alert 2 plugin -->
+        <script src="{{ asset('assets/vendors/sweetalert2.js') }}"></script>
+        <!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+        <script src="{{ asset('assets/vendors/jasny-bootstrap.min.js') }}"></script>
+        <!--  Full Calendar Plugin    -->
+        <script src="{{ asset('assets/vendors/fullcalendar.min.js') }}"></script>
+        <!-- TagsInput Plugin -->
+        <script src="{{ asset('assets/vendors/jquery.tagsinput.js') }}"></script>
+        <!-- Material Dashboard javascript methods -->
+        <script src="{{ asset('assets/js/turbo.js') }}"></script>
+        <script src="{{ asset('assets/js/charts/flot-charts.js') }}"></script>
+        <script src="{{ asset('assets/js/charts/chartjs-charts.js') }}"></script>
+        <script type="text/javascript">
+    $(document).ready(function() {
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
-          </li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    @yield('content')
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div>
-    <strong>Copyright &copy; 2018 <a href="#">LMSebelas</a>.</strong> All rights
-    reserved.
-  </footer>
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- FastClick -->
-<script src="{{ asset('bower_components/fastclick/lib/fastclick.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('dist/js/demo.js') }}"></script>
-</body>
-</html>
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initVectorMap();
+    });
+</script>
+      </html>
