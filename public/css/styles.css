@@ -1,0 +1,829 @@
+		body {
+			overflow-y:  hidden;
+		}
+		nav .ul li {
+			border-radius: 32px;
+		}
+		.profile-picture {
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			overflow: hidden;
+			display: inline-block;
+		}
+		.profile-picture img {
+			width: 100%;
+			height: 100%;
+		}
+		.card {
+			box-shadow: 1px 1px 5px rgba(0,0,0,0.05);
+			overflow: hidden;
+		}
+		
+		/*=================================
+					Index Page
+		=================================*/
+		.timeline-card {
+			padding: 10px;
+		}
+		.profpic-user-timeline {
+			height: 100px;
+			margin-top: 10px;
+			background: #000;
+		}
+		.profpic-user-timeline img {
+			width: 100%;
+			height: 100%;
+		}
+		.content-timeline  {
+			margin-top: 10px;
+		}
+		.content-timeline form label {
+			position: absolute; 	
+			margin: 10px;
+			color: #bbb;
+			transition: 0.2s;
+		}
+		.content-timeline form textarea {
+			min-width: 100%;
+			min-height: 125px;
+			max-width: 100%;
+			max-height: 125px;
+			padding: 10px;
+			border-radius: 2px;
+			border: 1px solid #bbb;
+		}
+		.content-timeline form:hover label {
+			opacity: 0;
+		}
+		.username-timeline {
+			font-size: 20px;
+		}
+		.date-timeline {
+			color: #bbb;
+			font-size: 13px;
+			margin-bottom: 10px;
+		}
+		.responds-timeline a {
+			color: #111;
+			transition: 0.2s;
+		}
+		.responds-timeline a:hover i {
+			color: #2645ff;
+		}
+		.responds-timeline div {
+			display: inline-block;
+			vertical-align: top;
+			margin: 7.5px 5px;
+		}
+		.icon-timeline {
+			margin: 5px;
+		}
+		.icon-timeline i {
+			font-size: 19px;
+			transition: 0.2s;
+		}
+		.attach-something-else {
+			margin: 5px;
+		}
+		.attach-something-else a {
+			color: #222;
+			font-size: 16px;
+			font-weight: 100;
+			font-family: "catamaran light";
+			margin: 0 3px;
+		}
+		.attach-something-else a i {
+			font-size: 18px;
+			margin: 0 2.5px;
+		}
+		.attach-something-else a:hover,
+		.attach-something-else a:hover i {
+			color: #2678cc;
+		}
+		.attach-something-else, .post-status, .to-attach {
+			display: inline-block;
+			vertical-align: top;
+		}
+		
+		.add-comment {
+			display: block;
+		}
+		.all-comments h3.other {
+			margin-top: 65px;
+			display: block;
+		}
+		.comments-content .username-timeline {
+			font-size: 18px;
+		}
+		.profpic-user-comment img {
+			height: 75px;
+			margin-top: 10px;
+		}
+		.post-comment-timeline {
+			background: #000;
+		}
+		.content-comment {
+			margin: 10px;
+		}
+		button.show-more-comments {
+			background: transparent;
+			border: none;
+			border-top: 1px solid #aaa;
+			border-bottom: 1px solid #aaa;
+			font-family: "catamaran light";
+			width: 100%;
+			padding: 5px;
+			font-size: 12px;
+			font-weight: 600;
+			text-transform: uppercase;
+			text-align: center;
+			margin: 15px 0;
+		}
+		
+		.portofolio-card {
+			text-align: center;
+			border-radius: 2px;
+		}
+		.index-avatar img {
+		}
+		.index-avatar img.back {
+			width: 100%;
+			height: 175px;
+		}
+		.index-avatar img.front{
+			position: absolute;
+			top: 125px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 100px;
+			height: 100px;
+			border: 3px solid #fff;
+			border-radius: 50%;
+		}
+		.index-nickname {
+			margin-top: 60px;
+			font-size: 20px;
+		}
+		.index-portofolio a i {
+			margin: 20px 5px;
+			font-size: 22px;
+			color: #111;
+			transition: 0.2s;
+		}
+		.index-portofolio a i.zmdi-facebook-box:hover {
+			color: #2456aa;
+		}
+		.index-portofolio a i.zmdi-twitter:hover {
+			color: #24bbff;
+		}
+		.index-portofolio a i.zmdi-google-plus-box:hover {
+			color: #d44;
+		}
+		.index-portofolio a i.zmdi-instagram:hover {
+			color: #b3b;
+		}
+		/*======================*/
+		/*		Timeline		*/
+		/*======================*/
+		.profile {
+			min-height: 300px;
+			max-height: 800px;
+		}
+		.card-notif {
+			border-radius: 32px 0 0 32px;
+			border-right: 5px solid #ee4;
+			font-family: "calibri light";
+			font-weight: 100;
+			min-height: 75px;
+			max-height: 100px;
+			overflow: hidden;
+		}
+		.clocks {
+			height: 100px;
+		}
+		.todolist h3 {
+			margin-left: 20px;
+		}
+		.activities::-webkit-scrollbar, .groups::-webkit-scrollbar, ul.todos::-webkit-scrollbar {
+			width: 5px;
+			background: rgba(0,0,0,0.1);
+			border-radius: 32px;
+			overflow:hidden;
+		}
+		.activities::-webkit-scrollbar-thumb, .groups::-webkit-scrollbar-thumb , ul.todos::-webkit-scrollbar-thumb {
+			background: rgba(0,0,0,0.2);
+			width: 100%;
+			border-radius: 32px;
+		}
+		ul.todos {
+			height: 320px;
+			overflow-y: scroll;
+		}
+		ul.todos li {
+			padding: 5px 0;
+		}
+		ul.todos li span {
+			float: right;
+			margin-right: 25px;
+		}
+		ul.todos li span i {
+			margin: 0 5px;
+			font-size: 20px;
+			cursor: pointer;
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			padding-left: 3px;
+			transition: 0.2s;
+			border: 1px solid transparent;
+		}
+		ul.todos li span i.icon-success:hover {
+			border: 1px solid #0b0;
+		}
+		ul.todos li span i.icon-danger:hover {
+			border: 1px solid #b00;
+		}
+		.profpics {
+			width: 100%;
+			height: 25px;
+			display: block;
+			position: relative;
+		}
+		.profpics img {
+			position: absolute;
+		}
+		.profpics img.avatar {
+			margin: 40px;
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+		}
+		.me-name {
+			margin: 25px 0 0 275px;
+			text-align: left;
+			font-size: 30px;
+		}
+		.profiles table {
+			width: 60%;
+			margin: 20px 0 0 250px;
+		}
+		.profiles table tbody tr td {
+			padding: 5px;
+		}
+		.profiles button {
+			margin-left: 250px;
+		}
+		.notifs card {
+			background: #000;
+		}
+		.activities, .groups {
+			overflow-y: scroll;
+		}
+		.group-data {
+			display: inline;
+			width: 48%;
+			margin: 1%;
+		}
+		.group-img {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			overflow: hidden;
+			margin: 10px 0;
+		}
+		.group-abt {
+			width: 80px;
+		}
+		#group-stat {
+			font-size: 12px;
+		}
+		.group-img, .group-abt {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		
+		
+		/*===========================================
+						Login Page
+		===========================================*/
+		
+		body.login-page {
+			background: url('../img/pencils-book.jpeg');
+			background-size: cover;
+			overflow: hidden;
+		}
+		.title {
+			width: 100%;
+			padding: 30px 50px;
+			font-size: 25px;
+			color: #eee;
+			font-weight: 100;
+			font-family: catamaran;
+		}
+		.form-login {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 400px;
+			transform: translateX(-50%);
+			background: rgba(255,255,255,0.7);
+			display: block;
+			margin: auto;
+			text-align: center;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.5);
+			color: #444;
+		}
+		.form-1 i, .form-2 i {
+			font-size: 30px;
+			margin-right: 10px;
+			color: #555;
+			transition: 0.2s;
+		}
+		.form-1, .form-2 {
+			display: block;
+			margin: 10px 0;
+		}
+		.form-login form input:focus i{
+			color: #2678cc;
+		}
+		.form-login form input {
+			background: transparent;
+			border: none;
+			border-bottom: 2px solid #666;
+			color: #555;
+			padding: 5px;
+			margin-top: -10px;
+			transition: 0.2s;
+		}
+		.form-login form input:focus {
+			border-bottom: 2px solid #2678cc;
+		}
+		.form-login form input::-webkit-input-placeholder {
+			color: #444;
+		}
+		.form-login form button {
+			background: #36f;
+			border: none;
+			padding: 10px 40px;
+			color: #fff;
+			font-size: 15px;
+			text-transform: uppercase;
+			font-weight: 100;
+			border-radius: 4px;
+			margin: 10px;
+			transition: 0.2s;
+		}
+		.form-login form button:hover {
+			box-shadow: 0 0 10px rgba(0,0,0,0.25);
+		}
+		.form-login a:hover {
+			text-decoration: underline;
+		}
+		.form-login b {
+			color: #555;
+		}
+		.social-media {
+			margin-bottom: 20px; 
+		}
+		.social-media i {
+			font-size: 20px;
+			background: #555;
+			color: #eee;
+			width: 30px;
+			height: 30px;
+			padding: 5px;
+			border-radius: 4px;
+			margin: 0 5px;
+			transition: 0.2s;
+		}
+		.social-media a i.zmdi-facebook:hover {
+			background: #44b;
+		}
+		.social-media a i.zmdi-google-plus:hover {
+			background: #d44;
+		}
+		.social-media a i.zmdi-twitter:hover {
+			background: #4dd;
+		}
+		.form-login span.or:before,
+		.form-login span.or:after {
+			content: "-------------------";
+		}
+		.form-login span.or {
+			margin: 10px;
+			color: #888;
+			font-size: 12px;
+		}
+		
+		/*===========================================
+						Class Page
+		===========================================*/
+		
+		.class-welcome {
+			background: -webkit-linear-gradient(right,#2678cc 75%,#267899);
+			background: linear-gradient(right,#2678cc 75%,#267899);
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+		.card-icon-w, .card-icon-y, .title-w {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.welcome-say {
+			margin: 50px;
+		}
+		.input-enroll {
+			height: 100%;
+			color: #ff0;
+			font-size: 20px;
+			padding: 30px;
+		}
+		.title-w {
+			color: #fff;
+			font-size: 40px;
+		}
+		.card-icon-w {
+			font-size: 30px;
+			border-top: 20px solid transparent;
+			color: #fff;
+		}
+		.card-icon-y {
+			font-size: 30px;
+			border-bottom: 20px solid transparent;
+			color: #fff;
+		}
+		.classes {
+			height: 275px;
+			transition: 0.1s;
+			cursor: pointer;
+			border-radius: 2px;
+		}
+		.classes:hover {
+			transform: scale(1.025);
+		}
+		.classes img {
+			height: 85%;
+		}
+		.classes .card-footer {
+			text-align: center;
+		}
+		/*=======================================
+					Join Class Page
+		=======================================*/
+		.class-info {
+			height: 450px;
+			overflow: hidden;
+		}
+		.class-about {
+			margin: 20px 0;
+			padding: 0 20px;
+			border-right: 1px solid #ddd;
+			text-align: center;
+		}
+		.class-about .join-this-class button {
+			font-size: 20px;
+		}
+		.class-about img {
+			margin: 25px 0;
+			border-radius: 50%;
+			width: 200px;
+			height: 200px;
+		}
+		.class-members {
+			height: 450px;
+			overflow-y: scroll;
+		}
+		.class-members::-webkit-scrollbar {
+			width:7.5px;
+			background: rgba(0,0,0,0.1);
+			border-radius: 16px;
+		}
+		.class-members::-webkit-scrollbar-thumb {
+			width: 100%;
+			background: rgba(0,0,0,0.25);
+			border: 2px solid transparent;
+			border-radius: 16px;
+		}
+		/*=================================
+					Group Page
+		=================================*/
+		.group {
+			transition: 0.1s;
+			cursor: pointer;
+		}
+		.group:hover {
+			transform: scale(1.025);
+		}
+		/*=================================
+					Profile Page
+		=================================*/
+		.profile form.profile-photo-cover {
+			margin-left: -15px;
+		}
+		.profile {
+			width: 100%;
+			min-height: 300px;
+			max-height: 800px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.1);
+		}
+		.profpic {
+			height: 250px;
+			background: #999;
+			display: block;
+			position: relative;
+		}
+		.profpic img, .me-named {
+			position: absolute;
+		}
+		.profpic img.bgavatar {
+			width: 100%;
+			height: 100%;
+		}
+		.profpic img.avatar {
+			bottom: -100px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			border: 5px solid #fff;
+		}
+		.me-named {
+			width: 200px;
+			text-align: center;
+			top: 325px;
+			left: 65px;
+			font-size: 26px;
+		}
+		.profile table {
+			width: 70%;
+			margin: 20px 0 0 250px;
+		}
+		.profile table tbody tr td {
+			padding: 5px;
+		}
+		.profile button {
+			margin-left: 250px;
+		}
+		.groups::-webkit-scrollbar {
+			width:7.5px;
+			background: rgba(0,0,0,0.1);
+			border-radius: 16px;
+		}
+		.groups::-webkit-scrollbar-thumb {
+			width: 100%;
+			background: rgba(0,0,0,0.25);
+			border: 2px solid transparent;
+			border-radius: 16px;
+		}
+		.groups {
+			overflow-y: scroll;
+			overflow-x: hidden;
+			height: 250px;
+			wrap: no-wrap;
+		}
+		.group-list {
+			border-radius: 4px;
+		}
+		.group-list a {
+			color: #444;
+			margin: 0 10px;
+		}
+		.group-img {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			overflow: hidden;
+			margin: 10px 0;
+		}
+		.group-abt {
+			width: 100px;
+			margin-left: 10px;
+		}
+		#group-stat {
+			font-size: 12px;
+		}
+		.group-img, .group-abt {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.groups .card-header i {
+			border: 3px solid #4b4;
+			padding: 5px 10px;
+			border-radius: 50%;
+		}
+		.groups .card-header i, h4 {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		/*=================================
+				Profile Page
+		=================================*/
+		.profile .profile-cover {
+			margin-left: -10px;
+			margin-bottom: 20px;
+		}
+		.profile .profile-photo img{
+			width: 200px;
+			height: 150px;
+			bottom: 0;
+			border-top: 5px solid #fff;
+			border-right: 5px solid #fff;
+		}
+		.profile .profile-nickname {
+			font-size: 30px;
+			position: absolute;
+			bottom: 25px;
+			left: 225px;
+			background: rgba(0,0,0,0.5);
+			padding: 10px;
+			border-radius: 4px;
+			color: #fff;
+		}
+		table.profile-table {
+			width: 100%;
+			margin-top: 10px;
+			margin-left: 0;
+		}
+		table.profile-table tbody tr td {
+			padding: 10px;
+			font-size: 16px;
+			color: #444;
+		}
+		table.profile-table tbody tr td i {
+			font-size:20px;
+			margin:0 2px;
+		}
+		.profile-side {
+			padding: 20px;
+			box-shadow: 0 0 5px rgba(0,0,0,0.15);
+			border-left: 3px solid #ccc;
+			border-radius: 0 4px 4px 0;
+			color: #bbb;
+			font-size: 25px;
+			font-weight: 100;
+		}
+		.profile-side:before, .profile-side:after {
+			content: "''";
+		}
+		/*=================================
+				Profile Data Page
+		=================================*/
+		.profile-cover {
+			height: 300px;
+		}
+		.profile-cover img, .profile-cover .fileinput {
+			position: absolute;
+		}
+		.profile-cover img.avatar {
+			height: 160px;
+			width: 160px;
+			bottom: 10px;
+			left: 20px;
+			border-radius: 8px 8px 8px 8px;
+			border: 5px solid rgba(0,0,50,0.25);
+		}
+		.profile-cover .fileinput  {
+			width: 200px;
+			height: 200px;
+			border-radius: 0;
+		}
+		.profile-cover .fileinput .before-input img, .fileinput .after-input img {
+			width: 200px;
+			height: 150px;
+			border-radius: 0;
+			border-top: 5px solid #fff;
+			border-right: 5px solid #fff;
+		}
+		.profile-cover .fileinput .before-input, .fileinput .after-input {
+			height: 150px;
+			width: 200px;
+			box-shadow: none;
+			background: transparent;
+			position: absolute;
+			left: 0;
+			top: calc(100% - 50px);
+			transition: 0.2s;
+			border-radius: 0;
+		}
+		.profile-cover .fileinput span {
+			margin: 0;
+		}
+		.profile-cover .fileinput:hover span.btn {
+			opacity: 1;
+		}
+		.profile-cover .fileinput span.btn {
+			position: absolute;
+			bottom: -100px;
+			left: 0;
+			opacity: 0;
+			transition: 0.2s;
+			height: 150px;
+			width: 200px;
+			background: rgba(0,0,0,0.25);
+		}
+		a.cancel-upload {
+			background: rgba(75,0,0,0.25);
+			position: absolute;
+			top: calc(100% - 50px);
+			left: 200px;
+			font-size: 25px;
+			padding: 0px 10px;
+			margin: 0;
+			border-radius: 0 0 2px 2px;
+			box-shadow: none;
+			border-radius: 0 50% 50% 0;
+		}
+		.profile-cover .fileinput:hover a.cancel-upload, a.cancel-upload:hover {
+			background: rgba(75,0,0,0.5);
+		}
+		.profile-cover .fileinput span.btn span.photo-edit i {
+			font-size: 35px;
+		}
+		.profile-cover .fileinput span.btn i {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			font-size: 50px;
+		}
+		.profile-cover img.bgavatar {
+			height: 100%;
+			width: 100%;
+		}
+		/*======================================
+					Enroll Code Page
+		======================================*/
+		.input-enroll-code {
+			height: 475px;
+			position: relative;
+		}
+		.enroll-title {
+			position: absolute;
+			top: 25%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			font-family: "calibri light";
+			font-size: 30px;
+			width: 375px;
+		}
+		.input-enroll-code form {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		.input-enroll-code form .form-group {
+			margin: 2px;
+		}
+		.input-enroll-code form input, button {
+			display: block;
+			height: 100%;
+		}
+		.input-enroll-code form input {
+			padding: 15px 25px;
+			font-size: 20px;
+			border-radius: 4px;
+			border: 2px solid #bbb;
+			margin: 0;
+			width: 300px;
+			transition: 0.3s;
+			box-shadow: 0 0 5px rgba(0,0,0,0.15);
+			font-family: "calibri light";
+		}
+		.input-enroll-code form input:focus {
+			box-shadow: 0 0 12.5px rgba(0,0,0,0.15);
+			border: 2px solid #26aaff;
+		}
+		.input-enroll-code form button {
+			background: #26aaff;
+			padding: 12px 22px;
+			margin: 10px 0;
+			font-size: 16px;
+			text-transform: capitalize;
+			border-radius: 4px;
+			margin-left: -5px;
+			transition: 0.2s;
+			box-shadow: 0 0 7.5px rgba(0,0,0,0.15) !important;
+		}
+		.input-enroll-code form button:hover {
+			background: #2688ff;
+		}
+		/*======================
+				Un Footer
+		======================*/
+		.un-footer {
+			box-shadow: 0 0 10px rgba(0,0,0,0.25);
+			background: url("../img/photocovercat.jpg");
+			background-size: cover;
+			padding: 35px 50px;
+			width: 100%;
+			height: 250px;
+		}
+		.un-footer h2 {
+			color: #ff9000;
+		}
+		
