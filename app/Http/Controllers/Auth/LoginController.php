@@ -39,20 +39,25 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirectToProvider()
+    public function redirectToProvider($provider)
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
-        $user = Socialite::driver('google')
+        $user = Socialite::driver($provider)
             ->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
             ->user();
 
         $hasUser = \App\User::where('email', $user->getEmail())->first();
 
         if($hasUser){
+            $hasUser->update([
+                'name' => $user->getName(),
+                'picture' => $user->getAvatar(),
+            ]);
+
             Auth::login($hasUser);
             return redirect('dashboard');
         }

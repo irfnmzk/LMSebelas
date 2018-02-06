@@ -23,8 +23,16 @@ Route::match(['get', 'post'], 'register', function(){
 });
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('/user/setting','UserController@showSetting');
-Route::post('/user/setting', 'UserController@storeSetting')->name('setting.store');
+Route::get('/classroom', 'KelasController@index')->name('kelas.index');
 
-Route::get('login/google', 'Auth\LoginController@redirectToProvider');
-Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');
+Route::get('/user/setting','UserController@showSetting');
+Route::get('/user/profile','UserController@showProfile');
+
+Route::post('/user/setting', 'UserController@storeSetting')->name('setting.store');
+Route::get('/sekolah/find', 'UserController@find');
+Route::post('/classroom/add', 'kelasController@storeKelas')->name('kelas.store');
+Route::post('/classroom/join', 'kelasController@joinKelas')->name('kelas.join');
+
+
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('callback/{provider}', 'Auth\LoginController@handleProviderCallback');

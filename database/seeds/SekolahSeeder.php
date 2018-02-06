@@ -11,7 +11,7 @@ class SekolahSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('sekolah')->insert([
         	 [
               'nama'  => 'SMKN 11 Bandung',
               
