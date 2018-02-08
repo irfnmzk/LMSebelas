@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Modul extends Model
 {
+	protected $table = "modul";
+
     protected $fillable = [
     	'judul', 'materi_id', 'accessable', 'link'
     ];

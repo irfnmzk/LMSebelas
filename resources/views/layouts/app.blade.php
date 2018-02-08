@@ -14,138 +14,173 @@
     <link href="{{ asset('assets/css/turbo.css') }}" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
-      <link href="{{ asset('assets/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+    <link href="{{ asset('assets/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" />
+        
         </head>
         <body>
           <div class="wrapper">
-            <div class="sidebar">
-              <div class="logo">
-                <a href="index.html" class="simple-text">
-                  <i class="zmdi zmdi-boat" style="font-size:40px;color:#2678ff;"></i>
+        <div class="sidebar">
+            <div class="logo">
+                <a href="{{ url('dashboard') }}" class="simple-text">
+                    <i class="zmdi zmdi-boat" style="font-size:40px;color:#2678ff;"></i>
                 </a>
-              </div>
-              <div class="logo logo-mini">
-                <a href="index.html" class="simple-text">
-                  <i class="zmdi zmdi-boat" style="font-size:30px;color:#2678ff;"></i>
-                </a>
-              </div>
-              <div class="sidebar-wrapper">
-                <ul class="nav">
-                  <li class="active">
-                    <a href="index.html">
-                      <i class="zmdi zmdi-nature-people"></i>
-                      <p>Home</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="class.html">
-                      <i class="zmdi zmdi-home"></i>
-                      <p>Classroom</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="group.html">
-                      <i class="zmdi zmdi-accounts-alt"></i>
-                      <p>Group</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="course.html">
-                      <i class="zmdi zmdi-book"></i>
-                      <p>Courses</p>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
-            <div class="main-panel">
-              <nav class="navbar navbar-default navbar-absolute" data-topbar-color="blue">
+            <div class="logo logo-mini">
+                <a href="{{ url('dashboard') }}" class="simple-text">
+                    <i class="zmdi zmdi-boat" style="font-size:30px;color:#2678ff;"></i>
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="active">
+                        <a href="{{ url('dashboard') }}">
+                            <i class="zmdi zmdi-nature-people"></i>
+                            <p>Home</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('classroom') }}">
+                            <i class="zmdi zmdi-home"></i>
+                            <p>Classroom</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group.html">
+                            <i class="zmdi zmdi-accounts-alt"></i>
+                            <p>Group</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="course.html">
+                            <i class="zmdi zmdi-book"></i>
+                            <p>Courses</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="enroll.html">
+                            <i class="zmdi zmdi-card"></i>
+                            <p>Enroll Code</p>
+                        </a>
+                    </li>
+
+                    
+          <!--li>
+                        <a data-toggle="collapse" href="#layouts" class="collapsed" aria-expanded="false">
+                            <i class="material-icons">aspect_ratio</i>
+                            <p>Layouts
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="layouts" aria-expanded="false" style="height: 0px;">
+                            <ul class="nav">
+                                <li>
+                                    <a href="layouts/boxed-layout.html">Box Layout</a>
+                                </li>
+                                <li>
+                                    <a href="layouts/compact-menu.html">Compact Menu</a>
+                                </li>
+                                <li>
+                                    <a href="layouts/horizontal-menu.html">Horizontal Menu</a>
+                                </li>
+                                <li>
+                                    <a href="layouts/rtl-layout.html">RTL</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    -->
+                </ul>
+
+            </div>
+        </div>
+    
+    
+        <div class="main-panel">
+            <nav class="navbar navbar-default navbar-absolute" data-topbar-color="blue">
                 <div class="container-fluid">
-                  <div class="navbar-minimize">
-                    <button id="minimizeSidebar" class="btn btn-round btn-white btn-fill btn-just-icon">
-                      <i class="material-icons visible-on-sidebar-regular f-26 zmdi zmdi-chevron-left"></i>
-                      <i class="material-icons visible-on-sidebar-mini f-26 zmdi zmdi-chevron-right"></i>
-                    </button>
-                  </div>
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"> Home </a>
-                  </div>
-                  <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="zmdi zmdi-notifications" style="font-size:25px;"></i>
-                          <span class="notification" style="border-radius:50%;">6</span>
-                          <p class="hidden-lg hidden-md">
+                    <div class="navbar-minimize">
+                        <button id="minimizeSidebar" class="btn btn-round btn-white btn-fill btn-just-icon">
+              <i class="material-icons visible-on-sidebar-regular f-26 zmdi zmdi-chevron-left"></i>
+                            <i class="material-icons visible-on-sidebar-mini f-26 zmdi zmdi-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"> Home </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="zmdi zmdi-notifications" style="font-size:25px;"></i>
+                                    <span class="notification" style="border-radius:50%;">6</span>
+                                    <p class="hidden-lg hidden-md">
                                         Notifications
-                                        
+                                        <b class="caret"></b>
+                                    </p>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">You have 5 new messages</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">You're now friend with Mike</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Wish Mary on her birthday!</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">5 warnings in Server Console</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Jane completed 'Induction Training'</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">'Prepare Marketing Report' is overdue</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!--i class="zmdi zmdi-account-circle" style="font-size:25px;"></i-->
+                                    <div class="profile-picture"><img src="{{ Auth::user()->picture }}"/></div>
+                                    <span class="caret" style="margin-top:-15px;"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ url('user/profile') }}"><i class="zmdi zmdi-account" style="font-size:20px;margin-right:10px;"></i><span>Profile</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="zmdi zmdi-settings" style="font-size:20px;margin-right:10px;"></i><span>Settings</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                     <i class="zmdi zmdi-power" style="font-size:20px;margin-right:10px;"></i><span>Logout</span></a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
                             
-                            <b class="caret"></b>
-                          </p>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <a href="#">You have 5 new messages</a>
-                          </li>
-                          <li>
-                            <a href="#">You're now friend with Mike</a>
-                          </li>
-                          <li>
-                            <a href="#">Wish Mary on her birthday!</a>
-                          </li>
-                          <li>
-                            <a href="#">5 warnings in Server Console</a>
-                          </li>
-                          <li>
-                            <a href="#">Jane completed 'Induction Training'</a>
-                          </li>
-                          <li>
-                            <a href="#">'Prepare Marketing Report' is overdue</a>
-                          </li>
+                            <li class="separator hidden-lg hidden-md"></li>
                         </ul>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <!--i class="zmdi zmdi-account-circle" style="font-size:25px;"></i-->
-                          <div class="profile-picture">
-                            <img src="{{ asset('assets/img/photocovercat.jpg') }}"/>
-                          </div>
-                          <span class="caret" style="margin-top:-15px;"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <a href="profile.html">
-                              <i class="zmdi zmdi-account" style="font-size:20px;margin-right:10px;"></i>
-                              <span>Profile</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i class="zmdi zmdi-settings" style="font-size:20px;margin-right:10px;"></i>
-                              <span>Settings</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i class="zmdi zmdi-power" style="font-size:20px;margin-right:10px;"></i>
-                              <span>Logout</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="separator hidden-lg hidden-md"></li>
-                    </ul>
-                  </div>
+                    </div>
                 </div>
-              </nav>
+            </nav>
               <div class="content">
                 @yield('content')
               </div>
@@ -172,6 +207,9 @@
                         <a href="#">
                                     Contact
                                 </a>
+                      </li>
+                      <li>
+                          <a href="//www.iubenda.com/privacy-policy/87368183" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
                       </li>
                     </ul>
                   </nav>
@@ -238,9 +276,67 @@
         <script src="{{ asset('assets/js/charts/chartjs-charts.js') }}"></script>
         <script type="text/javascript">
     $(document).ready(function() {
-
+//variables
+        var ct = $("#comment-1");
+        var smc = $("#responses-1");
+        var ct2 = $("#comment-2");
+        var smc2 = $("#responses-2");
+        
+        var ac = $(".all-comments");
+        var bsmc = $("button.show-more-comments");
+        var lt = $(".like-timeline");
+        var lc = $(".like-comment");
+        var ltsi = $(".like-timeline span i");
+        var lcount = $(".like-timeline span.like-count-timeline");
+        var lcount2 = $(".like-comment span.like-count-timeline");
+        var lcountNow = 0;
+        
+        //automatically affected
+        ac.slideUp(0);
+        smc.slideUp(0);
+        
+        //events
+        ct.click(function(){
+            ac.slideToggle();
+        });
+        bsmc.click(function(){
+            smc.slideDown();
+        });
+        lt.click(function(){
+            ltsi.css("color" , "#2678cc");
+            lcount.html(lcountNow+1);
+        });
+        /*lc.click(function(){
+            ltsi.css("color" , "#2678cc");
+            lcount2.html(lcountNow+1);
+        });*/
         // Javascript method's body can be found in assets/js/demos.js
         demo.initVectorMap();
     });
+</script>
+<script src="{{ asset('assets/js/select2.min.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+            $('#select2').select2({
+
+            minimumInputLength: 2,
+            ajax: {
+                url: '{{ url('sekolah/find') }}',
+                dataType: 'json',
+                data: function (params) {
+                    return {
+                        q: $.trim(params.term)
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            }
+        });
+});
 </script>
       </html>

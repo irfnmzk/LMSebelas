@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
 {
+    protected $table = "kelas";
+
     protected $fillable = [
     	'name','code','creator_id'
     ];
