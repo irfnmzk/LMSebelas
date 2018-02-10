@@ -28,7 +28,7 @@ class KelasController extends Controller
 		$data = $request->all();
 		
 		$data['creator_id'] = Auth::user()->id;
-		$data['code'] = str_random(6);
+		$data['code'] = strtoupper(str_random(6));
 
 		
 		$kelas = Kelas::create($data);

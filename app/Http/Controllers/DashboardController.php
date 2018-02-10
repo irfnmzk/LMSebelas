@@ -19,7 +19,7 @@ class DashboardController extends Controller
         
 
     	if($user->active == 0){
-    		return view('users.setting');
+    		return view('users.setting', compact('user'));
     	}
         return view('dashboard');
     }

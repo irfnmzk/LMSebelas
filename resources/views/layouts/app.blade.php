@@ -274,46 +274,7 @@
         <script src="{{ asset('assets/js/turbo.js') }}"></script>
         <script src="{{ asset('assets/js/charts/flot-charts.js') }}"></script>
         <script src="{{ asset('assets/js/charts/chartjs-charts.js') }}"></script>
-        <script type="text/javascript">
-    $(document).ready(function() {
-//variables
-        var ct = $("#comment-1");
-        var smc = $("#responses-1");
-        var ct2 = $("#comment-2");
-        var smc2 = $("#responses-2");
         
-        var ac = $(".all-comments");
-        var bsmc = $("button.show-more-comments");
-        var lt = $(".like-timeline");
-        var lc = $(".like-comment");
-        var ltsi = $(".like-timeline span i");
-        var lcount = $(".like-timeline span.like-count-timeline");
-        var lcount2 = $(".like-comment span.like-count-timeline");
-        var lcountNow = 0;
-        
-        //automatically affected
-        ac.slideUp(0);
-        smc.slideUp(0);
-        
-        //events
-        ct.click(function(){
-            ac.slideToggle();
-        });
-        bsmc.click(function(){
-            smc.slideDown();
-        });
-        lt.click(function(){
-            ltsi.css("color" , "#2678cc");
-            lcount.html(lcountNow+1);
-        });
-        /*lc.click(function(){
-            ltsi.css("color" , "#2678cc");
-            lcount2.html(lcountNow+1);
-        });*/
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initVectorMap();
-    });
-</script>
 <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -339,4 +300,5 @@
         });
 });
 </script>
+@yield('script')
       </html>

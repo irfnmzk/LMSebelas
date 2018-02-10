@@ -14,6 +14,10 @@
 Route::get('/', function () {
     return redirect('login');
 });
+Route::get('/kelas', function () {
+    return view('kelas.show');
+});
+
 
 Auth::routes();
 
