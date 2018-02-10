@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Ramsey\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
@@ -11,6 +12,18 @@ class Kelas extends Model
     protected $fillable = [
     	'name','code','creator_id'
     ];
+
+    protected static function boot()
+    {
+        
+        parent::boot();
+
+        static::creating(function ($model)
+        {
+            //use uuid as primary key
+            $model->id = Uuid::uuid4()->toString();
+        });
+    }
 
     public function creator()
     {
