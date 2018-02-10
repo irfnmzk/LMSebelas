@@ -28,7 +28,7 @@ class KelasController extends Controller
 		$data = $request->all();
 		
 		$data['creator_id'] = Auth::user()->id;
-		$data['code'] = strtoupper(str_random(6));
+		$data['code'] = strtoupper(str_random(6)); //semua uppercase untuk kemudahan
 
 		
 		$kelas = Kelas::create($data);
