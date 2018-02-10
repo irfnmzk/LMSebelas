@@ -37,7 +37,7 @@ class KelasController extends Controller
 			]);
 		$anggota->save();
 
-		return redirect('classroom');
+		return redirect()->route('show.kelas', $kelas->id);
 	}
 
 	public function joinKelas(Request $request)
@@ -45,6 +45,10 @@ class KelasController extends Controller
 		$data = $request->all();
 
 		$kelas = Kelas::where('code','=', $data['code'])->first();
+
+		if(!$kelas){
+			return redirect()->back();
+		}
 		
 		$anggota = new Anggota_kelas([
 			'kelas_id' => $kelas->id,
@@ -52,7 +56,7 @@ class KelasController extends Controller
 			]);
 		$anggota->save();
 
-		return redirect('classroom');
+		return redirect()->route('show.kelas', $kelas->id);
 	}
 
 	public function showKelas($id)
