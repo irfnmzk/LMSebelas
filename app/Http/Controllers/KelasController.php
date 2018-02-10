@@ -19,7 +19,6 @@ class KelasController extends Controller
 	{
 		$kelas_id = Anggota_kelas::select('kelas_id')->where('user_id', '=', Auth::user()->id)->get();
 		$kelas = Kelas::findMany($kelas_id);
-		
 		return view('kelas.index', compact('kelas'));
 	}
 
@@ -30,7 +29,6 @@ class KelasController extends Controller
 		$data['creator_id'] = Auth::user()->id;
 		$data['code'] = strtoupper(str_random(6)); //semua uppercase untuk kemudahan
 
-		
 		$kelas = Kelas::create($data);
 
 		$anggota = new Anggota_kelas([
@@ -55,5 +53,12 @@ class KelasController extends Controller
 		$anggota->save();
 
 		return redirect('classroom');
-	} 
+	}
+
+	public function showKelas($id)
+	 {
+	 	$kelas = Kelas::findOrFail($id)->with('anggota_kelas.user')->first();
+	 	//dd($kelas);
+	 	return view('kelas.show', compact('kelas'));
+	 } 
 }

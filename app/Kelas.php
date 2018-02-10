@@ -25,6 +25,8 @@ class Kelas extends Model
         });
     }
 
+    public $incrementing = false;
+    
     public function creator()
     {
     	return $this->belongsTo('App\User','creator_id');
