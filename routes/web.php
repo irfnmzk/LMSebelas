@@ -15,6 +15,11 @@ Route::get('/', function () {
     return redirect('login');
 });
 
+Route::get('/pdfku', function (){
+    //dd(asset('pdf/pdf.pdf'));
+    return response()->file(public_path().'/pdf/pdf.pdf');
+});
+
 Auth::routes();
 
 // Disable sementara untuk register

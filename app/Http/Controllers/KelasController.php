@@ -17,8 +17,12 @@ class KelasController extends Controller
 
 	public function index()
 	{
-		$kelas_id = Anggota_kelas::select('kelas_id')->where('user_id', '=', Auth::user()->id)->get();
+		$kelas_id = Anggota_kelas::select('kelas_id')
+			->where('user_id', '=', Auth::user()->id)
+			->get();
+
 		$kelas = Kelas::findMany($kelas_id);
+
 		return view('kelas.index', compact('kelas'));
 	}
 
@@ -61,8 +65,11 @@ class KelasController extends Controller
 
 	public function showKelas($id)
 	 {
-	 	$kelas = Kelas::findOrFail($id)->with('anggota_kelas.user')->first();
-	 	//dd($kelas);
+		$kelas = Kelas::findOrFail($id)
+			->with('anggota_kelas.user','materi.modul')
+			->first();
+		 //dd($kelas);
+		 
 	 	return view('kelas.show', compact('kelas'));
 	 } 
 }
