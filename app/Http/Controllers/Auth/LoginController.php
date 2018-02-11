@@ -47,7 +47,7 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)
-            ->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
+            // ->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
             ->user();
 
         $hasUser = \App\User::where('email', $user->getEmail())->first();

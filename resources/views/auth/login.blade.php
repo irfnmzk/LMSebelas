@@ -149,7 +149,7 @@
         <div class="social-media">
           <a href="{{ url('login/facebook') }}"><i class="zmdi zmdi-facebook socmed"></i></a>
           <a href="{{ url('login/google') }}"><i class="zmdi zmdi-google-plus socmed"></i></a>
-          <a href="#"><i class="zmdi zmdi-twitter socmed"></i></a>
+          <a href="{{ url('login/twitter') }}"><i class="zmdi zmdi-twitter socmed"></i></a>
         </div>
         <span class="or"> OR </span>
         <form method="POST">
