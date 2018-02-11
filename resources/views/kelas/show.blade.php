@@ -24,72 +24,20 @@
         <div class="col-lg-3 col-md-3 col-sm-3">
             <div class="card">
                 <dl class="accordion">
-                    <a href=""><dt>Section 1</dt></a>
+                @foreach($kelas->materi as $materi)
+                    <a href=""><dt>{{ $materi->judul }}</dt></a>
                     <dd>
                         <div class="accordion-content">
                             <ul>
-                                <a href="#" id="hell">
-                                    <li>Tambah Tugas</li>
+                            @foreach($materi->modul as $modul)
+                                <a href="#" id="hell" link="{{ $modul->link }}">
+                                    <li>{{ $modul->judul }}</li>
                                 </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
+                            @endforeach
                             </ul>
                         </div>
                     </dd>
-                    <a href=""><dt>Section 2</dt></a>
-                    <dd>
-                        <div class="accordion-content">
-                            <ul>
-                                <a href="#">
-                                    <li>Tambah Tugas</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                            </ul>
-                        </div>
-                    </dd>
-                    <a href=""><dt>Section 3</dt></a>
-                    <dd>
-                        <div class="accordion-content">
-                            <ul>
-                                <a href="#">
-                                    <li>Tambah Tugas</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                                <a href="#">
-                                    <li>Materi ABCD</li>
-                                </a>
-                            </ul>
-                        </div>
-                    </dd>
+                @endforeach
                 </dl>
             </div>
         </div>
@@ -173,6 +121,8 @@
 
     $('#hell').click(function (e) {
         e.preventDefault();
+        var link = $(this).attr("link");
+        console.log(link);
         $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{url('pdfku')}}' frameborder='0'></iframe>");
     })
     });

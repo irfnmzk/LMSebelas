@@ -65,8 +65,11 @@ class KelasController extends Controller
 
 	public function showKelas($id)
 	 {
-	 	$kelas = Kelas::findOrFail($id)->with('anggota_kelas.user')->first();
-	 	//dd($kelas);
+		$kelas = Kelas::findOrFail($id)
+			->with('anggota_kelas.user','materi.modul')
+			->first();
+		 //dd($kelas);
+		 
 	 	return view('kelas.show', compact('kelas'));
 	 } 
 }

@@ -19,9 +19,9 @@ class CreateMateriTable extends Migration
             $table->string('deskripsi');
             $table->string('kelas_id');
             $table->string('creator_id');
-            $table->integer('nilai_tugas');
-            $table->integer('nilai_quiz');
-            $table->integer('kkm');
+            $table->integer('nilai_tugas')->nullable();
+            $table->integer('nilai_quiz')->nullable();
+            $table->integer('kkm')->nullable();
             $table->timestamps();
         });
     }
