@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Ramsey\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
@@ -12,6 +13,20 @@ class Kelas extends Model
     	'name','code','creator_id'
     ];
 
+    protected static function boot()
+    {
+        
+        parent::boot();
+
+        static::creating(function ($model)
+        {
+            //use uuid as primary key
+            $model->id = Uuid::uuid4()->toString();
+        });
+    }
+
+    public $incrementing = false;
+    
     public function creator()
     {
     	return $this->belongsTo('App\User','creator_id');

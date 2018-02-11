@@ -470,41 +470,84 @@
 			text-align: center;
 		}
 		/*=======================================
-					Join Class Page
+					Inside Class Page
 		=======================================*/
-		.class-info {
-			height: 450px;
-			overflow: hidden;
+		.in-class-header {
+			box-shadow: 0 0 10px rgba(0,0,0,0.1);
 		}
-		.class-about {
-			margin: 20px 0;
-			padding: 0 20px;
-			border-right: 1px solid #ddd;
+		.in-class-header-content {
 			text-align: center;
+			padding: 10px;
+			transition: 0.2s;
+			border-bottom: 3px solid transparent;
+			cursor: pointer;
 		}
-		.class-about .join-this-class button {
-			font-size: 20px;
+		.in-class-header-content:hover {
+			border-bottom: 3px solid #ff6000;
 		}
-		.class-about img {
-			margin: 25px 0;
-			border-radius: 50%;
-			width: 200px;
-			height: 200px;
+		dl.accordion a {
+			color: #444;
 		}
-		.class-members {
-			height: 450px;
-			overflow-y: scroll;
-		}
-		.class-members::-webkit-scrollbar {
-			width:7.5px;
-			background: rgba(0,0,0,0.1);
-			border-radius: 16px;
-		}
-		.class-members::-webkit-scrollbar-thumb {
+		dl.accordion dt {
+			padding: 20px;
 			width: 100%;
-			background: rgba(0,0,0,0.25);
-			border: 2px solid transparent;
-			border-radius: 16px;
+			text-transform: uppercase;
+			transition: 0.35s;
+		}
+		dl.accordion dt:hover {
+			background: #eee;
+		}
+		dd .accordion-content ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		dd .accordion-content ul li {
+			padding: 10px 30px;
+			transition: 0.3s;
+			margin: 0;
+		}
+		dd .accordion-content ul li:hover {
+			background: rgba(0,50,255,0.75);
+			color: #fff;
+		}
+		dd .accordion-content ul li:hover a {
+			color: #fff;
+		}
+		dd .accordion-content ul li a {
+			color: #555;
+			margin: 0;
+		}
+		.reader-bg {
+			position: relative;
+			margin: 10px 0;
+			min-height: 350px;
+			width: 100%;
+			background: #888;
+		}
+		/* ==== Members ==== */
+		.member-list {
+			padding: 25px 30px;
+		}
+		.member-panel {
+			height: 225px;
+			text-align: center;
+			box-shadow: 0 0 5px rgba(0,0,0,0.25);
+			padding: 20px;
+			margin: 10px 0;
+		}
+		.member-profpic img {
+			border-radius: 50%;
+			width: 100px;
+			height: 100px;
+		}
+		.member-panel span {
+			display: block;
+			margin: 1px;
+		}
+		.member-panel span.member-name {
+			font-size: 20px;
+			margin-top: 15px;
 		}
 		/*=================================
 					Group Page

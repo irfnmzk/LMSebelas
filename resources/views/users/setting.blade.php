@@ -1,4 +1,5 @@
 @extends('layouts.app') @section('content')
+
 <div class="content">
     <div class="container-fluid">
 <style type="text/css">
@@ -63,7 +64,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input type="text" class="form-control" value="" name="name">
+                                            <input type="text" class="form-control" value="{{ $user->name or '' }}" name="name">
                                             <span class="material-input"></span></div>
                                     </div>
                                 </div>

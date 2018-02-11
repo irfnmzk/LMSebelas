@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKelasTable extends Migration
+class CreateDiskusisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateKelasTable extends Migration
      */
     public function up()
     {
-        Schema::create('kelas', function (Blueprint $table) {
-            $table->string('id');
-            $table->string('name');
-            $table->string('code')->unique();
+        Schema::create('diskusi', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('text');
             $table->string('creator_id');
+            //$table->string('tugas_id');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateKelasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kelas');
+        Schema::dropIfExists('diskusis');
     }
 }

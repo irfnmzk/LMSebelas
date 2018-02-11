@@ -19,7 +19,6 @@ class KelasController extends Controller
 	{
 		$kelas_id = Anggota_kelas::select('kelas_id')->where('user_id', '=', Auth::user()->id)->get();
 		$kelas = Kelas::findMany($kelas_id);
-		
 		return view('kelas.index', compact('kelas'));
 	}
 
@@ -28,9 +27,8 @@ class KelasController extends Controller
 		$data = $request->all();
 		
 		$data['creator_id'] = Auth::user()->id;
-		$data['code'] = str_random(6);
+		$data['code'] = strtoupper(str_random(6)); //semua uppercase untuk kemudahan
 
-		
 		$kelas = Kelas::create($data);
 
 		$anggota = new Anggota_kelas([
@@ -39,7 +37,7 @@ class KelasController extends Controller
 			]);
 		$anggota->save();
 
-		return redirect('classroom');
+		return redirect()->route('show.kelas', $kelas->id);
 	}
 
 	public function joinKelas(Request $request)
@@ -47,6 +45,10 @@ class KelasController extends Controller
 		$data = $request->all();
 
 		$kelas = Kelas::where('code','=', $data['code'])->first();
+
+		if(!$kelas){
+			return redirect()->back();
+		}
 		
 		$anggota = new Anggota_kelas([
 			'kelas_id' => $kelas->id,
@@ -54,6 +56,13 @@ class KelasController extends Controller
 			]);
 		$anggota->save();
 
-		return redirect('classroom');
-	} 
+		return redirect()->route('show.kelas', $kelas->id);
+	}
+
+	public function showKelas($id)
+	 {
+	 	$kelas = Kelas::findOrFail($id)->with('anggota_kelas.user')->first();
+	 	//dd($kelas);
+	 	return view('kelas.show', compact('kelas'));
+	 } 
 }
