@@ -30,7 +30,7 @@
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background: url({{ url('/assets/img/gif/preloader.gif')}}) center no-repeat #fff;
+            background: url("{{ url('/assets/img/gif/preloader.gif')}}") center no-repeat #fff;
         }
     </style>
 

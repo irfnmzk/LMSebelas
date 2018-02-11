@@ -19,6 +19,17 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
     <link href="{{ asset('assets/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}" rel="stylesheet">
   <style>
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url("{{ url('/assets/img/gif/preloader.gif')}}") center no-repeat #fff;
+        }
     body {
       background: url('{{ asset('assets/img/pencils-book.jpeg') }} ');
       background-size: cover;
@@ -128,6 +139,7 @@
 </head>
 
 <body>
+<div class="se-pre-con"></div>
     <div class="wrapper">
     <div class="title">L-Even</div>
     <div class="content">
@@ -201,11 +213,9 @@
 <script src="{{ asset('assets/js/charts/chartjs-charts.js') }}"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initVectorMap();
-    });
+    $(window).on('load', function(){
+            $(".se-pre-con").fadeOut("slow");
+        });
 </script>
 
 </html>
