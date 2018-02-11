@@ -55,7 +55,7 @@ class LoginController extends Controller
         if($hasUser){
             $hasUser->update([
                 'name' => $user->getName(),
-                'picture' => $user->getAvatar(),
+                'picture' => $user->avatar_original,
             ]);
 
             Auth::login($hasUser);
@@ -65,7 +65,7 @@ class LoginController extends Controller
             $newUser = \App\User::create([
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
-                'picture' => $user->getAvatar(),
+                'picture' => $user->avatar_original,
                 'password' => bcrypt(microtime()),
             ]);
             Auth::login($newUser);
