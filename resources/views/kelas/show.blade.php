@@ -28,7 +28,7 @@
                     <dd>
                         <div class="accordion-content">
                             <ul>
-                                <a href="#">
+                                <a href="#" id="hell">
                                     <li>Tambah Tugas</li>
                                 </a>
                                 <a href="#">
@@ -141,10 +141,10 @@
         });
         
         //close when click anywhere
-        $(document).click(function() {
-        allPanels.slideUp();
-        return false;
-        });
+        // $(document).click(function() {
+        // allPanels.slideUp();
+        // return false;
+        // });
         
     //=== /accordion ===//
     
@@ -170,6 +170,11 @@
         mtr.fadeOut();
         mmbrs.fadeIn();
     });
+
+    $('#hell').click(function (e) {
+        e.preventDefault();
+        $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{url('pdfku')}}' frameborder='0'></iframe>");
+    })
     });
 </script>
 @endsection
