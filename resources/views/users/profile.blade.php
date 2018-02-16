@@ -19,21 +19,19 @@
                                     <tbody>
                                         <tr><td><i style="color:#2678cc;" class="zmdi zmdi-account"></i> Full Name</td>
                                         <td>{{ $user->name}}</td></tr>
-                                        <tr><td><i style="color:#ff0;" class="zmdi zmdi-star"></i> Current Level</td><
-                                        td>5</td></tr>
                                         <tr><td><i style="color:#f44;" class="zmdi zmdi-email"></i> Email</td>
                                         <td>{{ $user->email}}</td></tr>
                                         <tr><td><i style="color:#ff6022;" class="zmdi zmdi-cake"></i> Birthday</td>
                                         <td>May 20th 1996</td></tr>
-                                        <tr><td><i style="color:#09bb90;" class="zmdi zmdi-graduation-cap"></i> Status</td>
+                                        <tr><td><i style="color:#09bb90;" class="zmdi zmdi-face"></i> Role</td>
                                         <td>{{ ($user->role == '1')? 'Guru' : 'Siswa'  }}</td></tr>
-                                        <tr><td><i style="color:#0b0;" class="zmdi zmdi-map"></i> Address</td>
-                                        <td>Strettm, st 219, California, Uganda</td></tr>
-                                        <tr><td><i style="color:#33f;" class="zmdi zmdi-facebook-box"></i> Facebook</td>
-                                        <td>Dude7teen</td></tr>
+                                        <tr><td><i style="color:#0b0;" class="zmdi zmdi-balance"></i> Sekolah</td>
+                                        <td>{{ $user->sekolah}}</td></tr>
+                                        <tr><td><i style="color:#33f;" class="zmdi zmdi-assignment-account"></i> Jurusan</td>
+                                        <td>{{ $user->jurusan}}</td></tr>
                                     </tbody>
                                 </table>
-                                <a href="profile-data.html"><button class="btn btn-info" style="padding:5px 10px;"><i style="font-size:17px;margin:0 3px 0 0;" class="zmdi zmdi-edit"></i> Edit Your Profile</button></a>
+                                <a href="{{ url('/user/profile/edit') }}"><button class="btn btn-info" style="padding:5px 10px;"><i style="font-size:17px;margin:0 3px 0 0;" class="zmdi zmdi-edit"></i> Edit Your Profile</button></a>
                                 </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12">

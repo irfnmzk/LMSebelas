@@ -35,6 +35,9 @@ Route::get('/classroom', 'KelasController@index')->name('kelas.index');
 Route::get('/user/setting','UserController@showSetting');
 Route::get('/user/profile','UserController@showProfile');
 Route::post('/user/setting', 'UserController@storeSetting')->name('setting.store');
+Route::get('/user/profile/edit', 'UserController@editProfile');
+Route::post('/user/profile/edit', 'UserController@updateProfile')->name('profile.update');
+
 
 // Ajax
 Route::get('/sekolah/find', 'UserController@find');

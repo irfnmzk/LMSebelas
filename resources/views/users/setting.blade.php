@@ -2,24 +2,6 @@
 
 <div class="content">
     <div class="container-fluid">
-<style type="text/css">
-.select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-selection__choice {
-    background-color: #C8DBEA !important;
-    color: #222 !important;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
-}
-
-.select2-container--default .select2-selection__choice {
-    margin: 0px 2px 0px 2px !important;
-    padding: 2px 5px 2px 5px !important;
-}
-
-.clearfix {
-    overflow: auto;
-}</style>
         <div class="card profile">
             <!-- <form method="POST" class="profile-photo-cover">
                 <div class="col-lg-12 col-md-12 col-sm-12 profile-cover">
@@ -73,9 +55,11 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <select id="select2" class="form-control select2" name="sekolah">
+                                            <!-- <select id="select2" class="form-control select2" name="sekolah">
                                             
-                                            </select>
+                                            </select> -->
+
+                                            <input type="text" class="form-control" id="q" placeholder="placeholder" name="sekolah">
 
                                             <span class="material-input"></span></div>
                                     </div>

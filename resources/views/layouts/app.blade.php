@@ -13,6 +13,8 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
     <link href="{{ asset('assets/css/turbo.css') }}" rel="stylesheet" />
+    <!-- Jquery UI CSS    -->
+    <link href="{{ asset('assets/vendors/jquery-ui-1.12.0/jquery-ui.css') }}" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
@@ -32,6 +34,38 @@
             z-index: 9999;
             background: url("{{ url('/assets/img/gif/preloader.gif')}}") center no-repeat #fff;
         }
+        .ui-autocomplete {
+        position: absolute;
+        z-index: 1000;
+        cursor: default;
+        padding: 0;
+        margin-top: 2px;
+        list-style: none;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+           -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        .ui-autocomplete > li {
+          padding: 3px 20px;
+        }
+        .ui-autocomplete > li:hover {
+          background-color: #C8DBEA;
+        }
+        .ui-autocomplete > li:focus {
+          background-color: #C8DBEA;
+        }
+        .ui-autocomplete > li:active {
+          background-color: #C8DBEA;
+        }
+        .ui-helper-hidden-accessible {
+          display: none;
+        }
+
     </style>
 
 </head>
@@ -302,25 +336,18 @@
 <script type="text/javascript">
     $(document).ready(function() {
         
-            $('#select2').select2({
-
-            minimumInputLength: 2,
-            ajax: {
-                url: '{{ url('sekolah/find') }}',
-                dataType: 'json',
-                data: function (params) {
-                    return {
-                        q: $.trim(params.term)
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                        results: data
-                    };
-                },
-                cache: true
-            }
-        });
+            $('#q').autocomplete({
+              source : '{{ url('sekolah/find') }}',
+              minlength:2,
+              autoFocus:true,
+              select:function(e,ui){
+                var origEvent = event;
+                while (origEvent.originalEvent !== undefined)
+                    origEvent = origEvent.originalEvent;
+                if (origEvent.type == 'keydown')
+                    $("#reportfind").click();
+                }
+            });
 });
 </script>
 @yield('script')
