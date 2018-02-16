@@ -20,6 +20,9 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
     <link href="{{ asset('assets/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}" rel="stylesheet">
 
+    <!-- Dropzone CSS -->
+    <link href="{{ asset('assets/vendors/dropzone/dropzone.min.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" />
     <style>
@@ -326,6 +329,9 @@
 <script src="{{ asset('assets/js/turbo.js') }}"></script>
 <script src="{{ asset('assets/js/charts/flot-charts.js') }}"></script>
 <script src="{{ asset('assets/js/charts/chartjs-charts.js') }}"></script>
+
+<!-- Dropzone js -->
+<script src="{{ asset('assets/vendors/dropzone/dropzone.min.js') }}"></script>
 
 <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 <script type="text/javascript">

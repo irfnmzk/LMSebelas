@@ -15,9 +15,9 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Route::get('/pdfku', function (){
+Route::get('/pdfku/{link}', function ($link){
     //dd(asset('pdf/pdf.pdf'));
-    return response()->file(public_path().'/pdf/pdf.pdf');
+    return response()->file(public_path().'/pdf/'.$link);
 });
 
 Auth::routes();
@@ -46,6 +46,8 @@ Route::get('/sekolah/find', 'UserController@find');
 Route::get('/classroom/{id}', 'kelasController@showKelas')->name('show.kelas');
 Route::post('/classroom/add', 'kelasController@storeKelas')->name('kelas.store');
 Route::post('/classroom/join', 'kelasController@joinKelas')->name('kelas.join');
+Route::post('/classroom/add_material', 'kelasController@storeMateri')->name('materi.store');
+Route::post('/classroom/add_modul', 'kelasController@storeModul')->name('modul.store');
 
 // Social Login
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');

@@ -27,7 +27,7 @@ class KelasSeeder extends Seeder
         $modul = \App\Modul::create([
             'judul' => 'Kegiatan Belajar 1',
             'materi_id' => $materi->id,
-            'link' => public_path().'/pdf/pdf.pdf',
+            'link' => 'pdf.pdf',
         ]);
     }
 }
