@@ -251,7 +251,7 @@ dfdf
         e.preventDefault();
         var link = $(this).attr("link");
 
-        alert(link);
+        //alert(link);
         console.log(link);
         $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('pdfku/') }}"+"/"+link+"' frameborder='0'></iframe>");
     })
