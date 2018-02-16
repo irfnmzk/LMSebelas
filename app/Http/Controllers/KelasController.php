@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Kelas;
 use App\User;
 use App\Anggota_kelas;
+use App\Materi;
+use App\Modul;
 use Auth;
 
 class KelasController extends Controller
@@ -72,4 +74,35 @@ class KelasController extends Controller
 		 
 	 	return view('kelas.show', compact('kelas'));
 	 } 
+
+	 public function storeMateri(Request $request)
+	{
+		$data = $request->all();
+
+		if($data['nilai_tugas'] + $data['nilai_quiz'] != 100){
+			return redirect()->back();
+		}
+		
+		$data['creator_id'] = Auth::user()->id;
+
+		$materi = Materi::create($data);
+
+		return redirect()->route('show.kelas', $materi->kelas_id);
+	}
+
+	public function storeModul(Request $request)
+	{
+		$data = $request->all();
+
+		if($request->file('link')){
+            $file       = $request->file('link');
+            $fileName   = $file->getClientOriginalName();
+            $request->file('link')->move("pdf/", $fileName);
+            $data['link'] = public_path().'/pdf/'.$fileName; 
+        }
+
+		$modul = Modul::create($data);
+
+		return redirect()->route('show.kelas', $modul->materi->kelas_id);
+	}
 }
