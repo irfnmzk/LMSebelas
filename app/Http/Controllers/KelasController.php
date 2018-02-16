@@ -98,7 +98,7 @@ class KelasController extends Controller
             $file       = $request->file('link');
             $fileName   = $file->getClientOriginalName();
             $request->file('link')->move("pdf/", $fileName);
-            $data['link'] = public_path().'/pdf/'.$fileName; 
+            $data['link'] = $fileName; 
         }
 
 		$modul = Modul::create($data);
