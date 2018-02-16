@@ -8,6 +8,7 @@ use App\User;
 use App\Sekolah;
 use App\Anggota_kelas;
 use App\Kelas;
+use Input;
 
 class UserController extends Controller
 {
@@ -20,6 +21,12 @@ class UserController extends Controller
 	{
 		return view('users.setting');
 	}
+
+    public function editProfile()
+    {
+        $user = User::find(Auth::user()->id);
+        return view('users.edit', compact('user'));
+    }
 
     public function showProfile()
     {
@@ -39,22 +46,29 @@ class UserController extends Controller
 		return redirect('dashboard');
 	} 
 
+    public function updateProfile(Request $request)
+    {
+        $user = \App\User::find(Auth::user()->id);
+        $data = $request->all();
+        
+        $user->update($data);
+
+        return redirect('user/profile');
+    } 
+
 	public function find(Request $request)
     {
-        $term = trim($request->q);
 
-        if (empty($term)) {
-            return \Response::json([]);
-        }
-
-        $tags = Sekolah::where('nama', 'LIKE', '%'.$term.'%')->limit(5)->get();
-
-        $formatted_tags = [];
-
-        foreach ($tags as $tag) {
-            $formatted_tags[] = ['id' => $tag->nama, 'text' => $tag->nama];
-        }
-
-        return \Response::json($formatted_tags);
+        $term = $request->term;
+    
+            $results = array();
+            
+            $queries = Sekolah::where('nama', 'LIKE', '%'.$term.'%')->limit(5)->get();
+            
+            foreach ($queries as $query)
+            {
+                $results[] = [ 'id' => $query->nama, 'value' => $query->nama ];
+            }
+        return \Response::json($results);
     }   
 }
