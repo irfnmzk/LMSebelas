@@ -29,6 +29,6 @@ class CreateDiskusisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diskusis');
+        Schema::dropIfExists('diskusi');
     }
 }
