@@ -421,18 +421,12 @@
 		/*===========================================
 						Class Page
 		===========================================*/
-		
-		.class-welcome {
-			background: -webkit-linear-gradient(right,#2678cc 75%,#267899);
-			background: linear-gradient(right,#2678cc 75%,#267899);
-			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		button.join-class {
+			margin: 10px;
 		}
-		.card-icon-w, .card-icon-y, .title-w {
-			display: inline-block;
-			vertical-align: middle;
-		}
-		.welcome-say {
-			margin: 50px;
+		button.join-class i {
+			font-size: 16px;
+			margin-right: 5px;
 		}
 		.input-enroll {
 			height: 100%;
@@ -485,6 +479,44 @@
 		.in-class-header-content:hover {
 			border-bottom: 3px solid #ff6000;
 		}
+		/*=== info ===*/
+		.info {
+			padding: 0 15px;
+		}
+		.info .card {
+			box-shadow: 0 0 5px rgba(0,0,0,0.1);
+		}
+		.info .card-class-info {
+			padding: 20px;
+		}
+		.info .card-class-bio img,h3,h4,p {
+			display: block;
+			margin: 0;
+		}
+		.class-photo button {
+			position: absolute;
+			top: 0;
+			right: 10px;
+			padding: 10px;
+			height: 40px;
+			font-size: 14px;
+			text-transform: capitalize;
+		}
+		.class-photo img {
+			width: 100%;
+			height: 200px;
+		}
+		.class-bio {
+			padding: 20px;
+		}
+		.class-bio h3 {
+			text-align: center;
+			margin-bottom: 10px;
+		}
+		.class-bio p {
+			text-align: left;
+		}
+		/*=== materi ===*/
 		dl.accordion a {
 			color: #444;
 		}
@@ -518,11 +550,88 @@
 			color: #555;
 			margin: 0;
 		}
+		
 		.reader-bg {
 			position: relative;
 			margin: 10px 0;
 			min-height: 350px;
 			width: 100%;
+			background: #888;
+		}
+		.reader-bg  h3 {
+			margin: 10px;
+		}
+		.reader-bg .detail-tugas {
+			position: relative;
+			min-height: 350px;
+			width: 100%;
+			background: #fff;
+			padding: 25px;
+		}
+		.detail-tugas #desc-tugas,
+		.detail-tugas .upload-tugas {
+			margin-bottom: 30px;
+		}
+		.detail-tugas .upload-tugas form {
+			width: 100%;
+		}
+		.detail-tugas .upload-tugas form input {
+			margin: 0;	
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.detail-tugas .upload-tugas form input[type=file]{
+			width: calc(85% - 5px);
+			box-shadow: 0 0 5px rgba(0,0,0,0.2);
+			padding: 10px;
+			border-radius: 4px 0 0 4px;
+		}
+		.detail-tugas .upload-tugas form input[type=submit]{
+			width: calc(15% - 5px);
+			box-shadow: 0 0 5px rgba(0,0,0,0.2);
+			padding: 11px;
+			border: none;
+			background: #2678ff;
+			color: #fff;
+			border-radius: 0 4px 4px 0;
+		}
+		
+		.reader-bg .data-tugas {
+			background: #fff;
+			padding: 25px;
+		}
+		.data-tugas {
+			width: 100%;
+		}
+		.data-tugas table {
+			width: 100%;
+		}
+		.data-tugas table tr th, .data-tugas table tr td {
+			padding: 15px;
+			font-size: 16px;
+			color: #222;
+			text-align: center;
+		}
+		.data-tugas table tr td a {
+			padding: 10px;
+			color: #fff;
+			border-radius: 4px;
+			font-size: 14px;
+		}
+		.data-tugas table tr td a.status-selesai {
+			background: #20bb20;
+		}
+		.data-tugas table tr td a.status-belum {
+			background: #bbbb20;
+		}
+		.data-tugas table tr td:last-child {
+			width: 50px;
+		}
+		
+		.data-tugas table tr td form input {
+			padding: 10px;
+			border: none;
+			box-shadow: 0 0 5px rgba(0,0,0,0.25);
 		}
 		/* ==== Members ==== */
 		.member-list {
@@ -799,12 +908,17 @@
 					Enroll Code Page
 		======================================*/
 		.input-enroll-code {
-			height: 475px;
-			position: relative;
+			width: calc(80% + 12px);
+			background: rgba(0,0,0,0.5);
+			position: fixed;
+			z-index: 999;
+			top: -20px;
+			bottom: -20px;
+			left: calc(20% - 12.5px);
 		}
 		.enroll-title {
 			position: absolute;
-			top: 25%;
+			top: 20%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 			text-align: center;
@@ -813,10 +927,13 @@
 			width: 375px;
 		}
 		.input-enroll-code form {
+			background: #fff;
+			padding: 20px;
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+			border-radius: 4px;
 		}
 		.input-enroll-code form .form-group {
 			margin: 2px;
@@ -854,12 +971,24 @@
 		.input-enroll-code form button:hover {
 			background: #2688ff;
 		}
+		.input-enroll-code span.close {
+			position: absolute;
+			top: -10%;
+			right: -10%;
+			transform: translate(-50%,-50%);
+			font-size: 30px;
+			color: #fff;
+			font-weight: 800;
+			font-family: "helvetica";
+			cursor: pointer;
+			z-index: 1000;
+		}
 		/*======================
 				Un Footer
 		======================*/
 		.un-footer {
 			box-shadow: 0 0 10px rgba(0,0,0,0.25);
-			background: url("../img/photocovercat.jpg");
+			background: url("../assets/img/photocovercat.jpg");
 			background-size: cover;
 			padding: 35px 50px;
 			width: 100%;
@@ -868,4 +997,6 @@
 		.un-footer h2 {
 			color: #ff9000;
 		}
-		
+		.un-footer button {
+			height: 50px;
+		}

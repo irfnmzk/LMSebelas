@@ -3,89 +3,66 @@
 <div class="container-fluid">
 
                     <div class="row">
-                        
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="card class-welcome">
-                            <div class="row">
-                                <div class="welcome-say">
-                                <div class="card-icon-w">
-                                    <i class="zmdi zmdi-home"></i>
-                                </div>
-                                <div class="title-w">Join A Class Today</div>
-                                <div class="card-icon-y">
-                                    <i class="zmdi zmdi-book"></i>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
+
                         @if(Auth::user()->role == '1')
+                        <div class="col-lg-5 col-md-6 col-sm-12">
                         <div class="join-this-class">
-                            <button class="btn btn-info" data-toggle="modal" data-target="#ModalBuat">BUAT</button>
+                            <button class="btn btn-info join-class" data-toggle="modal" data-target="#ModalBuat"><i class="zmdi zmdi-home"></i> Buat Kelas</button>
                         </div>
+                        </div>
+                        <div class="col-lg-7 col-md-6"></div>
 
                         <div class="modal fade example-modal-sm" id="ModalBuat" tabindex="-1" role="dialog" aria-labelledby="BuatKelas">
-                                    <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Buat Kelas</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form method="POST" action="{{route('kelas.store')}}" class="form-horizontal" >
-                                                {{csrf_field()}}
-                                                
-                                                <input type="text" class="form-control" name="name" placeholder="Class Name"/>
-                                                
-                                            </div>
-                                            <div class="modal-footer">
-                                                <div class="form-group form-button">
-                                                <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
-                                                </form>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 enroll-page">
+                                        <div class="card input-enroll-code">
+                                            <form method="POST" action="{{route('kelas.store')}}"><span class="close" data-dismiss="modal">&times;</span>
+                                            {{csrf_field()}}
+                                                <div class="form-group">
+                                                    <input type="text" class="form-controll" name="name" placeholder="Class Name"/>
+                                                    <button class="btn pull-right" type="submit">Simpan</button>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
-                                    </div>
+                                        </div>
                                 </div>
 
                         @elseif(Auth::user()->role == '2')
+                        <div class="col-lg-5 col-md-6 col-sm-12">
                         <div class="join-this-class">
-                            <button class="btn btn-info" data-toggle="modal" data-target="#ModalJoin">JOIN</button>
+                            <button class="btn btn-info join-class" data-toggle="modal" data-target="#ModalJoin"><i class="zmdi zmdi-home"></i> Join Kelas</button>
                         </div>
-                        <div class="modal fade example-modal-sm" id="ModalJoin" tabindex="-1" role="dialog" aria-labelledby="BuatKelas">
-                                    <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Join Kelas</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form method="POST" action="{{route('kelas.join')}}" class="form-horizontal" >
-                                                {{csrf_field()}}
-                                                
-                                                <input type="text" class="form-control" name="code" placeholder="Class Code"/>
-                                                
-                                            </div>
-                                            <div class="modal-footer">
-                                                <div class="form-group form-button">
-                                                <button type="submit" class="btn btn-fill btn-primary">Bergabung</button>
-                                                </form>
+                        </div>
+                        <div class="col-lg-7 col-md-6"></div>
+
+                        <div class="modal fade example-modal-sm" id="ModalJoin" tabindex="-1" role="dialog" aria-labelledby="JoinKelas">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 enroll-page">
+                                        <div class="card input-enroll-code">
+                                            <form method="POST" action="{{route('kelas.join')}}"><span class="close" data-dismiss="modal">&times;</span>
+                                            {{csrf_field()}}
+                                                <div class="form-group">
+                                                    <input type="text" class="form-controll" name="code" placeholder="Class Code" maxlength="6" />
+                                                    <button class="btn pull-right" type="submit">Bergabung</button>
+                                                </div>
+                                            </form>
                                         </div>
-                                            </div>
                                         </div>
-                                    </div>
                                 </div>
+
                         @endif
+
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
                         @foreach($kelas as $item)
-                        <a href="{{ route('show.kelas', $item->id) }}">
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="card classes">
-                                <img src="../assets/img/catfall.jpeg" />
+                            <a href="{{ route('show.kelas', $item->id) }}">
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="card classes">
+                                    <img src="../assets/img/catfall.jpeg" />
                                 <div class="card-footer">{{$item->name}}</div>
+                                </div>
                             </div>
-                        </div>
+                            </a>
                         @endforeach
-                        </a>
+                        </div>
                         
                     </div>
                     

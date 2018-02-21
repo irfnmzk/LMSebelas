@@ -58,16 +58,15 @@ class UserController extends Controller
 
 	public function find(Request $request)
     {
-
-        $term = $request->term;
+        $term = $request->data;
     
             $results = array();
             
-            $queries = Sekolah::where('nama', 'LIKE', '%'.$term.'%')->limit(5)->get();
+            $queries = Sekolah::where('nama', 'LIKE', '%'.$term.'%')->orderBy('nama', 'asc')->get();
             
             foreach ($queries as $query)
             {
-                $results[] = [ 'id' => $query->nama, 'value' => $query->nama ];
+                $results[] = [ 'id' => $query->nama, 'name' => $query->nama ];
             }
         return \Response::json($results);
     }   
