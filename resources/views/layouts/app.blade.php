@@ -24,7 +24,7 @@
     <link href="{{ asset('assets/vendors/dropzone/dropzone.min.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/easy-autocomplete.min.css') }}" rel="stylesheet" />
     <style>
         .no-js #loader { display: none;  }
         .js #loader { display: block; position: absolute; left: 100px; top: 0; }
@@ -333,7 +333,7 @@
 <!-- Dropzone js -->
 <script src="{{ asset('assets/vendors/dropzone/dropzone.min.js') }}"></script>
 
-<script src="{{ asset('assets/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.easy-autocomplete.min.js') }}"></script>
 <script type="text/javascript">
     $(window).on('load', function(){
             $(".se-pre-con").fadeOut("slow");
@@ -341,19 +341,51 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
-        
-            $('#q').autocomplete({
-              source : '{{ url('sekolah/find') }}',
-              minlength:2,
-              autoFocus:true,
-              select:function(e,ui){
-                var origEvent = event;
-                while (origEvent.originalEvent !== undefined)
-                    origEvent = origEvent.originalEvent;
-                if (origEvent.type == 'keydown')
-                    $("#reportfind").click();
+
+        var options = {
+
+            url: function (name) {
+                return '{{ url('sekolah/find') }}';
+            },
+
+            getValue: function (element) {
+                return element.name;
+            },
+
+            ajaxSettings: {
+                dataType: "json",
+                method: "GET",
+                data: {
+                    dataType: "json"
                 }
-            });
+            },
+
+            preparePostData: function (data) {
+                data.name = $("#q").val();
+                return data;
+            },
+
+            list: {
+                maxNumberOfElements: 7,
+                match: {
+                    enabled: true
+                },
+                showAnimation: {
+                    type: "slide", //normal|slide|fade
+                    time: 400,
+                    callback: function() {}
+                },
+
+                hideAnimation: {
+                    type: "slide", //normal|slide|fade
+                    time: 400,
+                    callback: function() {}
+                }
+            },
+
+            placeholder: "Nama Sekolah "
+        };
+        $("#q").easyAutocomplete(options);
 });
 </script>
 @yield('script')

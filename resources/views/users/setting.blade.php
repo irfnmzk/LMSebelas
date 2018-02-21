@@ -2,8 +2,7 @@
 
 <div class="content">
     <div class="container-fluid">
-        <div class="card profile">
-            <!-- <form method="POST" class="profile-photo-cover">
+           <!-- <form method="POST" class="profile-photo-cover">
                 <div class="col-lg-12 col-md-12 col-sm-12 profile-cover">
                     <img src="../assets/img/photocovercat.jpg" class="bgavatar" />
 
@@ -25,7 +24,7 @@
                 <div class="col-lg-2 col-md-2">
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12">
-                    <div class="card">
+                    <div class="card profile">
                         <form method="POST" action="{{route('setting.store')}}" class="form-horizontal">
                           {{csrf_field()}}
                             <div class="card-header card-header-text text-center">
@@ -59,7 +58,7 @@
                                             
                                             </select> -->
 
-                                            <input type="text" class="form-control" id="q" placeholder="placeholder" name="sekolah">
+                                            <input type="text" class="form-control" id="q" name="sekolah">
 
                                             <span class="material-input"></span></div>
                                     </div>
@@ -69,7 +68,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input type="text" class="form-control" placeholder="placeholder" name="jurusan">
+                                            <input type="text" class="form-control" placeholder="Nama Jurusan" name="jurusan">
                                             <span class="material-input"></span></div>
                                     </div>
                                 </div>
@@ -88,9 +87,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <label class="col-md-3"></label>
-                                    <div class="col-md-9">
+                                <div class="row"> 
+                                    <div class="pull-right">
                                         <div class="form-group form-button">
                                             <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
                                         </div>
@@ -103,6 +101,5 @@
             </div>
         </div>
     </div>
-</div>
 
 @endsection

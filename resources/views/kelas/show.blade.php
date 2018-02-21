@@ -58,7 +58,7 @@
                         </div>
                         <div class="class-bio">
                             <h3>{{ $kelas->name }}</h3>
-                            <h4>Guru : <span>{{ $kelas->creator->name }}</span></h4>
+                            <h4>Guru : <span>{{ ucwords($kelas->creator->name) }}</span></h4>
                             <p>
                             {{ $kelas->code }}
                             Lorem Ipsum Dolor Sit Amet is simply a dummy text.
@@ -166,7 +166,7 @@
         <span>
             <a href="#" class="btn btn-fab" data-toggle="tooltip" data-placement="left" data-original-title="Tambah Quiz" title="" id="quiz">
               <i class="material-icons">
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
                   <path fill="#000000" d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
                 </svg>
               </i>
@@ -177,9 +177,8 @@
       <div class="btn-group">
         <a href="javascript:void(0)" class="btn btn-success btn-fab" id="main">
           <i class="material-icons">
-            <svg fill="#000000" style="width:32px;height:32px" viewBox="0 0 32 32">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                <path d="M0 0h24v24H0z" fill="none"/>
+            <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path d="M19,11H15V15H13V11H9V9H13V5H15V9H19M20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M4,6H2V20A2,2 0 0,0 4,22H18V20H4V6Z" />
             </svg>
           </i>
         </a>
@@ -231,11 +230,13 @@
                     {{csrf_field()}}
                     
                     <input type="text" class="form-control" name="judul" placeholder="Judul"/>
-                    <select name="materi_id" class="form-control">
-                    @foreach($kelas->materi as $opt)
-                    <option value="{{ $opt->id }}">{{ $opt->judul }}</option>
-                    @endforeach
-                    </select>
+                    <div class="select">
+                        <select name="materi_id" class="form-control">
+                            @foreach($kelas->materi as $opt)
+                                <option value="{{ $opt->id }}">{{ $opt->judul }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="fallback">
                         <input name="link" type="file"/>
                       </div>
