@@ -84,10 +84,17 @@
                         <div class="accordion-content">
                             <ul>
                             @foreach($materi->modul as $modul)
-                                <a href="#" class="hell" link="{{ $modul->link }}">
+                                <a href="#" class="hell" link="{{ $modul->link }}" type-sub="pdf">
                                     <li>{{ $modul->judul }}</li>
                                 </a>
                             @endforeach
+                            @if($loop->last)
+                                @foreach($materi->tugas as $tugas)
+                                <a href="#" class="hell" link="{{ $tugas->id }}" type-sub="task">
+                                    <li>{{ $tugas->judul }}</li>
+                                </a>
+                                @endforeach
+                            @endif
                             </ul>
                         </div>
                     </dd>
@@ -152,7 +159,7 @@
         </a>  
         </span>
         
-        <span>
+        <span data-toggle="modal" data-target="#TambahTugas">
             <a href="#" class="btn btn-danger btn-fab" data-toggle="tooltip" data-placement="left" data-original-title="Tambah Tugas" title="" id="mail">
               <i class="material-icons">
                 <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -250,6 +257,39 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="TambahTugas" tabindex="-1" role="dialog" aria-labelledby="TambahTugas">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tambah Tugas</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{route('tugas.store')}}" class="form-horizontal" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    
+                    <input type="text" class="form-control" name="judul" placeholder="Judul"/>
+                    <div class="select">
+                        <select name="materi_id" class="form-control">
+                            @foreach($kelas->materi as $opt)
+                                <option value="{{ $opt->id }}">{{ $opt->judul }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <input type="hidden" value="{{ $kelas->id }}" name="kelas_id">
+                    <textarea type="text" class="form-control" name="deskripsi" placeholder="Deskripsi"/></textarea>
+                    <input type="date" name="deadline" class="form-control" placeholder="Deadline">
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group form-button">
+                    <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endif
 </div>
 
@@ -328,11 +368,16 @@
 
     $('.hell').click(function (e) {
         e.preventDefault();
-        var link = $(this).attr("link");
 
-        //alert(link);
-        console.log(link);
-        $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('pdfku/') }}"+"/"+link+"' frameborder='0'></iframe>");
+        var type = $(this).attr("type-sub");
+
+        if(type == 'pdf'){
+            var link = $(this).attr("link");
+            $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('pdfku/') }}"+"/"+link+"' frameborder='0'></iframe>");
+        }else if(type == 'task'){
+            var link = $(this).attr("link");
+            $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('task/') }}"+"/"+link+"' frameborder='0'></iframe>");
+        }
     })
     });
 </script>

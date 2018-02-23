@@ -20,6 +20,10 @@ Route::get('/pdfku/{link}', function ($link){
     return response()->file(public_path().'/pdf/'.$link);
 });
 
+Route::get('/task/{id}', function($id){
+    return view('tugas.do');
+});
+
 Auth::routes();
 
 // Disable sementara untuk register
@@ -48,6 +52,7 @@ Route::post('/classroom/add', 'kelasController@storeKelas')->name('kelas.store')
 Route::post('/classroom/join', 'kelasController@joinKelas')->name('kelas.join');
 Route::post('/classroom/add_material', 'kelasController@storeMateri')->name('materi.store');
 Route::post('/classroom/add_modul', 'kelasController@storeModul')->name('modul.store');
+Route::post('/classroom/add_tugas', 'TugasController@store')->name('tugas.store');
 
 // Social Login
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');

@@ -20,7 +20,7 @@ class CreateTugasTable extends Migration
             $table->string('creator_id');
             $table->string('materi_id');
             $table->date('deadline');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
