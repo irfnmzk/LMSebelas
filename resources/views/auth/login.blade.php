@@ -152,10 +152,11 @@
           <a href="{{ url('login/twitter') }}"><i class="zmdi zmdi-twitter socmed"></i></a>
         </div>
         <span class="or"> OR </span>
-        <form method="POST">
+        <form method="POST" action="{{route('login')}}">
           <h4>Leven Account</h4>
-          <div class="form-1"><i class="zmdi zmdi-face"> </i><input type="text" name="user" placeholder="Username"/></div>
-          <div class="form-2"><i class="zmdi zmdi-lock"> </i><input type="password" name="pass" placeholder="Password"/></div>
+          {{csrf_field()}}
+          <div class="form-1"><i class="zmdi zmdi-face"> </i><input type="text" name="email" placeholder="Username"/></div>
+          <div class="form-2"><i class="zmdi zmdi-lock"> </i><input type="password" name="password" placeholder="Password"/></div>
           <button type="submit" name="submit">Login</button>
         </form>
         <b>Create New Account ?</b><a href="#"><div class="regist"> Register </div></a>
