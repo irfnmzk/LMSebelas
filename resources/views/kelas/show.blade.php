@@ -84,10 +84,22 @@
                         <div class="accordion-content">
                             <ul>
                             @foreach($materi->modul as $modul)
-                                <a href="#" class="hell" link="{{ $modul->link }}">
+                                <a href="#" class="hell" link="{{ $modul->link }}" type-sub="pdf">
                                     <li>{{ $modul->judul }}</li>
                                 </a>
                             @endforeach
+                            @foreach($materi->tugas as $tugas)
+                                <a href="#" class="hell" link="{{ $tugas->id }}" type-sub="task">
+                                    <li>{{ $tugas->judul }}</li>
+                                </a>
+                            @endforeach
+                            @if($loop->last)
+                                @foreach($materi->quiz as $quiz)
+                                <a href="#" class="hell" link="{{ $quiz->id }}" type-sub="quiz">
+                                    <li>Quiz : {{ $quiz->judul }}</li>
+                                </a>
+                                @endforeach
+                            @endif
                             </ul>
                         </div>
                     </dd>
@@ -152,7 +164,7 @@
         </a>  
         </span>
         
-        <span>
+        <span data-toggle="modal" data-target="#TambahTugas">
             <a href="#" class="btn btn-danger btn-fab" data-toggle="tooltip" data-placement="left" data-original-title="Tambah Tugas" title="" id="mail">
               <i class="material-icons">
                 <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -163,7 +175,7 @@
             </a>
         </span>
 
-        <span>
+        <span data-toggle="modal" data-target="#TambahQuiz">
             <a href="#" class="btn btn-fab" data-toggle="tooltip" data-placement="left" data-original-title="Tambah Quiz" title="" id="quiz">
               <i class="material-icons">
                 <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -218,6 +230,39 @@
         </div>
     </div>
 
+    <div class="modal fade" id="TambahTugas" tabindex="-1" role="dialog" aria-labelledby="TambahTugas">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tambah Materi</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{route('tugas.store')}}" class="form-horizontal" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <input type="hidden" value="{{ $kelas->id }}" name="kelas_id">
+                    <div class="select">
+                        <select name="materi_id" class="form-control">
+                            @foreach($kelas->materi as $opt)
+                                <option value="{{ $opt->id }}">{{ $opt->judul }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <input type="text" class="form-control" name="judul" placeholder="Judul"/>
+                    <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
+                    <input id="deadline" type="date" class="form-control" name="deadline" placeholder="deadline">
+                    
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group form-button">
+                    <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="TambahModul" tabindex="-1" role="dialog" aria-labelledby="TambahModul">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -240,6 +285,48 @@
                     <div class="fallback">
                         <input name="link" type="file"/>
                       </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group form-button">
+                    <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="TambahQuiz" tabindex="-1" role="dialog" aria-labelledby="TambahQuiz">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tambah Quiz</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{route('quiz.store')}}" class="form-horizontal" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    
+                    <div class="select">
+                        <select name="materi_id" class="form-control">
+                            @foreach($kelas->materi as $opt)
+                                <option value="{{ $opt->id }}">{{ $opt->judul }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @foreach(Auth::user()->anggota_kelas as $anggota_kelas)
+                    @if($anggota_kelas->kelas_id == $kelas->id)
+                    <input type="hidden" name="creator_id" value="{{ $anggota_kelas->id }}">
+                    @endif
+                    @endforeach
+                    <input id="judul" type="text" class="form-control" name="judul" placeholder="Judul">
+                    <textarea rows="3" id="deskripsi" class="form-control" name="deskripsi" placeholder="Deskripsi"></textarea>
+                    <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi">
+                    <input id="jumlah_soal" type="number" class="form-control" name="jumlah_soal" placeholder="Jumlah Soal">
+                    Tanggal Mulai 
+                    <input id="tanggal_mulai" type="date" class="form-control" name="tanggal_mulai" placeholder="Tanggal Mulai">
+                    Tanggal Selesai 
+                    <input id="tanggal_selesai" type="date" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai">         
                 </div>
                 <div class="modal-footer">
                     <div class="form-group form-button">
@@ -328,12 +415,26 @@
 
     $('.hell').click(function (e) {
         e.preventDefault();
-        var link = $(this).attr("link");
+        var type = $(this).attr("type-sub");
 
-        //alert(link);
-        console.log(link);
-        $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('pdfku/') }}"+"/"+link+"' frameborder='0'></iframe>");
+        if(type == 'pdf'){
+            var link = $(this).attr("link");
+            $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('pdfku/') }}"+"/"+link+"' frameborder='0'></iframe>");
+        }else if(type == 'quiz'){
+            var link = $(this).attr("link");
+            var url = "{{ url('start_quiz/') }}"+"/"+link+"";
+            $('.reader-bg').load(url);
+        }else if(type == 'task'){
+            var link = $(this).attr("link");
+            var url = "{{ url('task/') }}"+"/"+link+"";
+            $('.reader-bg').load(url);
+        }
     })
+    });
+    $(document).ready(function(){
+        $('#deskripsi').summernote({
+            height: 100,
+        });
     });
 </script>
 @endsection

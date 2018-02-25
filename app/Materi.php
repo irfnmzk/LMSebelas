@@ -31,4 +31,9 @@ class Materi extends Model
     {
         return $this->hasMany('App\Modul');
     }
+
+    public function quiz()
+    {
+        return $this->hasMany('App\Quiz');
+    }
 }

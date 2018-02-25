@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="row"> 
                                     <div class="pull-right">
-                                        <div class="form-group form-button">
+                                        <div class="form-group form-button" style="padding-right: 30px;">
                                             <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
                                         </div>
                                     </div>
