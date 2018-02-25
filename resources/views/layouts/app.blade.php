@@ -22,6 +22,7 @@
 
     <!-- Dropzone CSS -->
     <link href="{{ asset('assets/vendors/dropzone/dropzone.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/vendors/bootstrap-datetimepicker.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link href="{{ asset('assets/css/easy-autocomplete.min.css') }}" rel="stylesheet" />
@@ -37,37 +38,6 @@
             z-index: 9999;
             background: url("{{ url('/assets/img/gif/preloader.gif')}}") center no-repeat #fff;
         }
-        .ui-autocomplete {
-        position: absolute;
-        z-index: 1000;
-        cursor: default;
-        padding: 0;
-        margin-top: 2px;
-        list-style: none;
-        background-color: #ffffff;
-        border: 1px solid #ccc;
-        -webkit-border-radius: 5px;
-           -moz-border-radius: 5px;
-                border-radius: 5px;
-        -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-           -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-        .ui-autocomplete > li {
-          padding: 3px 20px;
-        }
-        .ui-autocomplete > li:hover {
-          background-color: #C8DBEA;
-        }
-        .ui-autocomplete > li:focus {
-          background-color: #C8DBEA;
-        }
-        .ui-autocomplete > li:active {
-          background-color: #C8DBEA;
-        }
-        .ui-helper-hidden-accessible {
-          display: none;
-        }
 
     </style>
 
@@ -75,6 +45,7 @@
 
 <body>
     <div class="se-pre-con"></div>
+    
     <div class="wrapper">
         <div class="sidebar">
             <div class="logo">
@@ -95,6 +66,7 @@
                             <p>Home</p>
                         </a>
                     </li>
+                    @if(Auth::user()->active == 1)
                     <li>
                         <a href="{{ url('classroom') }}">
                             <i class="zmdi zmdi-home"></i>
@@ -119,6 +91,7 @@
                             <p>Enroll Code</p>
                         </a>
                     </li>
+                    @endif
 
 
                     <!--li>
@@ -149,9 +122,8 @@
                 </ul>
 
             </div>
+            
         </div>
-
-
         <div class="main-panel">
             <nav class="navbar navbar-default navbar-absolute" data-topbar-color="blue">
                 <div class="container-fluid">
@@ -334,6 +306,7 @@
 <script src="{{ asset('assets/vendors/dropzone/dropzone.min.js') }}"></script>
 
 <script src="{{ asset('assets/js/jquery.easy-autocomplete.min.js') }}"></script>
+
 <script type="text/javascript">
     $(window).on('load', function(){
             $(".se-pre-con").fadeOut("slow");
@@ -386,6 +359,7 @@
             placeholder: "Nama Sekolah "
         };
         $("#q").easyAutocomplete(options);
+        
 });
 </script>
 @yield('script')

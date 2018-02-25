@@ -84,10 +84,17 @@
                         <div class="accordion-content">
                             <ul>
                             @foreach($materi->modul as $modul)
-                                <a href="#" class="hell" link="{{ $modul->link }}">
+                                <a href="#" class="hell" link="{{ $modul->link }}" type-sub="pdf">
                                     <li>{{ $modul->judul }}</li>
                                 </a>
                             @endforeach
+                            @if($loop->last)
+                                @foreach($materi->quiz as $quiz)
+                                <a href="#" class="hell" link="{{ $quiz->id }}" type-sub="quiz">
+                                    <li>{{ $quiz->judul }}</li>
+                                </a>
+                                @endforeach
+                            @endif
                             </ul>
                         </div>
                     </dd>
@@ -163,7 +170,7 @@
             </a>
         </span>
 
-        <span>
+        <span data-toggle="modal" data-target="#TambahQuiz">
             <a href="#" class="btn btn-fab" data-toggle="tooltip" data-placement="left" data-original-title="Tambah Quiz" title="" id="quiz">
               <i class="material-icons">
                 <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -240,6 +247,48 @@
                     <div class="fallback">
                         <input name="link" type="file"/>
                       </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group form-button">
+                    <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="TambahQuiz" tabindex="-1" role="dialog" aria-labelledby="TambahQuiz">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tambah Quiz</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{route('quiz.store')}}" class="form-horizontal" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    
+                    <div class="select">
+                        <select name="materi_id" class="form-control">
+                            @foreach($kelas->materi as $opt)
+                                <option value="{{ $opt->id }}">{{ $opt->judul }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @foreach(Auth::user()->anggota_kelas as $anggota_kelas)
+                    @if($anggota_kelas->kelas_id == $kelas->id)
+                    <input type="hidden" name="creator_id" value="{{ $anggota_kelas->id }}">
+                    @endif
+                    @endforeach
+                    <input id="judul" type="text" class="form-control" name="judul" placeholder="Judul">
+                    <textarea rows="3" id="deskripsi" class="form-control" name="deskripsi" placeholder="Deskripsi"></textarea>
+                    <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi">
+                    <input id="jumlah_soal" type="number" class="form-control" name="jumlah_soal" placeholder="Jumlah Soal">
+                    Tanggal Mulai 
+                    <input id="tanggal_mulai" type="date" class="form-control datetimepicker" name="tanggal_mulai" placeholder="Tanggal Mulai">
+                    Tanggal Selesai 
+                    <input id="tanggal_selesai" type="date" class="form-control datetimepicker" name="tanggal_selesai" placeholder="Tanggal Selesai">         
                 </div>
                 <div class="modal-footer">
                     <div class="form-group form-button">
