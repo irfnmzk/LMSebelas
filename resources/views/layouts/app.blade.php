@@ -25,6 +25,9 @@
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link href="{{ asset('assets/css/easy-autocomplete.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/summernote/summernote.css') }}" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
     <style>
         .no-js #loader { display: none;  }
         .js #loader { display: block; position: absolute; left: 100px; top: 0; }
@@ -334,6 +337,7 @@
 <script src="{{ asset('assets/vendors/dropzone/dropzone.min.js') }}"></script>
 
 <script src="{{ asset('assets/js/jquery.easy-autocomplete.min.js') }}"></script>
+<script src="{{ asset('assets/summernote/summernote.js')}}"></script>
 <script type="text/javascript">
     $(window).on('load', function(){
             $(".se-pre-con").fadeOut("slow");

@@ -278,7 +278,7 @@
                         </select>
                     </div>
                     <input type="hidden" value="{{ $kelas->id }}" name="kelas_id">
-                    <textarea type="text" class="form-control" name="deskripsi" placeholder="Deskripsi"/></textarea>
+                    <textarea type="text" class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi"/></textarea>
                     <input type="date" name="deadline" class="form-control" placeholder="Deadline">
                 </div>
                 <div class="modal-footer">
@@ -379,6 +379,9 @@
             $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('task/') }}"+"/"+link+"' frameborder='0'></iframe>");
         }
     })
+    });
+    $(document).ready(function(){
+        $('#deskripsi').summernote();
     });
 </script>
 @endsection
