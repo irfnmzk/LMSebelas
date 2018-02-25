@@ -49,7 +49,7 @@ Route::post('/classroom/join', 'kelasController@joinKelas')->name('kelas.join');
 Route::post('/classroom/add_material', 'kelasController@storeMateri')->name('materi.store');
 Route::post('/classroom/add_modul', 'kelasController@storeModul')->name('modul.store');
 Route::post('/classroom/add_tugas', 'TugasController@store')->name('tugas.store');
-Route::get('/task/{id}', 'TugasController@show')->name('task.show');
+Route::get('/task/{id}', 'TugasController@show')->name('tugas.show');
 Route::post('/classroom/add_quiz', 'QuizController@store')->name('quiz.store');
 Route::get('/start_quiz/{id}', 'QuizController@start_quiz');
 

@@ -88,6 +88,11 @@
                                     <li>{{ $modul->judul }}</li>
                                 </a>
                             @endforeach
+                            @foreach($materi->tugas as $tugas)
+                                <a href="#" class="hell" link="{{ $tugas->id }}" type-sub="task">
+                                    <li>{{ $tugas->judul }}</li>
+                                </a>
+                            @endforeach
                             @if($loop->last)
                                 @foreach($materi->quiz as $quiz)
                                 <a href="#" class="hell" link="{{ $quiz->id }}" type-sub="quiz">
@@ -213,6 +218,39 @@
                     <input type="text" class="form-control" name="nilai_quiz" placeholder="Nilai Quiz (%)"/> 
                     </div>
                     <b>Keterangan : nilai tugas dan quiz saat dijumlahkan harus 100 %</b>
+                    
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group form-button">
+                    <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="TambahTugas" tabindex="-1" role="dialog" aria-labelledby="TambahTugas">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tambah Materi</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{route('tugas.store')}}" class="form-horizontal" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <input type="hidden" value="{{ $kelas->id }}" name="kelas_id">
+                    <div class="select">
+                        <select name="materi_id" class="form-control">
+                            @foreach($kelas->materi as $opt)
+                                <option value="{{ $opt->id }}">{{ $opt->judul }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <input type="text" class="form-control" name="judul" placeholder="Judul"/>
+                    <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
+                    <input id="deadline" type="date" class="form-control" name="deadline" placeholder="deadline">
                     
                 </div>
                 <div class="modal-footer">
@@ -386,11 +424,17 @@
             var link = $(this).attr("link");
             var url = "{{ url('start_quiz/') }}"+"/"+link+"";
             $('.reader-bg').load(url);
+        }else if(type == 'task'){
+            var link = $(this).attr("link");
+            var url = "{{ url('task/') }}"+"/"+link+"";
+            $('.reader-bg').load(url);
         }
     })
     });
     $(document).ready(function(){
-        $('#deskripsi').summernote();
+        $('#deskripsi').summernote({
+            height: 100,
+        });
     });
 </script>
 @endsection
