@@ -20,4 +20,10 @@ class TugasController extends Controller
 
         return redirect()->route('show.kelas', $tugas->materi->kelas_id);
     }
+
+    public function show($id){
+        $tugas = Tugas::findOrFail($id);
+
+        return view('tugas.do', compact('tugas'));
+    }
 }
