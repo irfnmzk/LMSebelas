@@ -56,6 +56,11 @@ class QuizController extends Controller
         }
     }
 
+    public function quiz_control($quiz_id){
+        $soal = Soal::where('quiz_id', '=' , $quiz_id)->paginate(10);
+        return view('quiz.control', compact('soal', 'quiz_id'));
+    }
+
     public function saveanswerquiz(Request $request)
     {
         //dd(json_decode($request->getContent(), true));

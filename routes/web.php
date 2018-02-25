@@ -51,8 +51,10 @@ Route::post('/classroom/add_modul', 'kelasController@storeModul')->name('modul.s
 Route::post('/classroom/add_tugas', 'TugasController@store')->name('tugas.store');
 Route::get('/task/{id}', 'TugasController@show')->name('tugas.show');
 Route::post('/classroom/add_quiz', 'QuizController@store')->name('quiz.store');
-Route::get('/start_quiz/{id}', 'QuizController@start_quiz')->name('start.quiz');
+
+Route::get('/start_quiz/{id}', 'QuizController@start_quiz');
 Route::post('/store/tugas', 'TugasController@storeSiswa')->name('siswa.tugas.store');
+Route::get('/quiz_control/{id}', 'QuizController@quiz_control');
 
 // Social Login
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
