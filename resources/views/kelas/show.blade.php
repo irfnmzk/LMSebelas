@@ -91,7 +91,7 @@
                             @if($loop->last)
                                 @foreach($materi->quiz as $quiz)
                                 <a href="#" class="hell" link="{{ $quiz->id }}" type-sub="quiz">
-                                    <li>{{ $quiz->judul }}</li>
+                                    <li>Quiz : {{ $quiz->judul }}</li>
                                 </a>
                                 @endforeach
                             @endif
@@ -286,9 +286,9 @@
                     <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi">
                     <input id="jumlah_soal" type="number" class="form-control" name="jumlah_soal" placeholder="Jumlah Soal">
                     Tanggal Mulai 
-                    <input id="tanggal_mulai" type="date" class="form-control datetimepicker" name="tanggal_mulai" placeholder="Tanggal Mulai">
+                    <input id="tanggal_mulai" type="date" class="form-control" name="tanggal_mulai" placeholder="Tanggal Mulai">
                     Tanggal Selesai 
-                    <input id="tanggal_selesai" type="date" class="form-control datetimepicker" name="tanggal_selesai" placeholder="Tanggal Selesai">         
+                    <input id="tanggal_selesai" type="date" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai">         
                 </div>
                 <div class="modal-footer">
                     <div class="form-group form-button">
@@ -377,11 +377,16 @@
 
     $('.hell').click(function (e) {
         e.preventDefault();
-        var link = $(this).attr("link");
+        var type = $(this).attr("type-sub");
 
-        //alert(link);
-        console.log(link);
-        $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('pdfku/') }}"+"/"+link+"' frameborder='0'></iframe>");
+        if(type == 'pdf'){
+            var link = $(this).attr("link");
+            $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('pdfku/') }}"+"/"+link+"' frameborder='0'></iframe>");
+        }else if(type == 'quiz'){
+            var link = $(this).attr("link");
+            var url = "{{ url('start_quiz/') }}"+"/"+link+"";
+            $('.reader-bg').load(url);
+        }
     })
     });
 </script>

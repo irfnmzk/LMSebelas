@@ -22,7 +22,6 @@
 
     <!-- Dropzone CSS -->
     <link href="{{ asset('assets/vendors/dropzone/dropzone.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('assets/vendors/bootstrap-datetimepicker.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link href="{{ asset('assets/css/easy-autocomplete.min.css') }}" rel="stylesheet" />
