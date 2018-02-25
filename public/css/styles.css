@@ -556,7 +556,6 @@
 			margin: 10px 0;
 			min-height: 350px;
 			width: 100%;
-			background: #888;
 		}
 		.reader-bg  h3 {
 			margin: 10px;
@@ -988,7 +987,7 @@
 		======================*/
 		.un-footer {
 			box-shadow: 0 0 10px rgba(0,0,0,0.25);
-			background: url("../assets/img/photocovercat.jpg");
+			background: url("../img/photocovercat.jpg");
 			background-size: cover;
 			padding: 35px 50px;
 			width: 100%;
@@ -1000,3 +999,55 @@
 		.un-footer button {
 			height: 50px;
 		}
+/*===============================
+			Quiz Page
+===============================*/
+.card-start-quiz {
+	padding: 20px 50px;
+}
+.card-start-quiz .quiz-desc {
+	width: 75%;
+}
+.card-start-quiz .quiz-desc p, b {
+	display: block;
+}
+.quiz .quiz-question #q-image {
+	margin: 10px 0;
+}
+.quiz .quiz-question {
+	padding: 10px;
+}
+.quiz .quiz-question .options {
+	margin: 10px;
+}
+.quiz .quiz-question .options form span {
+	display: block;
+	margin: 5px;
+}
+.quiz .switch-q button {
+	width: 100%;
+}
+.quiz .number-now {
+	background: #eee;
+	color: #111;
+	border-radius: 6px;
+	padding: 5px;
+	display: block;
+	margin: 10px;
+	text-align: center;
+}
+.quiz .time-count {
+	padding: 10px;
+	border-bottom: 3px solid #ff6000;
+}
+.quiz .number-list a{
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	padding: 10px 0;
+	color: #fff;
+} 
+.quiz .quiz-finish button {
+	width: 100%;
+	margin: 0;
+}

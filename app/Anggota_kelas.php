@@ -34,6 +34,21 @@ class Anggota_kelas extends Model
 
     public function jawaban_tugas()
     {
-        return $this->hasMany('App\jawaban_tugas');
+        return $this->hasMany('App\Jawaban_tugas');
+    }
+
+    public function quiz()
+    {
+        return $this->hasMany('App\Quiz');
+    }
+
+    public function jawaban_user()
+    {
+        return $this->hasMany('App\Jawaban_user');
+    }
+
+    public function hasil_quiz()
+    {
+        return $this->hasMany('App\Hasil_quiz');
     }
 }

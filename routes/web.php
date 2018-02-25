@@ -50,6 +50,8 @@ Route::post('/classroom/add_material', 'kelasController@storeMateri')->name('mat
 Route::post('/classroom/add_modul', 'kelasController@storeModul')->name('modul.store');
 Route::post('/classroom/add_tugas', 'TugasController@store')->name('tugas.store');
 Route::get('/task/{id}', 'TugasController@show')->name('task.show');
+Route::post('/classroom/add_quiz', 'QuizController@store')->name('quiz.store');
+Route::get('/start_quiz/{id}', 'QuizController@start_quiz');
 
 // Social Login
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');

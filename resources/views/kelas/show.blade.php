@@ -89,9 +89,9 @@
                                 </a>
                             @endforeach
                             @if($loop->last)
-                                @foreach($materi->tugas as $tugas)
-                                <a href="#" class="hell" link="{{ $tugas->id }}" type-sub="task">
-                                    <li>{{ $tugas->judul }}</li>
+                                @foreach($materi->quiz as $quiz)
+                                <a href="#" class="hell" link="{{ $quiz->id }}" type-sub="quiz">
+                                    <li>Quiz : {{ $quiz->judul }}</li>
                                 </a>
                                 @endforeach
                             @endif
@@ -170,7 +170,7 @@
             </a>
         </span>
 
-        <span>
+        <span data-toggle="modal" data-target="#TambahQuiz">
             <a href="#" class="btn btn-fab" data-toggle="tooltip" data-placement="left" data-original-title="Tambah Quiz" title="" id="quiz">
               <i class="material-icons">
                 <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -258,18 +258,17 @@
         </div>
     </div>
 
-    <div class="modal fade" id="TambahTugas" tabindex="-1" role="dialog" aria-labelledby="TambahTugas">
+    <div class="modal fade" id="TambahQuiz" tabindex="-1" role="dialog" aria-labelledby="TambahQuiz">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Tambah Tugas</h4>
+                    <h4 class="modal-title" id="myModalLabel">Tambah Quiz</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('tugas.store')}}" class="form-horizontal" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('quiz.store')}}" class="form-horizontal" enctype="multipart/form-data">
                     {{csrf_field()}}
                     
-                    <input type="text" class="form-control" name="judul" placeholder="Judul"/>
                     <div class="select">
                         <select name="materi_id" class="form-control">
                             @foreach($kelas->materi as $opt)
@@ -277,9 +276,19 @@
                             @endforeach
                         </select>
                     </div>
-                    <input type="hidden" value="{{ $kelas->id }}" name="kelas_id">
-                    <textarea type="text" class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi"/></textarea>
-                    <input type="date" name="deadline" class="form-control" placeholder="Deadline">
+                    @foreach(Auth::user()->anggota_kelas as $anggota_kelas)
+                    @if($anggota_kelas->kelas_id == $kelas->id)
+                    <input type="hidden" name="creator_id" value="{{ $anggota_kelas->id }}">
+                    @endif
+                    @endforeach
+                    <input id="judul" type="text" class="form-control" name="judul" placeholder="Judul">
+                    <textarea rows="3" id="deskripsi" class="form-control" name="deskripsi" placeholder="Deskripsi"></textarea>
+                    <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi">
+                    <input id="jumlah_soal" type="number" class="form-control" name="jumlah_soal" placeholder="Jumlah Soal">
+                    Tanggal Mulai 
+                    <input id="tanggal_mulai" type="date" class="form-control" name="tanggal_mulai" placeholder="Tanggal Mulai">
+                    Tanggal Selesai 
+                    <input id="tanggal_selesai" type="date" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai">         
                 </div>
                 <div class="modal-footer">
                     <div class="form-group form-button">
@@ -368,15 +377,15 @@
 
     $('.hell').click(function (e) {
         e.preventDefault();
-
         var type = $(this).attr("type-sub");
 
         if(type == 'pdf'){
             var link = $(this).attr("link");
             $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('pdfku/') }}"+"/"+link+"' frameborder='0'></iframe>");
-        }else if(type == 'task'){
+        }else if(type == 'quiz'){
             var link = $(this).attr("link");
-            $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('task/') }}"+"/"+link+"' frameborder='0'></iframe>");
+            var url = "{{ url('start_quiz/') }}"+"/"+link+"";
+            $('.reader-bg').load(url);
         }
     })
     });
