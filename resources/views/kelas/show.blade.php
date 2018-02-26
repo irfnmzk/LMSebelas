@@ -236,7 +236,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Tambah Materi</h4>
+                    <h4 class="modal-title" id="myModalLabel">Tambah Tugas</h4>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="{{route('tugas.store')}}" class="form-horizontal" enctype="multipart/form-data">
@@ -250,7 +250,7 @@
                         </select>
                     </div>
                     <input type="text" class="form-control" name="judul" placeholder="Judul"/>
-                    <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
+                    <textarea class="form-control summernote" name="deskripsi" id="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
                     <input id="deadline" type="date" class="form-control" name="deadline" placeholder="deadline">
                     
                 </div>
@@ -345,6 +345,9 @@
 
 @section('script')
 <script type="text/javascript">
+     @include('quiz.quiz_js')
+</script>
+<script type="text/javascript">
     $(document).ready(function() {
 
         //minimize sidebar automatically
@@ -424,7 +427,7 @@
         }else if(type == 'quiz'){
             var link = $(this).attr("link");
             var url = "{{ url('start_quiz/') }}"+"/"+link+"";
-            $('.reader-bg').load(url);
+            $('.reader-bg').html("<iframe id='if_quiz_att' style='width:100%;height:100%;position:absolute;' height='100%' width='100%' src='"+url+"' frameborder='0'></iframe>");
         }else if(type == 'task'){
             var link = $(this).attr("link");
             var url = "{{ url('task/') }}"+"/"+link+"";
@@ -436,7 +439,11 @@
     $(document).ready(function(){
         $('#deskripsi').summernote({
             height: 100,
+            placeholder: 'Deskripsi Tugas',
+            tabsize: 2
         });
+        $('.dropdown-toggle').dropdown();
+        
     });
 
     $(document).on('submit', '.form_tugas', function (e) {

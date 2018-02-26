@@ -31,6 +31,48 @@ class QuizController extends Controller
         return redirect()->route('show.kelas', $quiz->materi->kelas_id);
     }
 
+    public function storeQuestion(Request $request)
+    {
+        $fileName = "";
+        //dd($request);
+        if($request->file('picture')){
+            $file       = $request->file('picture');
+            $fileName   = $file->getClientOriginalName();
+            $request->file('picture')->move("img/", $fileName);
+        }
+        
+
+        $soal = new Soal([
+            'quiz_id'     => $request->input('quiz_id'),
+            'pertanyaan'   => $request->input('pertanyaan'),
+            'picture' => $fileName,
+            ]);
+        $soal->save();
+
+        $id = $soal->id;
+        $now = Carbon::now()->toDateTimeString();
+        //dd($request->input('benar'));
+        foreach($request->input('pilihan') as $key => $val){
+             if($request->input('benar') == $key){
+                 $benar=1;
+             }else{
+                 $benar=0;
+             }
+             //dd($benar);
+            $data[]=array(
+             'soal_id'=>$id,
+             'isi'=>$val,
+             'benar'=>$benar,
+             'created_at'=> $now,
+             'updated_at'=> $now,
+             );
+         }
+         //dd($data);
+         Jawaban::insert($data);    
+
+        return response()->json(array('status'=>'success', 'data' => $data));
+    }
+
     public function start_quiz($id)
     {
         $quiz = Quiz::findOrFail($id);
@@ -43,13 +85,13 @@ class QuizController extends Controller
 
         $sip = $now->between($tanggal_mulai, $tanggal_selesai);
         $cek = Hasil_quiz::where([['quiz_id', '=', $quiz->id],['creator_id', '=', $anggota_kelas->id],])->first();
-
+        
         if($cek != null && $cek->status == "Selesai dikerjakan"){
             $waktu_mulai = Carbon::parse($cek->waktu_mulai);
             $waktu_selesai = Carbon::parse($cek->waktu_selesai);
             $total_waktu = intval($cek->total_waktu / 60).":".intval($cek->total_waktu%60);
             
-            return view('quiz.quiz_result', compact('cek', 'waktu_mulai', 'waktu_selesai', 'total_waktu'));
+            return view('quiz.quiz_result', compact('cek', 'waktu_mulai', 'waktu_selesai', 'total_waktu', 'quiz'));
         }
         else{
             return view('quiz.quiz_attempt', compact('quiz', 'sip', 'tanggal_mulai', 'tanggal_selesai'));
@@ -57,8 +99,8 @@ class QuizController extends Controller
     }
 
     public function quiz_control($quiz_id){
-        $soal = Soal::where('quiz_id', '=' , $quiz_id)->paginate(10);
-        return view('quiz.control', compact('soal', 'quiz_id'));
+        $quiz = Quiz::find($quiz_id);
+        return view('quiz.control', compact('quiz'));
     }
 
     public function saveanswerquiz(Request $request)
@@ -69,38 +111,46 @@ class QuizController extends Controller
         $id_question =$request->input('id_question');
         $answer = $request->input('answer');
         $user = Auth::user()->id;
+
+        $res = Hasil_quiz::find($id_hasil);
         
         $right = 0;
 
         if($id_hasil != null){
-            $jawab = Jawaban_user::where([['hasil_id', '=', $id_hasil],['creator_id', '=', $user],['soal_id', '=', $id_question], ])->first();
+            $jawab = Jawaban_user::where([['hasil_id', '=', $id_hasil],['soal_id', '=', $id_question], ])->first();
             if($jawab){
             Jawaban_user::destroy($jawab->id);
         }
         }
+        if($answer != null){
+            $benar = Jawaban::find($answer);
+                if($benar->benar == 1){
+                    $right = 1;
+                }
 
-        $benar = Jawaban::find($answer);
-        if($benar->benar == 1){
-            $right = 1;
-        }
-
-        $jawaban_user = new Jawaban_user([
-            'creator_id' => Auth::user()->id,
+            $jawaban_user = new Jawaban_user([
+            'creator_id' => $res->creator_id,
             'soal_id' => $id_question,
             'hasil_id' => $id_hasil,
             'jawaban_id' =>$answer,
             'benar' => $right,
             ]);
         
-        $jawaban_user->save();
-        //dd($jawaban_user->id);
+            $jawaban_user->save();
+            //dd($jawaban_user->id);
 
-            $query = Jawaban_user::find($jawaban_user->id);
+                $query = Jawaban_user::find($jawaban_user->id);
+                $results = array(
+                'id' => $query->id,
+                'msg' => $query->jawaban_id,
+                'status' => "success",
+            );
+        }
+        else{
             $results = array(
-            'id' => $query->id,
-            'msg' => $query->jawaban_id,
-            'status' => "success",
-        );
+                'status' => "no_insert",
+                );
+        }
 
         return \Response::json($results);
     } 
@@ -108,12 +158,15 @@ class QuizController extends Controller
     public function checkquiz(Request $request)
     {
         $id_quiz = $request->input('id_quiz');
+        $quiz = Quiz::find($id_quiz);
         $user = Auth::user()->id;
 
-        $cek = Hasil_quiz::where([['quiz_id', '=', $id_quiz],['user_id', '=', $user], ])->first();
+        $anggota_kelas = Anggota_kelas::where([['kelas_id', '=', $quiz->materi->kelas_id],['user_id', '=', $user],])->first();
+
+        $cek = Hasil_quiz::where([['quiz_id', '=', $id_quiz],['creator_id', '=', $anggota_kelas->id], ])->first();
         if($cek == null){
             $hasil = new Hasil_quiz([
-                'user_id' => $user,
+                'creator_id' => $anggota_kelas->id,
                 'quiz_id' => $id_quiz,
                 'waktu_mulai' => Carbon::now(),
                 'ip_address' =>request()->ip(),
