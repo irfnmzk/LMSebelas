@@ -12,9 +12,11 @@
                 </span>
             </div>
             <div class="upload-tugas">
-                <form method="POST">
-                    <input type="file" name="tugas" placeholder="Upload Tugas" />
-                    <input type="submit" name="upload-tugas" value="Upload" />
+                <form method="POST" action="{{route('siswa.tugas.store')}}" class="form_tugas">
+                    {{csrf_field()}}
+                    <input type="hidden" name="tugas_id" value="{{ $tugas->id }}"/>
+                    <input type="file" name="link" placeholder="Upload Tugas" />
+                    <input type="submit" name="upload-tugas" value="Upload" class="submit_tugas"/>
                 </form>
             </div>
 

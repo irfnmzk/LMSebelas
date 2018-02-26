@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <style type="text/css">
 .btn-group-sm .btn-fab{
   position: fixed !important;
@@ -431,9 +432,31 @@
         }
     })
     });
+
     $(document).ready(function(){
         $('#deskripsi').summernote({
             height: 100,
+        });
+    });
+
+    $(document).on('submit', '.form_tugas', function (e) {
+        e.preventDefault();
+        
+        var formdata = new FormData(this);
+        
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: formdata,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success: function(data){
+                alert('success');
+            },
+            error: function(data){
+                alert('error');
+            }
         });
     });
 </script>

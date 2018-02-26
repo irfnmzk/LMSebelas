@@ -26,4 +26,21 @@ class TugasController extends Controller
 
         return view('tugas.do', compact('tugas'));
     }
+
+    public function storeSiswa(Request $request){
+        $data = $request->all();
+
+        $data['creator_id'] = Auth::user()->id;
+
+        if($request->file('link')){
+            $file       = $request->file('link');
+            $fileName   = $file->getClientOriginalName();
+            $request->file('link')->move("tugas/", $fileName);
+            $data['link'] = $fileName; 
+        }
+
+        Tugas::create($data);
+        
+        return response()->json(array('status'=>'success', 'data' => $data));
+    }
 }
