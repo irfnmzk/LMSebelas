@@ -554,15 +554,16 @@
 		.reader-bg {
 			position: relative;
 			margin: 10px 0;
-			min-height: 350px;
+			min-height: 450px;
 			width: 100%;
+			background-color: #EEEEEE;
 		}
 		.reader-bg  h3 {
 			margin: 10px;
 		}
 		.reader-bg .detail-tugas {
 			position: relative;
-			min-height: 350px;
+			min-height: 450px;
 			width: 100%;
 			background: #fff;
 			padding: 25px;
@@ -939,7 +940,7 @@
 		}
 		.input-enroll-code form input, button {
 			display: block;
-			height: 100%;
+			/*height: 100%;*/
 		}
 		.input-enroll-code form input {
 			padding: 15px 25px;

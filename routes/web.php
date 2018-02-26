@@ -51,8 +51,17 @@ Route::post('/classroom/add_modul', 'kelasController@storeModul')->name('modul.s
 Route::post('/classroom/add_tugas', 'TugasController@store')->name('tugas.store');
 Route::get('/task/{id}', 'TugasController@show')->name('tugas.show');
 Route::post('/classroom/add_quiz', 'QuizController@store')->name('quiz.store');
-Route::get('/start_quiz/{id}', 'QuizController@start_quiz')->name('start.quiz');
+
+Route::get('/start_quiz/{id}', 'QuizController@start_quiz');
 Route::post('/store/tugas', 'TugasController@storeSiswa')->name('siswa.tugas.store');
+Route::get('/quiz_control/{id}', 'QuizController@quiz_control');
+Route::get('/delete_quiz/{id}', 'QuizController@destroy');
+Route::post('/add_question/', 'QuizController@storeQuestion')->name('question.store');;
+Route::post('/edit_question/{id}', 'QuizController@update_question');
+Route::get('/delete_question/{id}', 'QuizController@destroy_question');
+Route::post('/saveanswerquiz', 'QuizController@saveanswerquiz');
+Route::post('/checkquiz', 'QuizController@checkquiz');
+Route::post('/stopquiz', 'QuizController@stopquiz');
 
 // Social Login
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
