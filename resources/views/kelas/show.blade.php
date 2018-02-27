@@ -350,6 +350,7 @@
 @endisset
 </script>
 <script type="text/javascript">
+    var data_id = '';
     $(document).ready(function() {
 
         //minimize sidebar automatically
@@ -432,6 +433,7 @@
             $('.reader-bg').html("<iframe id='if_quiz_att' style='width:100%;height:100%;position:absolute;' height='100%' width='100%' src='"+url+"' frameborder='0'></iframe>");
         }else if(type == 'task'){
             var link = $(this).attr("link");
+            data_id = link;
             var url = "{{ url('task/') }}"+"/"+link+"";
             $('.reader-bg').load(url);
         }
@@ -461,7 +463,9 @@
             contentType: false,
             processData: false,
             success: function(data){
-                alert('success');
+                console.log('success');
+                var url = "{{ url('task/') }}"+"/"+data_id+"";
+                $('.reader-bg').load(url);
             },
             error: function(data){
                 alert('error');
