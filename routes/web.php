@@ -67,6 +67,8 @@ Route::post('/stopquiz', 'QuizController@stopquiz');
 Route::get('/quiz_result_all/{id}', 'QuizController@result_all');
 Route::get('/quiz_result_excel/{id}', 'QuizController@quiz_result_excel');
 
+Route::post('/diskusi/add/{id}', 'DiskusiController@store')->name('diskusi.store');
+
 // Social Login
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('callback/{provider}', 'Auth\LoginController@handleProviderCallback');

@@ -17,7 +17,7 @@ class CreateDiskusisTable extends Migration
             $table->increments('id');
             $table->text('text');
             $table->string('creator_id');
-            //$table->string('tugas_id');
+            $table->string('kelas_id');
             $table->timestamps();
         });
     }

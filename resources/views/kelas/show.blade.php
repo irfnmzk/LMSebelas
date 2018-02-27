@@ -48,7 +48,15 @@
             <div class="row">
                 <div class="col-lg-7 col-md-7 col-sm-7">
                     <div class="card card-class-info">
-                        Lorem Ipsum
+                    <div class="content-timeline">
+                        <form method="POST" action="{{route('diskusi.store', $kelas->id)}}">
+                        {{csrf_field()}}
+                        <textarea placeholder="How's it going ?" name="text"></textarea>
+                    
+                        <button type="submit" class="post-status btn btn-info pull-right">Post</button>
+                        </form>
+                        @include('timeline.kelas')
+                    </div>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5">
