@@ -3,10 +3,10 @@
             <div id="desc-tugas">
                 <span class="deskripsi">
 							<h3>{{ $tugas->judul }}</h3>
-							<strong>oleh {{ $tugas->creator->user->name }}</strong>
+							<strong>Oleh {{ ucwords($tugas->creator->user->name) }}</strong>
 							<p>{!!$tugas->deskripsi!!}</p>
 							<span class="deadline">
-							<strong>Deadline: <span>Jumat, 22 Februari 2091 - 10:00 a.m<span></strong>
+							<strong>Deadline: <span>{{ Carbon\Carbon::parse($tugas->deadline)->toDayDateTimeString() }}<span></strong>
 							</span>
                 </span>
             </div>

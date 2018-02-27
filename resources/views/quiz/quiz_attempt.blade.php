@@ -33,7 +33,7 @@
 					<button class="btn btn-danger quiz-result-all" value="{{ $quiz->id }}">Lihat Hasil Quiz</button>
 					@else
 					@if($sip && $quiz->active == 1)
-					<button class="btn btn-primary startquiz">Mulai</button>
+					<button class="btn btn-primary startquiz @if($quiz->soal->count() == 0)btn-disabled" disabled="" @endif>Mulai</button>
 					@endif
 					@endif
 </div>
@@ -41,6 +41,7 @@
 <div class="quiz" >
 <meta name="csrf_token" content="{{ csrf_token() }}" />
 <meta name="id_quiz" content="{{ $quiz->id }}" />
+<meta name="id_user" content="{{ Auth::user()->id }}" />
 @foreach($quiz->soal as $soal)
 			<div class="col-lg-8 col-md-8 col-sm-8 soal-{{ $loop->iteration }}" style="display:none">
 				<div class="card quiz-question">

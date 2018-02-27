@@ -18,11 +18,11 @@
                                 <table class="profile-table table table-hover">
                                     <tbody>
                                         <tr><td><i style="color:#2678cc;" class="zmdi zmdi-account"></i> Full Name</td>
-                                        <td>{{ $user->name}}</td></tr>
+                                        <td>{{ ucwords($user->name)}}</td></tr>
                                         <tr><td><i style="color:#f44;" class="zmdi zmdi-email"></i> Email</td>
                                         <td>{{ $user->email}}</td></tr>
-                                        <tr><td><i style="color:#ff6022;" class="zmdi zmdi-cake"></i> Birthday</td>
-                                        <td>May 20th 1996</td></tr>
+                                        <!-- <tr><td><i style="color:#ff6022;" class="zmdi zmdi-cake"></i> Birthday</td>
+                                        <td>May 20th 1996</td></tr> -->
                                         <tr><td><i style="color:#09bb90;" class="zmdi zmdi-face"></i> Role</td>
                                         <td>{{ ($user->role == '1')? 'Guru' : 'Siswa'  }}</td></tr>
                                         <tr><td><i style="color:#0b0;" class="zmdi zmdi-balance"></i> Sekolah</td>

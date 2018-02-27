@@ -50,6 +50,9 @@ class UserController extends Controller
     {
         $user = \App\User::find(Auth::user()->id);
         $data = $request->all();
+        if($request->input('password') == null){
+            unset($data['password']);
+        }
         
         $user->update($data);
 

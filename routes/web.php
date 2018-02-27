@@ -64,6 +64,8 @@ Route::get('/delete_question/{id}', 'QuizController@destroy_question');
 Route::post('/saveanswerquiz', 'QuizController@saveanswerquiz');
 Route::post('/checkquiz', 'QuizController@checkquiz');
 Route::post('/stopquiz', 'QuizController@stopquiz');
+Route::get('/quiz_result_all/{id}', 'QuizController@result_all');
+Route::get('/quiz_result_excel/{id}', 'QuizController@quiz_result_excel');
 
 // Social Login
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');

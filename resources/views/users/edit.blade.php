@@ -57,7 +57,7 @@
                                             <div class="col-md-9">
                                                 <div class="form-group label-floating is-empty">
                                                     <label class="control-label"></label>
-                                                    <input type="text" id="q" class="form-control datepicker" name="sekolah" value="{{$user->sekolah}}">
+                                                    <input type="text" id="q" class="form-control" name="sekolah" value="{{$user->sekolah}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -67,6 +67,16 @@
                                                 <div class="form-group label-floating is-empty">
                                                     <label class="control-label"></label>
                                                     <input type="text" class="form-control" name="jurusan" value="{{$user->jurusan}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <label class="col-md-3 label-on-left">Password Baru</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group label-floating is-empty">
+                                                    <label class="control-label"></label>
+                                                    <input type="text" class="form-control" name="password" value="" placeholder="Jika Tidak Membuat Password Baru Harap Dikosongkan saja.">
                                                 </div>
                                             </div>
                                         </div>

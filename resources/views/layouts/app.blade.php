@@ -185,9 +185,9 @@
                                     <li>
                                         <a href="{{ url('user/profile') }}"><i class="zmdi zmdi-account" style="font-size:20px;margin-right:10px;"></i><span>Profile</span></a>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="#"><i class="zmdi zmdi-settings" style="font-size:20px;margin-right:10px;"></i><span>Settings</span></a>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

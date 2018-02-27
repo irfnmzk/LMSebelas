@@ -11,8 +11,10 @@ use App\Soal;
 use App\Jawaban;
 use App\Jawaban_user;
 use App\Hasil_quiz;
+use App\Result_all_quiz;
 use Input;
 use Auth;
+use Excel;
 use Carbon\Carbon;
 
 class QuizController extends Controller
@@ -102,6 +104,22 @@ class QuizController extends Controller
         $quiz = Quiz::find($quiz_id);
         return view('quiz.control', compact('quiz'));
     }
+
+    public function result_all($quiz_id){
+        $hasil = Result_all_quiz::where('quiz_id', '=', $quiz_id)->get();
+        $quiz = Quiz::find($quiz_id);
+        return view('quiz.quiz_result_all', compact('hasil', 'quiz'));
+    }
+
+    public function quiz_result_excel($quiz_id){    
+        $quiz = Quiz::find($quiz_id);
+        $hasil = Result_all_quiz::select('id','name','jumlah_benar', 'nilai', 'total_waktu')->where('quiz_id', '=', $quiz_id)->get();
+        Excel::create('result_quiz-'.$quiz_id."-".$quiz->judul, function($excel) use($hasil) {
+            $excel->sheet('Sheet 1', function($sheet) use($hasil) {
+                $sheet->fromArray($hasil);
+            });
+        })->export('xlsx');
+        }
 
     public function saveanswerquiz(Request $request)
     {
