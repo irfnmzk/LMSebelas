@@ -61,7 +61,7 @@ $( document ).ready(function() {
 		            processData: false,
 		            success: function(data){
 		                $('#TambahSoal').modal('toggle');
-		                $('#if_quiz_control')[0].contentWindow.location.reload(true);
+		                document.location.href = document.location.href;
 		            },
 		            error: function(data){
 		                alert('error');
@@ -108,7 +108,7 @@ $( document ).ready(function() {
                         url:'{{ url('/stopquiz') }}',
                         data:{id_quiz: id_quiz, idd: idd},
                         success:function(result){
-                            $('#if_quiz_att')[0].contentWindow.location.reload(true);
+                            document.location.href = document.location.href;
                         }
                     });
             }

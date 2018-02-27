@@ -24,7 +24,7 @@
             <div class="card" style="position: relative;">
                 <div class="card-content">
                     <h4 class="card-title">{{ $quiz->judul }}</h4><br>
-                    @if($quiz->jumlah_soal < $quiz->soal->count() )
+                    @if($quiz->jumlah_soal > $quiz->soal->count() )
                     <a href="#" data-toggle="modal" data-target="#TambahSoal" class="btn btn-success btn-sm" title="Tambah Soal Baru">
                             <i class="fa fa-plus" aria-hidden="true"></i> Tambah Soal
                         </a>
@@ -48,7 +48,7 @@
                             @foreach ($quiz->soal as $item)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td>{{ $item->pertanyaan }}</td>
+                                    <td>{!! $item->pertanyaan !!}</td>
                                     <td>
                                     	
                                             @foreach($item->jawaban as $row)

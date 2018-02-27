@@ -91,7 +91,7 @@ class QuizController extends Controller
             $waktu_selesai = Carbon::parse($cek->waktu_selesai);
             $total_waktu = intval($cek->total_waktu / 60).":".intval($cek->total_waktu%60);
             
-            return view('quiz.quiz_result', compact('cek', 'waktu_mulai', 'waktu_selesai', 'total_waktu', 'quiz'));
+            return view('quiz.quiz_result', compact('cek','waktu_mulai', 'waktu_selesai', 'total_waktu', 'quiz'));
         }
         else{
             return view('quiz.quiz_attempt', compact('quiz', 'sip', 'tanggal_mulai', 'tanggal_selesai'));
