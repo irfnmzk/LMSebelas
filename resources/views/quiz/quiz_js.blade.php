@@ -7,6 +7,14 @@ $( document ).ready(function() {
                 $('.reader-bg', window.parent.document).html("<iframe id='if_quiz_control' style='width:100%;height:85vh;position:relative;' height='100%' width='100%' src='"+url+"' frameborder='0'></iframe>");
 			});
 
+           $('.quiz-result-all').click(function (e) {
+                e.preventDefault();
+                var link = $(this).val();
+                var url = "{{ url('quiz_result_all/') }}"+"/"+link+"";
+                console.log(url);
+                $('.reader-bg', window.parent.document).html("<iframe id='if_quiz_res_all' style='width:100%;height:85vh;position:relative;' height='100%' width='100%' src='"+url+"' frameborder='0'></iframe>");
+            });
+
 			$('#blah').hide();
 
 	        function readURL(input) {
@@ -21,6 +29,15 @@ $( document ).ready(function() {
 	            }
 	        }
 
+            function iframe_reload(){
+                document.location.href = document.location.href;
+            }
+
+            $('.iframe-reload').click(function () {
+                iframe_reload();
+                console.log("Cek");
+            });
+
 	        $('#picture').change(function () {
 			  	$('#blah').show();
 	            console.log("cek");
@@ -29,10 +46,6 @@ $( document ).ready(function() {
 
 			$('#example').DataTable({
             "pagingType": "full_numbers",
-            "lengthMenu": [
-                [10, 25, 50, -1],
-                [10, 25, 50, "All"]
-            ],
             responsive: true,
             language: {
                 search: "_INPUT_",
@@ -97,10 +110,13 @@ $( document ).ready(function() {
             }
 
             // Quiz Attempt Area
-            
+            var id_user = eval($('meta[name="id_user"]').attr('content'));
+            var id_quiz = $('meta[name="id_quiz"]').attr('content');
+            var token = $('meta[name="csrf_token"]').attr('content');
+
             function stopquiz() {
-                eraseCookie('seconds');
-                eraseCookie('choosesoal');
+                eraseCookie('seconds'+id_user+id_quiz);
+                eraseCookie('choosesoal'+id_user+id_quiz);
                 var idd = $('input').attr("idanswer");
 
                     $.ajax({
@@ -108,13 +124,14 @@ $( document ).ready(function() {
                         url:'{{ url('/stopquiz') }}',
                         data:{id_quiz: id_quiz, idd: idd},
                         success:function(result){
-                            $('#if_quiz_att')[0].contentWindow.location.reload(true);
+                            iframe_reload();
                         }
                     });
             }
 
 
-            var total_seconds = readCookie('seconds') || {{ $quiz->durasi * 60}};
+            var total_seconds = readCookie('seconds'+id_user+id_quiz) || {{ $quiz->durasi * 60}};
+            
 
             function startTimer(duration,display)
             {
@@ -123,15 +140,12 @@ $( document ).ready(function() {
                 minutes = parseInt(timer/60,10);
                 seconds = parseInt(timer%60,10);
                 display.text(minutes+":"+seconds);
-                createCookie('seconds' ,timer, 1);
+                createCookie('seconds'+id_user+id_quiz ,timer, 1);
                 if(--timer<0){
                     stopquiz();
                 }
                 },1000);
             }
-        
-            var id_quiz = $('meta[name="id_quiz"]').attr('content');
-            var token = $('meta[name="csrf_token"]').attr('content');
 
             $.ajaxSetup({
                     headers: {
@@ -233,7 +247,7 @@ $( document ).ready(function() {
                     data:{id_quiz: id_quiz},
                     success:function(result){
                         startTimer(total_seconds,$(".countdown"));
-                        createCookie('choosesoal' ,true, 1);
+                        createCookie('choosesoal'+id_user+id_quiz ,true, 1);
                         $("input").attr("idanswer",result.id);
                         $("button.berikutnya").attr("idanswer",result.id);
                         for(var x=0;x<result.detail.length;x++)
@@ -252,8 +266,8 @@ $( document ).ready(function() {
                 });
             });
             console.log(total_seconds);
-            console.log(readCookie('choosesoal'));
-            if(readCookie('choosesoal')){
+            console.log(readCookie('choosesoal'+id_user+id_quiz));
+            if(readCookie('choosesoal'+id_user+id_quiz)){
                 $('.startquiz').click();
             }
 

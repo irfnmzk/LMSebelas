@@ -250,7 +250,7 @@
                         </select>
                     </div>
                     <input type="text" class="form-control" name="judul" placeholder="Judul"/>
-                    <textarea class="form-control summernote" name="deskripsi" id="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
+                    <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
                     <input id="deadline" type="date" class="form-control" name="deadline" placeholder="deadline">
                     
                 </div>
