@@ -50,7 +50,9 @@ Route::post('/classroom/add_material', 'kelasController@storeMateri')->name('mat
 Route::post('/classroom/add_modul', 'kelasController@storeModul')->name('modul.store');
 Route::post('/classroom/add_tugas', 'TugasController@store')->name('tugas.store');
 Route::get('/task/{id}', 'TugasController@show')->name('tugas.show');
+Route::get('/task_result/{id}', 'TugasController@result')->name('task.result');
 Route::post('/classroom/add_quiz', 'QuizController@store')->name('quiz.store');
+Route::get('task/download/{id}', 'TugasController@download')->name('task.download');
 
 Route::get('/start_quiz/{id}', 'QuizController@start_quiz');
 Route::post('/store/tugas', 'TugasController@storeSiswa')->name('siswa.tugas.store');

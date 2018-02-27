@@ -450,7 +450,7 @@
 
     $(document).on('submit', '.form_tugas', function (e) {
         e.preventDefault();
-        
+
         var formdata = new FormData(this);
         
         $.ajax({
@@ -467,6 +467,14 @@
                 alert('error');
             }
         });
+    });
+
+    $(document).on('click', '#task-result', function() {
+        alert('hai');
+        var id = $(this).val();
+        var url = "{{ url('task_result/') }}"+"/"+id+"";
+
+        $('.reader-bg').load(url);
     });
 </script>
 @endsection
