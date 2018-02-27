@@ -474,7 +474,6 @@
     });
 
     $(document).on('click', '#task-result', function() {
-        alert('hai');
         var id = $(this).val();
         var url = "{{ url('task_result/') }}"+"/"+id+"";
 

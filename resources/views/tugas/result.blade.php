@@ -8,6 +8,7 @@
                             <th>Nilai</th>
                         </tr>
                         @foreach($kelas->anggota_kelas as $item)
+                        @if($item->user->id != $kelas->creator_id)
 						<tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$item->user->name}}</td>
@@ -24,6 +25,7 @@
                                 </form>
                             </td>
                         </tr>
+                        @endif
                         @endforeach
 	</table>
 </div>

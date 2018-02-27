@@ -11,13 +11,30 @@
                 </span>
             </div>
             <div class="upload-tugas">
+            @php
+                $done = false;
+                $taskId = '';
+            @endphp
                 @if($tugas->creator->id != Auth::user()->id)
-                <form method="POST" action="{{route('siswa.tugas.store')}}" class="form_tugas">
-                    {{csrf_field()}}
-                    <input type="hidden" name="tugas_id" value="{{ $tugas->id }}"/>
-                    <input type="file" name="link" placeholder="Upload Tugas" />
-                    <input type="submit" name="upload-tugas" value="Upload" class="submit_tugas" id="task_btn"/>
-                </form>
+                    @foreach($tugas->jawaban_tugas as $jawaban)
+                        @if($jawaban->creator_id == Auth::user()->id)
+                            @php
+                                $done = true;
+                                $taskId = $jawaban->id;
+                            @endphp
+                        @endif
+                    @endforeach
+                    @if($done == false)
+                    <form method="POST" action="{{route('siswa.tugas.store')}}" class="form_tugas">
+                        {{csrf_field()}}
+                        <input type="hidden" name="tugas_id" value="{{ $tugas->id }}"/>
+                        <input type="file" name="link" placeholder="Upload Tugas" />
+                        <input type="submit" name="upload-tugas" value="Upload" class="submit_tugas" id="task_btn"/>
+                    </form>
+                    @else
+                        <h3>Kamu sudah mengirimkan jawaban kamu</h3>
+                        <a href="{{route('task.download', $taskId)}}"><button class="btn btn-primarry">Lihat jawaban</button></a>
+                    @endif
                 @else
                     <button class="btn btn-primary" id="task-result" value="{{$tugas->id}}">Lihat Hasil</button>
                 @endif
