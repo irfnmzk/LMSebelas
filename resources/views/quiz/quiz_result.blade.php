@@ -23,7 +23,7 @@
 					<h3>{{ $cek->creator->user->name }}</h3>
 					<div class="quiz-desc">
 					<p>
-						{{ $cek->quiz->judul }} 
+						{{ $cek->quiz->judul }}
 					</p>
 						<span>Jumlah Benar : {{ $cek->jumlah_benar }} / {{ $cek->quiz->soal->count() }}</span> Pertanyaan
 						<b>Nilai : {{ $cek->nilai }}</b>
