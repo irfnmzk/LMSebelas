@@ -359,7 +359,6 @@
             placeholder: "Nama Sekolah "
         };
         $("#q").easyAutocomplete(options);
-        
 });
 </script>
 @yield('script')

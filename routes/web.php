@@ -45,6 +45,8 @@ Route::get('/sekolah/find', 'UserController@find');
 // Class area
 Route::get('/classroom/{id}', 'kelasController@showKelas')->name('show.kelas');
 Route::post('/classroom/add', 'kelasController@storeKelas')->name('kelas.store');
+Route::get('/classroom/edit/{id}', 'kelasController@editKelas')->name('kelas.edit');
+Route::post('/classroom/edit/{id}', 'kelasController@updateKelas')->name('kelas.update');
 Route::post('/classroom/join', 'kelasController@joinKelas')->name('kelas.join');
 Route::post('/classroom/add_material', 'kelasController@storeMateri')->name('materi.store');
 Route::post('/classroom/add_modul', 'kelasController@storeModul')->name('modul.store');

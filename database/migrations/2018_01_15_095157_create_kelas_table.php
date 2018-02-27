@@ -17,6 +17,8 @@ class CreateKelasTable extends Migration
             $table->string('id');
             $table->string('name');
             $table->string('code')->unique();
+            $table->string('cover')->nullable();
+            $table->string('deskripsi')->nullable();
             $table->string('creator_id');
             $table->timestamps();
         });
