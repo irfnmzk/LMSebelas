@@ -66,8 +66,9 @@ route::post('nilai/add/{id}', 'NilaiController@tugas')->name('tugas.nilai.store'
 Route::get('/start_quiz/{id}', 'QuizController@start_quiz');
 Route::post('/store/tugas', 'TugasController@storeSiswa')->name('siswa.tugas.store');
 Route::get('/quiz_control/{id}', 'QuizController@quiz_control')->name('quiz.control');;
-Route::delete('/delete_quiz/{id}', 'QuizController@destroy');
+Route::delete('/delete_quiz/{id}', 'QuizController@destroy')->name('quiz.destroy');
 Route::post('/add_question/', 'QuizController@storeQuestion')->name('question.store');;
+Route::post('/edit_quiz/{id}', 'QuizController@update')->name('quiz.update');
 Route::post('/edit_question/{id}', 'QuizController@update_question')->name('question.update');
 Route::delete('/delete_question/{id}', 'QuizController@destroy_question');
 Route::post('/saveanswerquiz', 'QuizController@saveanswerquiz');

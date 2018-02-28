@@ -36,6 +36,15 @@
                             <i class="fa fa-plus" aria-hidden="true"></i> Tambah Soal
                         </button>
                     @endif
+                    <div class="pull-right">
+                    <button value="{{ $quiz->id }}" class="btn btn-info btn-sm quiz_edit" data-toggle="modal" data-target="#EditQuiz">Edit Quiz</button>
+                    <form method="POST" action="{{ route('quiz.destroy', $quiz->id) }}" accept-charset="UTF-8" style="display:inline">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                    <button class="btn btn-sm btn-danger btn-hover" title="Delete Materi" onclick="return confirm(&quot;Hapus Quiz Ini?&quot;)">Hapus Quiz</button>
+                    </form>
+                    </div>
+                            
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="example" style="font-size: 12px;">
                             <thead>
@@ -115,6 +124,39 @@
                            <input type="radio" name="benar" value="{{$i-1}}" @if($i==1) checked @endif > Pilih Sebagai Jawaban Benar
                                 <input type="text" class="form-control" id="pilihan" name="pilihan[]" placeholder="Pilihan {{$i}}" required>
                     @endfor         
+                </div>
+                <div style="float: right; padding-bottom: 50px; padding-right: 20px;"><button type="submit" class="btn btn-fill btn-primary">Simpan</button></div>
+                <div class="modal-footer">
+                    <div class="form-group form-button">
+                    
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="EditQuiz" tabindex="-1" role="dialog" aria-labelledby="">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Quiz</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{route('quiz.update', $quiz->id)}}" class="form-horizontal" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    
+
+                    <input id="judul" type="text" class="form-control" name="judul" placeholder="Judul" value="{{ $quiz->judul }}">
+                    <textarea rows="3" id="deskripsi" class="form-control summernote" name="deskripsi" placeholder="Deskripsi">{{ $quiz->deskripsi }}</textarea>
+                    Durasi
+                    <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi" value="{{ $quiz->durasi }}">
+                    Jumlah Soal
+                    <input id="jumlah_soal" type="number" class="form-control" name="jumlah_soal" placeholder="Jumlah Soal" value="{{ $quiz->jumlah_soal }}">
+                    Tanggal Mulai 
+                    <input id="tanggal_mulai" type="date" class="form-control" name="tanggal_mulai" placeholder="Tanggal Mulai" value="{{ $quiz->tanggal_mulai }}">
+                    Tanggal Selesai 
+                    <input id="tanggal_selesai" type="date" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai" value="{{ $quiz->tanggal_selesai }}">         
                 </div>
                 <div style="float: right; padding-bottom: 50px; padding-right: 20px;"><button type="submit" class="btn btn-fill btn-primary">Simpan</button></div>
                 <div class="modal-footer">
