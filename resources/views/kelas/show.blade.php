@@ -497,7 +497,7 @@
             type: 'post',
             data: $(this).serialize(),
             success: function(data){
-                alert('success');
+                alert('Data berhasil di simpan');
             },
             error: function(data){
                 alert('failed');
