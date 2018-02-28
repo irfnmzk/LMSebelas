@@ -316,15 +316,12 @@
     $(document).ready(function() {
 
         var options = {
-
             url: function (name) {
                 return '{{ url('sekolah/find') }}';
             },
-
             getValue: function (element) {
                 return element.name;
             },
-
             ajaxSettings: {
                 dataType: "json",
                 method: "GET",
@@ -332,12 +329,10 @@
                     dataType: "json"
                 }
             },
-
             preparePostData: function (data) {
                 data.name = $("#q").val();
                 return data;
             },
-
             list: {
                 maxNumberOfElements: 5,
                 match: {
@@ -348,15 +343,15 @@
                     time: 400,
                     callback: function() {}
                 },
-
                 hideAnimation: {
                     type: "slide", //normal|slide|fade
                     time: 400,
                     callback: function() {}
                 }
             },
-
-            placeholder: "Nama Sekolah "
+            
+            highlightPhrase: false
+            
         };
         $("#q").easyAutocomplete(options);
 });

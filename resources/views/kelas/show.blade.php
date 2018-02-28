@@ -342,7 +342,9 @@
 
 @section('script')
 <script type="text/javascript">
+    @isset($quiz)
      @include('quiz.quiz_js')
+     @endisset
 </script>
 <script type="text/javascript">
     $(document).ready(function() {

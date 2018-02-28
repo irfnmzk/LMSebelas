@@ -41,6 +41,7 @@ Route::post('/user/profile/edit', 'UserController@updateProfile')->name('profile
 
 // Ajax
 Route::get('/sekolah/find', 'UserController@find');
+Route::post('/question/find', 'QuizController@findQuestion')->name('question.find');
 
 // Class area
 Route::get('/classroom/{id}', 'kelasController@showKelas')->name('show.kelas');
@@ -56,11 +57,11 @@ Route::post('/classroom/add_quiz', 'QuizController@store')->name('quiz.store');
 
 Route::get('/start_quiz/{id}', 'QuizController@start_quiz');
 Route::post('/store/tugas', 'TugasController@storeSiswa')->name('siswa.tugas.store');
-Route::get('/quiz_control/{id}', 'QuizController@quiz_control');
+Route::get('/quiz_control/{id}', 'QuizController@quiz_control')->name('quiz.control');;
 Route::get('/delete_quiz/{id}', 'QuizController@destroy');
 Route::post('/add_question/', 'QuizController@storeQuestion')->name('question.store');;
-Route::post('/edit_question/{id}', 'QuizController@update_question');
-Route::get('/delete_question/{id}', 'QuizController@destroy_question');
+Route::post('/edit_question/{id}', 'QuizController@update_question')->name('question.update');
+Route::delete('/delete_question/{id}', 'QuizController@destroy_question');
 Route::post('/saveanswerquiz', 'QuizController@saveanswerquiz');
 Route::post('/checkquiz', 'QuizController@checkquiz');
 Route::post('/stopquiz', 'QuizController@stopquiz');

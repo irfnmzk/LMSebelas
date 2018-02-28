@@ -86,6 +86,12 @@ class QuizController extends Controller
         $tanggal_selesai = Carbon::parse($quiz->tanggal_selesai);
 
         $sip = $now->between($tanggal_mulai, $tanggal_selesai);
+        $disabled = "";
+        $classdisabled = "";
+        if($quiz->soal->count() == 0){
+            $disabled = "disabled";
+            $classdisabled = "btn-disabled";
+        }
         $cek = Hasil_quiz::where([['quiz_id', '=', $quiz->id],['creator_id', '=', $anggota_kelas->id],])->first();
         
         if($cek != null && $cek->status == "Selesai dikerjakan"){
@@ -96,13 +102,22 @@ class QuizController extends Controller
             return view('quiz.quiz_result', compact('cek', 'waktu_mulai', 'waktu_selesai', 'total_waktu', 'quiz'));
         }
         else{
-            return view('quiz.quiz_attempt', compact('quiz', 'sip', 'tanggal_mulai', 'tanggal_selesai'));
+            return view('quiz.quiz_attempt', compact('quiz', 'sip', 'tanggal_mulai', 'tanggal_selesai', 'disabled', 'classdisabled'));
         }
     }
 
     public function quiz_control($quiz_id){
         $quiz = Quiz::find($quiz_id);
         return view('quiz.control', compact('quiz'));
+    }
+
+    public function destroy_question($id){
+        $soal = Soal::findOrFail($id);
+        $qid = $soal->quiz_id;
+
+        Soal::destroy($id);
+        Jawaban::where('soal_id', '=', $id)->delete();
+        return redirect()->route('quiz.control',$qid);
     }
 
     public function result_all($quiz_id){
@@ -119,7 +134,51 @@ class QuizController extends Controller
                 $sheet->fromArray($hasil);
             });
         })->export('xlsx');
+    }
+
+    public function update_question($id, Request $request)
+    {
+        $fileName = "";
+        $data = $request->all();
+
+        if($request->file('picture')){
+            $file       = $request->file('picture');
+            $fileName   = $file->getClientOriginalName();
+            $request->file('picture')->move("img/", $fileName);
         }
+        $data['picture'] = $fileName;
+        
+        $soal = Soal::findOrFail($id);
+        $qid = $soal->quiz_id;
+        $soal->pertanyaan = $data['pertanyaan'];
+        $soal->picture = $data['picture'];
+        $soal->pertanyaan = $data['pertanyaan'];
+        $soal->save();
+
+        for($i=0; $i<5; $i++){
+            $right = 0;
+            if($data['benar'] == $i){
+                $right = 1;
+            }
+            Jawaban::findOrFail($data['pilihan_id-'.$i])->update(['isi' => $data['pilihan_edit-'.$i], 'benar' => $right]);
+        }
+
+        return redirect()->route('quiz.control',$qid);
+    }
+
+
+    public function findQuestion(Request $request)
+    {
+        $id = $request->id;
+
+            $query = Soal::findOrFail($id);
+            $jawaban[] = $query->jawaban;
+
+            $results = array( 'id' => $query->id, 'pertanyaan' => $query->pertanyaan, 'quiz_id'=> $query->quiz_id, 
+            'picture'=>$query->picture, 'jawaban'=>$jawaban);
+
+        return \Response::json($results);
+    }
 
     public function saveanswerquiz(Request $request)
     {
@@ -222,7 +281,7 @@ class QuizController extends Controller
         $waktu_mulai = Carbon::parse($hasil->waktu_mulai);
 
         $hasil->jumlah_benar = $jumlah_benar;
-        $hasil->nilai = $nilai;
+        $hasil->nilai = intval($nilai);
         $hasil->waktu_selesai = $now;
         $hasil->total_waktu = $now->diffInSeconds($waktu_mulai);
         $hasil->status = "Selesai dikerjakan";
