@@ -484,5 +484,22 @@
 
         $('.reader-bg').load(url);
     });
+
+    $(document).on('submit', '#add_nilai', function(e){
+        e.preventDefault();
+        
+        $.ajax({
+            url: $(this).attr('action'),
+            dataType: 'text',
+            type: 'post',
+            data: $(this).serialize(),
+            success: function(data){
+                alert('success');
+            },
+            error: function(data){
+                alert('failed');
+            },
+        });
+    });
 </script>
 @endsection

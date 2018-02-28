@@ -20,9 +20,18 @@
                             @endforeach
                             </td>
                             <td>
-                                <form method="POST">
-                                    <input type="number" name="nilai" value="0"/>
-                                </form>
+                            @foreach($item->jawaban_tugas as $answer)
+                                @if($answer->tugas_id = $tugas->id)
+                                    <form method="POST" action="{{route('tugas.nilai.store', $answer->id)}}" id="add_nilai">
+                                        <div class="row">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="jawaban_tugas_id" value="{{$answer->id}}" id="tugas_id" />
+                                            <div class="col-md-7"><input type="number" name="nilai" value="0" id="nilai" /></div>
+                                            <div class="col-md-2"><input type="submit" class="btn-info"/></div>
+                                        </div>
+                                    </form>
+                                @endif
+                            @endforeach
                             </td>
                         </tr>
                         @endif

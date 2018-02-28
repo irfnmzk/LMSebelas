@@ -55,6 +55,7 @@ Route::get('/task/{id}', 'TugasController@show')->name('tugas.show');
 Route::get('/task_result/{id}', 'TugasController@result')->name('task.result');
 Route::post('/classroom/add_quiz', 'QuizController@store')->name('quiz.store');
 Route::get('task/download/{id}', 'TugasController@download')->name('task.download');
+route::post('nilai/add/{id}', 'NilaiController@tugas')->name('tugas.nilai.store');
 
 Route::get('/start_quiz/{id}', 'QuizController@start_quiz');
 Route::post('/store/tugas', 'TugasController@storeSiswa')->name('siswa.tugas.store');
