@@ -58,7 +58,7 @@
 						<form>
 						@foreach($soal->jawaban as $jawaban)
 						<span class="option">
-						<input type="radio" name="jawabansoal[{{$loop->parent->iteration}}]" value="{{ $jawaban->id }}"  idquestion="{{ $soal->id }}" ke="{{ $loop->parent->iteration}}"> Jawaban 
+						<input type="radio" name="jawabansoal[{{$loop->parent->iteration}}]" value="{{ $jawaban->id }}"  idquestion="{{ $soal->id }}" ke="{{ $loop->parent->iteration}}" class="inputjawaban"> Jawaban 
 						@switch($loop->iteration)
 						@case(1)
 						A

@@ -105,6 +105,15 @@ class QuizController extends Controller
         return view('quiz.control', compact('quiz'));
     }
 
+    public function destroy_question($id){
+        $soal = Soal::findOrFail($id);
+        $qid = $soal->quiz_id;
+
+        Soal::destroy($id);
+        Jawaban::where('soal_id', '=', $id)->delete();
+        return redirect()->route('quiz.control',$qid);
+    }
+
     public function result_all($quiz_id){
         $hasil = Result_all_quiz::where('quiz_id', '=', $quiz_id)->get();
         $quiz = Quiz::find($quiz_id);
@@ -119,7 +128,51 @@ class QuizController extends Controller
                 $sheet->fromArray($hasil);
             });
         })->export('xlsx');
+    }
+
+    public function update_question($id, Request $request)
+    {
+        $fileName = "";
+        $data = $request->all();
+
+        if($request->file('picture')){
+            $file       = $request->file('picture');
+            $fileName   = $file->getClientOriginalName();
+            $request->file('picture')->move("img/", $fileName);
         }
+        $data['picture'] = $fileName;
+        
+        $soal = Soal::findOrFail($id);
+        $qid = $soal->quiz_id;
+        $soal->pertanyaan = $data['pertanyaan'];
+        $soal->picture = $data['picture'];
+        $soal->pertanyaan = $data['pertanyaan'];
+        $soal->save();
+
+        for($i=0; $i<5; $i++){
+            $right = 0;
+            if($data['benar'] == $i){
+                $right = 1;
+            }
+            Jawaban::findOrFail($data['pilihan_id-'.$i])->update(['isi' => $data['pilihan_edit-'.$i], 'benar' => $right]);
+        }
+
+        return redirect()->route('quiz.control',$qid);
+    }
+
+
+    public function findQuestion(Request $request)
+    {
+        $id = $request->id;
+
+            $query = Soal::findOrFail($id);
+            $jawaban[] = $query->jawaban;
+
+            $results = array( 'id' => $query->id, 'pertanyaan' => $query->pertanyaan, 'quiz_id'=> $query->quiz_id, 
+            'picture'=>$query->picture, 'jawaban'=>$jawaban);
+
+        return \Response::json($results);
+    }
 
     public function saveanswerquiz(Request $request)
     {
