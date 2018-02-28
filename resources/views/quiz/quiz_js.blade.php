@@ -310,6 +310,42 @@ $( document ).ready(function() {
                 });
             });
 
+            $('.quiz_edit').click(function(event){
+                event.preventDefault();
+                var val = $(this).val();
+                console.log(val);
+                var url = '{{ url('/quiz/find') }}';
+
+                $.ajax({
+                            type: 'POST',
+                            url: url,
+                            data: {id : val},
+                            success:function(result){
+                                console.log(result.pertanyaan);
+                                var act = '{{ route("question.update", ":id") }}';
+                                act = act.replace(':id', result.id);
+                                var src = "{{ asset('img/') }}"+result.picture;
+                                console.log(result.jawaban[0][0].id);
+
+                                $('#form_edit_soal').attr("action", act);
+                                $('#quiz_id_edit').val(result.id);
+                                $('#pertanyaan_edit').summernote("code", result.pertanyaan);
+                                if(result.picture){
+                                    $('#blah').attr("src", src);
+                                }
+
+                                for(var i=0; i<5; i++){
+                                    if(result.jawaban[0][i].benar == 1){
+                                        $('#benar_edit-'+i).prop('checked',true);
+                                    }
+                                    $('#pilihan_id-'+i).val(result.jawaban[0][i].id);
+                                    $('#pilihan_edit-'+i).val(result.jawaban[0][i].isi);
+                                }
+                                $('#EditSoal').modal(true);
+                        }
+                });
+            });
+
 			
 
     });

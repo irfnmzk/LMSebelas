@@ -120,6 +120,14 @@ class QuizController extends Controller
         return redirect()->route('quiz.control',$qid);
     }
 
+    public function destroy($id){
+
+        $quiz = Quiz::findOrFail($id);
+        Quiz::destroy($id);
+
+        return "<script>parent.location.reload();</script>";
+    }
+
     public function result_all($quiz_id){
         $hasil = Result_all_quiz::where('quiz_id', '=', $quiz_id)->get();
         $quiz = Quiz::find($quiz_id);
@@ -164,6 +172,15 @@ class QuizController extends Controller
         }
 
         return redirect()->route('quiz.control',$qid);
+    }
+
+    public function update($id, Request $request)
+    {
+        $data = $request->all();
+        $quiz = Quiz::findOrFail($id);
+        $quiz->update($data);
+
+        return redirect()->route('quiz.control',$id);
     }
 
 
