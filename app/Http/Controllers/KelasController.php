@@ -123,6 +123,13 @@ class KelasController extends Controller
 
 		$modul = Modul::create($data);
 
-		return redirect()->route('show.kelas', $modul->materi->kelas_id);
 	}
+
+	public function destroyModul($id)
+    {
+    	$modul = Modul::findOrFail($id);
+        Modul::destroy($id);
+
+        return redirect()->route('show.kelas', $modul->materi->kelas_id);
+    }
 }
