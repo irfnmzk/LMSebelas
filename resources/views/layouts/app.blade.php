@@ -170,7 +170,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!--i class="zmdi zmdi-account-circle" style="font-size:25px;"></i-->
-                                    <div class="profile-picture"><img src="{{ Auth::user()->picture }}" /></div>
+                                    <div class="profile-picture"><img src="{{ Auth::user()->picture }}" onerror="this.src='{{ asset('assets/img/placeholder.jpg')}}'"/></div>
                                     <span class="caret" style="margin-top:-15px;"></span>
                                 </a>
                                 <ul class="dropdown-menu">

@@ -121,7 +121,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="member-panel">
                                 <div class="member-profpic">
-                                    <img src="{{ $item->user['picture'] }}" />
+                                    <img src="{{ $item->user['picture'] }}" onerror="this.src='{{ asset('assets/img/placeholder.jpg')}}'"/>
                                 </div>
                                 <div class="member-desc">
                                     <span class="member-name">{{ $item->user['name'] }}</span>

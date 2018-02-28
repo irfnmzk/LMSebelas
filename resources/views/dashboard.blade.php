@@ -6,7 +6,7 @@
             <div class="col-lg-9 col-md-6 col-sm-12">
               <div class="card timeline-card timeline-write">
                 <div class="col-lg-2 col-md-2 col-sm-2">
-                  <div class="profpic-user-timeline"><img src="{{ Auth::user()->picture }}"/></div>
+                  <div class="profpic-user-timeline"><img src="{{ Auth::user()->picture }}" onerror="this.src='{{ asset('assets/img/placeholder.jpg')}}'"/></div>
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10">
                 <div class="content-timeline">
@@ -204,7 +204,7 @@
                             <div class="card portofolio-card">
                 <div class="index-avatar">
                   <img src="{{ asset('assets/img/study-book.jpeg')}}" class="back"/>
-                  <img src="{{ Auth::user()->picture }}" class="front"/>
+                  <img src="{{ Auth::user()->picture }}" onerror="this.src='{{ asset('assets/img/placeholder.jpg')}}'" class="front"/>
                 </div>
                 <div class="index-nickname">{{ Auth::user()->name }}</div>
                 <div class="index-portofolio">
