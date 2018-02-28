@@ -52,6 +52,12 @@ class KelasController extends Controller
         return view('kelas.edit', compact('kelas'));
     }
 
+    public function editMateri($id)
+    {
+        $materi = Materi::findOrFail($id);
+        return view('materi.edit', compact('materi'));
+    }
+
     public function updateKelas($id, Request $request)
     {
         $data = $request->all();
@@ -68,6 +74,21 @@ class KelasController extends Controller
         $kelas->update($data);
 
         return redirect('classroom/'.$id);
+    }
+
+    public function updateMateri($id, Request $request)
+    {
+        $data = $request->all();
+
+        $materi = Materi::findOrFail($id);
+
+		if($data['nilai_tugas'] + $data['nilai_quiz'] != 100){
+			return redirect()->back();
+		}
+        
+        $materi->update($data);
+
+        return redirect('classroom/'.$materi->kelas_id);
     } 
 
 	public function joinKelas(Request $request)
@@ -131,5 +152,13 @@ class KelasController extends Controller
         Modul::destroy($id);
 
         return redirect()->route('show.kelas', $modul->materi->kelas_id);
+    }
+
+    public function destroyMateri($id)
+    {
+    	$materi = Materi::findOrFail($id);
+        Materi::destroy($id);
+
+        return redirect()->route('show.kelas', $materi->kelas_id);
     }
 }

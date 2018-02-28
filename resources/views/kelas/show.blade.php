@@ -99,6 +99,14 @@
                                 @endforeach
                             @endif
                             </ul>
+                            @if(Auth::user()->role == '1')
+                            <a href="{{ route('materi.edit',$materi->id) }}" class="btn btn-sm btn-info btn-hover">Edit</a>&nbsp;
+                            <form method="POST" action="{{ route('materi.destroy', $materi->id) }}" accept-charset="UTF-8" style="display:inline">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <button class="btn btn-sm btn-danger btn-hover" title="Delete Materi" onclick="return confirm(&quot;Hapus Materi Ini?&quot;)">Hapus</button>
+                            </form>
+                            @endif
                         </div>
                     </dd>
                 @endforeach
