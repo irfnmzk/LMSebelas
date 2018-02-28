@@ -73,25 +73,17 @@
                             <p>Classroom</p>
                         </a>
                     </li>
+                    @endif                 
                     <li>
-                        <a href="group.html">
-                            <i class="zmdi zmdi-accounts-alt"></i>
-                            <p>Group</p>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            <i class="zmdi zmdi-power-setting"></i>
+                            <p>Logout</p>
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                            </form>
                     </li>
-                    <li>
-                        <a href="course.html">
-                            <i class="zmdi zmdi-book"></i>
-                            <p>Courses</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="enroll.html">
-                            <i class="zmdi zmdi-card"></i>
-                            <p>Enroll Code</p>
-                        </a>
-                    </li>
-                    @endif
 
 
                     <!--li>
