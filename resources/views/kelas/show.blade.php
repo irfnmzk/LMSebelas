@@ -49,12 +49,15 @@
                 <div class="col-lg-7 col-md-7 col-sm-7">
                     <div class="card card-class-info">
                     <div class="content-timeline">
+                    @if(Auth::user()->role == 1)
+                        <h4>Tambah Pengumuman</h4>
                         <form method="POST" action="{{route('diskusi.store', $kelas->id)}}">
                         {{csrf_field()}}
                         <textarea placeholder="How's it going ?" name="text"></textarea>
                     
                         <button type="submit" class="post-status btn btn-info pull-right">Post</button>
                         </form>
+                    @endif
                         @include('timeline.kelas')
                     </div>
                     </div>

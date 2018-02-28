@@ -93,7 +93,7 @@ class KelasController extends Controller
 	public function showKelas($id)
 	 {
 		$kelas = Kelas::findOrFail($id);
-		$timeline = Diskusi::where('kelas_id', $kelas->id)->get();
+		$timeline = Diskusi::where('kelas_id', $kelas->id)->orderBy('created_at','DESC')->get();
 
 		//dd($timeline);
 
