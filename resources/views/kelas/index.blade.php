@@ -56,7 +56,7 @@
                             <a href="{{ route('show.kelas', $item->id) }}">
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="card classes">
-                                    <img src="../assets/img/catfall.jpeg" />
+                                    <img src="@empty(!$item->cover){{ asset('img/'.$item->cover) }} @else ../assets/img/catfall.jpeg @endempty" />
                                 <div class="card-footer">{{$item->name}}</div>
                                 </div>
                             </div>

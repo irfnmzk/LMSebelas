@@ -10,7 +10,7 @@ class Kelas extends Model
     protected $table = "kelas";
 
     protected $fillable = [
-    	'name','code','creator_id'
+    	'name','code','creator_id', 'cover', 'deskripsi'
     ];
 
     protected static function boot()

@@ -47,6 +47,30 @@ class KelasController extends Controller
 		return redirect()->route('show.kelas', $kelas->id);
 	}
 
+	public function editKelas($id)
+    {
+        $kelas = Kelas::findOrFail($id);
+        return view('kelas.edit', compact('kelas'));
+    }
+
+    public function updateKelas($id, Request $request)
+    {
+        $data = $request->all();
+
+        $kelas = Kelas::findOrFail($id);
+
+		if($request->file('cover')){
+            $file       = $request->file('cover');
+            $fileName   = $file->getClientOriginalName();
+            $request->file('cover')->move("img/", $fileName);
+            $data['cover'] = $fileName; 
+        }
+        
+        $kelas->update($data);
+
+        return redirect('classroom/'.$id);
+    } 
+
 	public function joinKelas(Request $request)
 	{
 		$data = $request->all();

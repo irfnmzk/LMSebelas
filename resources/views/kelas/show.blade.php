@@ -62,18 +62,15 @@
                 <div class="col-lg-5 col-md-5 col-sm-5">
                     <div class="card card-class-bio">
                         <div class="class-photo">
-                            <button class="btn btn-info edit-bio"><i class="zmdi zmdi-edit"></i> <span>Edit</span></button>
-                            <img src="../assets/img/catfall.jpeg"/>
+                            <a href="{{ route('kelas.edit', $kelas->id) }}"><button class="btn btn-info edit-bio"><i class="zmdi zmdi-edit"></i> <span>Edit</span></button></a>
+                            <img src="@empty(!$kelas->cover){{ asset('img/'.$kelas->cover) }} @else ../assets/img/catfall.jpeg @endempty"/>
                         </div>
                         <div class="class-bio">
                             <h3>{{ $kelas->name }}</h3>
                             <h4>Guru : <span>{{ ucwords($kelas->creator->name) }}</span></h4>
                             <p>
-                            {{ $kelas->code }}
-                            Lorem Ipsum Dolor Sit Amet is simply a dummy text.
-                            Lorem Ipsum Dolor Sit Amet is simply a dummy text.
-                            Lorem Ipsum Dolor Sit Amet is simply a dummy text.
-                            Lorem Ipsum Dolor Sit Amet is simply a dummy text.
+                            Kode Kelas : {{ $kelas->code }}<br>
+                            {!! $kelas->deskripsi !!}
                             </p>
                         </div>
                     </div>
