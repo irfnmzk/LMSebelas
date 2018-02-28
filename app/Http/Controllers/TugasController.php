@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Storage;
 use App\Tugas;
+use App\Jawaban_tugas;
 use Illuminate\Http\Request;
 
 class TugasController extends Controller
@@ -34,13 +36,40 @@ class TugasController extends Controller
 
         if($request->file('link')){
             $file       = $request->file('link');
-            $fileName   = $file->getClientOriginalName();
-            $request->file('link')->move("tugas/", $fileName);
+            $fileName   = $file->store('file');
             $data['link'] = $fileName; 
         }
 
-        Tugas::create($data);
+        Jawaban_tugas::create($data);
         
-        return response()->json(array('status'=>'success', 'data' => $data));
+        return response()->json(array('status'=>'success'));
+    }
+
+    public function result($id)
+    {
+        $tugas = Tugas::findOrFail($id);
+
+        $kelas = $tugas->materi->kelas;
+
+        return view('tugas.result', compact('tugas','kelas'));
+    }
+
+    public function download($id){
+        $jawaban = Jawaban_tugas::findOrFail($id);
+
+        $item = $jawaban->link;
+
+        $path = storage_path($item);
+        
+        return Storage::download($item);
+    }
+
+    public function edit($id, Request $request)
+    {
+        $tugas = Tugas::findOrFail($id);
+
+        $tugas->update($request->all());
+
+        return redirect()->route('show.kelas', $tugas->materi->kelas->id);
     }
 }

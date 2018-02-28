@@ -48,7 +48,18 @@
             <div class="row">
                 <div class="col-lg-7 col-md-7 col-sm-7">
                     <div class="card card-class-info">
-                        Lorem Ipsum
+                    <div class="content-timeline">
+                    @if(Auth::user()->role == 1)
+                        <h4>Tambah Pengumuman</h4>
+                        <form method="POST" action="{{route('diskusi.store', $kelas->id)}}">
+                        {{csrf_field()}}
+                        <textarea placeholder="How's it going ?" name="text"></textarea>
+                    
+                        <button type="submit" class="post-status btn btn-info pull-right">Post</button>
+                        </form>
+                    @endif
+                        @include('timeline.kelas')
+                    </div>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5">
@@ -347,6 +358,7 @@
      @endisset
 </script>
 <script type="text/javascript">
+    var data_id = '';
     $(document).ready(function() {
 
         //minimize sidebar automatically
@@ -429,6 +441,7 @@
             $('.reader-bg').html("<iframe id='if_quiz_att' style='width:100%;height:100%;position:absolute;' height='100%' width='100%' src='"+url+"' frameborder='0'></iframe>");
         }else if(type == 'task'){
             var link = $(this).attr("link");
+            data_id = link;
             var url = "{{ url('task/') }}"+"/"+link+"";
             $('.reader-bg').load(url);
         }
@@ -447,7 +460,7 @@
 
     $(document).on('submit', '.form_tugas', function (e) {
         e.preventDefault();
-        
+
         var formdata = new FormData(this);
         
         $.ajax({
@@ -458,12 +471,41 @@
             contentType: false,
             processData: false,
             success: function(data){
-                alert('success');
+                console.log('success');
+                var url = "{{ url('task/') }}"+"/"+data_id+"";
+                $('.reader-bg').load(url);
             },
             error: function(data){
                 alert('error');
             }
         });
     });
+
+    $(document).on('click', '#task-result', function() {
+        var id = $(this).val();
+        var url = "{{ url('task_result/') }}"+"/"+id+"";
+
+        $('.reader-bg').load(url);
+    });
+
+    $(document).on('submit', '#add_nilai', function(e){
+        e.preventDefault();
+        
+        $.ajax({
+            url: $(this).attr('action'),
+            dataType: 'text',
+            type: 'post',
+            data: $(this).serialize(),
+            success: function(data){
+                alert('success');
+            },
+            error: function(data){
+                alert('failed');
+            },
+        });
+    });
+    $(document).on('click', '#task-control', function(){
+        $('#desc-task').summernote();
+    })
 </script>
 @endsection

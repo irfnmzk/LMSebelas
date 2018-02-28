@@ -53,7 +53,11 @@ Route::post('/classroom/add_material', 'kelasController@storeMateri')->name('mat
 Route::post('/classroom/add_modul', 'kelasController@storeModul')->name('modul.store');
 Route::post('/classroom/add_tugas', 'TugasController@store')->name('tugas.store');
 Route::get('/task/{id}', 'TugasController@show')->name('tugas.show');
+Route::get('/task_result/{id}', 'TugasController@result')->name('task.result');
+route::post('/task/edit/{id}', 'TugasController@edit')->name('task.edit');
 Route::post('/classroom/add_quiz', 'QuizController@store')->name('quiz.store');
+Route::get('task/download/{id}', 'TugasController@download')->name('task.download');
+route::post('nilai/add/{id}', 'NilaiController@tugas')->name('tugas.nilai.store');
 
 Route::get('/start_quiz/{id}', 'QuizController@start_quiz');
 Route::post('/store/tugas', 'TugasController@storeSiswa')->name('siswa.tugas.store');
@@ -67,6 +71,8 @@ Route::post('/checkquiz', 'QuizController@checkquiz');
 Route::post('/stopquiz', 'QuizController@stopquiz');
 Route::get('/quiz_result_all/{id}', 'QuizController@result_all');
 Route::get('/quiz_result_excel/{id}', 'QuizController@quiz_result_excel');
+
+Route::post('/diskusi/add/{id}', 'DiskusiController@store')->name('diskusi.store');
 
 // Social Login
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');

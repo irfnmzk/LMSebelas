@@ -34,7 +34,7 @@ class Anggota_kelas extends Model
 
     public function jawaban_tugas()
     {
-        return $this->hasMany('App\Jawaban_tugas');
+        return $this->hasMany('App\Jawaban_tugas','creator_id');
     }
 
     public function quiz()

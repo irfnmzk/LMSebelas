@@ -8,6 +8,7 @@ use App\User;
 use App\Anggota_kelas;
 use App\Materi;
 use App\Modul;
+use App\Diskusi;
 use Auth;
 
 class KelasController extends Controller
@@ -92,7 +93,11 @@ class KelasController extends Controller
 	public function showKelas($id)
 	 {
 		$kelas = Kelas::findOrFail($id);
-	 	return view('kelas.show', compact('kelas'));
+		$timeline = Diskusi::where('kelas_id', $kelas->id)->orderBy('created_at','DESC')->get();
+
+		//dd($timeline);
+
+	 	return view('kelas.show', compact('kelas','timeline'));
 	 } 
 
 	 public function storeMateri(Request $request)

@@ -9,7 +9,7 @@ class Diskusi extends Model
     protected $table = 'diskusi';
 
     protected $fillable = [
-        'text', 'creator_id'
+        'text', 'creator_id', 'kelas_id'
     ];
 
     public function creator()
