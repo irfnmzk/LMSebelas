@@ -350,9 +350,9 @@
 
 @section('script')
 <script type="text/javascript">
-@isset($quiz)
+    @isset($quiz)
      @include('quiz.quiz_js')
-@endisset
+     @endisset
 </script>
 <script type="text/javascript">
     var data_id = '';

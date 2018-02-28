@@ -74,7 +74,7 @@ $( document ).ready(function() {
 		            processData: false,
 		            success: function(data){
 		                $('#TambahSoal').modal('toggle');
-		                document.location.href = document.location.href;
+		                iframe_reload();
 		            },
 		            error: function(data){
 		                alert('error');
@@ -144,6 +144,7 @@ $( document ).ready(function() {
                 if(--timer<0){
                     stopquiz();
                 }
+
                 },1000);
             }
 
@@ -153,7 +154,7 @@ $( document ).ready(function() {
                     }
                 });
 
-            $("input[type=radio],button.berikutnya").click(function(){
+            $("input[type=radio].inputjawaban,button.berikutnya").click(function(){
 
             var id_answer = $(this).attr("idanswer");
             var id_question = $(this).attr("idquestion");
@@ -270,6 +271,44 @@ $( document ).ready(function() {
             if(readCookie('choosesoal'+id_user+id_quiz)){
                 $('.startquiz').click();
             }
+
+            //quiz result
+
+            $('.soal_edit').click(function(event){
+                event.preventDefault();
+                var val = $(this).val();
+                console.log(val);
+                var url = '{{ url('/question/find') }}';
+
+                $.ajax({
+                            type: 'POST',
+                            url: url,
+                            data: {id : val},
+                            success:function(result){
+                                console.log(result.pertanyaan);
+                                var act = '{{ route("question.update", ":id") }}';
+                                act = act.replace(':id', result.id);
+                                var src = "{{ asset('img/') }}"+result.picture;
+                                console.log(result.jawaban[0][0].id);
+
+                                $('#form_edit_soal').attr("action", act);
+                                $('#quiz_id_edit').val(result.id);
+                                $('#pertanyaan_edit').summernote("code", result.pertanyaan);
+                                if(result.picture){
+                                    $('#blah').attr("src", src);
+                                }
+
+                                for(var i=0; i<5; i++){
+                                    if(result.jawaban[0][i].benar == 1){
+                                        $('#benar_edit-'+i).prop('checked',true);
+                                    }
+                                    $('#pilihan_id-'+i).val(result.jawaban[0][i].id);
+                                    $('#pilihan_edit-'+i).val(result.jawaban[0][i].isi);
+                                }
+                                $('#EditSoal').modal(true);
+                        }
+                });
+            });
 
 			
 

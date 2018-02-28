@@ -16,6 +16,9 @@
     	overflow-y: scroll; 
     }
     </style>
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
+    <meta name="id_quiz" content="{{ $quiz->id }}" />
+    <meta name="id_user" content="{{ Auth::user()->id }}" />
 </head>
 
 <body>
@@ -41,7 +44,7 @@
                                     <th>Pertanyaan</th>
                                     <th>Jawaban</th>
                                     <th>Gambar</th>
-                                    <th class="text-right">Actions</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,8 +70,8 @@
                                         @else
                                             {{$item->picture}}
                                         @endif</td>
-                                    <td class="td-actions text-right">
-                                        <a href="#" class="btn btn-simple btn-info btn-icon edit"><i class="material-icons">edit</i></a>
+                                    <td>
+                                        <button value="{{ $item->id }}" class="btn btn-simple btn-info btn-icon edit soal_edit"><i class="material-icons">edit</i></button>
 
                                         <form method="POST" action="{{ url('/delete_question/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
@@ -111,6 +114,41 @@
                         <label for="pilihan" class="col-md-4 control-label">#{{$i}} </label>
                            <input type="radio" name="benar" value="{{$i-1}}" @if($i==1) checked @endif > Pilih Sebagai Jawaban Benar
                                 <input type="text" class="form-control" id="pilihan" name="pilihan[]" placeholder="Pilihan {{$i}}" required>
+                    @endfor         
+                </div>
+                <div style="float: right; padding-bottom: 50px; padding-right: 20px;"><button type="submit" class="btn btn-fill btn-primary">Simpan</button></div>
+                <div class="modal-footer">
+                    <div class="form-group form-button">
+                    
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="EditSoal" tabindex="-1" role="dialog" aria-labelledby="EditSoal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Soal</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="form_edit_soal" action="" class="form-horizontal form_soal" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <input type="hidden" id="quiz_id_edit" name="quiz_id" value=""></input>
+                    
+                    <textarea rows="3" id="pertanyaan_edit" class="form-control summernote" name="pertanyaan"></textarea>
+                    Gambar
+                    <img id="blah" src="#" alt="your image" style="max-height:250px; max-width:250px;"/>
+                    <input id="picture" type="file" accept="image/*" class="form-control" name="picture">
+                    
+
+                    @for($i=1; $i<=5; $i++)
+                        <label for="pilihan" class="col-md-4 control-label">#{{$i}} </label>
+                           <input type="radio" id="benar_edit-{{$i-1}}" name="benar" value="{{$i-1}}" @if($i==1) checked @endif > Pilih Sebagai Jawaban Benar
+                           <input type="hidden" name="pilihan_id-{{$i-1}}" id="pilihan_id-{{$i-1}}" value="">
+                                <input type="text" class="form-control" id="pilihan_edit-{{$i-1}}" name="pilihan_edit-{{$i-1}}" placeholder="Pilihan {{$i}}" required>
                     @endfor         
                 </div>
                 <div style="float: right; padding-bottom: 50px; padding-right: 20px;"><button type="submit" class="btn btn-fill btn-primary">Simpan</button></div>
