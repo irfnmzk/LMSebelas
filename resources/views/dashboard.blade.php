@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10">
                     <div class="content-timeline">
-                        <h3>welcome back!</h3>
+                        <h3>Welcome Back, {{ strtok(Auth::user()->name, " ") }}!</h3>
                     </div>
                 </div>
             </div>
