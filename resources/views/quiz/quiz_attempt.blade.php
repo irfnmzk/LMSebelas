@@ -31,10 +31,8 @@
 					@if(Auth::user()->role == 1)
 					<button class="btn btn-primary quiz-control" value="{{ $quiz->id }}">Kelola Quiz</button>
 					<button class="btn btn-danger quiz-result-all" value="{{ $quiz->id }}">Lihat Hasil Quiz</button>
-					@else
-					@if($sip && $quiz->active == 1)
-					<button class="btn btn-primary startquiz @if($quiz->soal->count() == 0)btn-disabled" disabled="" @endif>Mulai</button>
-					@endif
+					@elseif($sip && $quiz->active == 1)
+					<button class="btn btn-primary startquiz {{ $classdisabled }}" {{ $disabled }}>Mulai</button>
 					@endif
 </div>
 

@@ -22,14 +22,9 @@
 				<span>{{ ucwords(Auth::user()->name) }}</span>
 				</div>
 				<div class="result-content">
-				<div class="user-score">Nilai Anda :<span>{{ $cek->nilai }}</span></div>
-				@if($cek->nilai >= 90)
-				<div class="quiz-comment">Kerja Bagus !</div>
-				@elseif($cek->nilai >= 70 && $cek->nilai < 90)
-				<div class="quiz-comment">Bagus !</div>
-				@else
-				<div class="quiz-comment">Tetap Semangat dan berusaha lagi</div>
-				@endif
+				
+				<div class="quiz-comment">Selamat Anda telah menyelesaikan Quiz</div>
+				
 				<div class="last-quiz">
 					<div class="last-quiz-desc"><span><strong>Judul Quiz</strong></span><span>{{ $quiz->judul }}</span></div>
 					<div class="last-quiz-desc"><span><strong>Waktu Mulai </strong></span><span>{{ $waktu_mulai->toDayDateTimeString() }}</span></div>

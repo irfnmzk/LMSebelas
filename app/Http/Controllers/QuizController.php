@@ -86,6 +86,12 @@ class QuizController extends Controller
         $tanggal_selesai = Carbon::parse($quiz->tanggal_selesai);
 
         $sip = $now->between($tanggal_mulai, $tanggal_selesai);
+        $disabled = "";
+        $classdisabled = "";
+        if($quiz->soal->count() == 0){
+            $disabled = "disabled";
+            $classdisabled = "btn-disabled";
+        }
         $cek = Hasil_quiz::where([['quiz_id', '=', $quiz->id],['creator_id', '=', $anggota_kelas->id],])->first();
         
         if($cek != null && $cek->status == "Selesai dikerjakan"){
@@ -96,7 +102,7 @@ class QuizController extends Controller
             return view('quiz.quiz_result', compact('cek', 'waktu_mulai', 'waktu_selesai', 'total_waktu', 'quiz'));
         }
         else{
-            return view('quiz.quiz_attempt', compact('quiz', 'sip', 'tanggal_mulai', 'tanggal_selesai'));
+            return view('quiz.quiz_attempt', compact('quiz', 'sip', 'tanggal_mulai', 'tanggal_selesai', 'disabled', 'classdisabled'));
         }
     }
 
@@ -275,7 +281,7 @@ class QuizController extends Controller
         $waktu_mulai = Carbon::parse($hasil->waktu_mulai);
 
         $hasil->jumlah_benar = $jumlah_benar;
-        $hasil->nilai = $nilai;
+        $hasil->nilai = intval($nilai);
         $hasil->waktu_selesai = $now;
         $hasil->total_waktu = $now->diffInSeconds($waktu_mulai);
         $hasil->status = "Selesai dikerjakan";
