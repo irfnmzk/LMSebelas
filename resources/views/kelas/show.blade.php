@@ -93,7 +93,7 @@
                         <div class="accordion-content">
                             <ul>
                             @foreach($materi->modul as $modul)
-                                <a href="#" class="hell" link="{{ $modul->link }}" type-sub="pdf">
+                                <a href="#" class="hell" id="{{ $modul->id }}" link="{{ $modul->link }}" type-sub="pdf">
                                     <li>{{ $modul->judul }}</li>
                                 </a>
                             @endforeach
@@ -110,6 +110,14 @@
                                 @endforeach
                             @endif
                             </ul>
+                            @if(Auth::user()->role == '1')
+                            <a href="{{ route('materi.edit',$materi->id) }}" class="btn btn-sm btn-info btn-hover">Edit</a>&nbsp;
+                            <form method="POST" action="{{ route('materi.destroy', $materi->id) }}" accept-charset="UTF-8" style="display:inline">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <button class="btn btn-sm btn-danger btn-hover" title="Delete Materi" onclick="return confirm(&quot;Hapus Materi Ini?&quot;)">Hapus</button>
+                            </form>
+                            @endif
                         </div>
                     </dd>
                 @endforeach
@@ -117,6 +125,15 @@
             </div>
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9">
+        <div class="tombol">
+        @if(Auth::user()->role == '1')
+        <form id="destroy_modul" method="POST" action="" accept-charset="UTF-8" style="display:inline">
+            {{ method_field('DELETE') }}
+            {{ csrf_field() }}
+            <button class="btn btn-sm btn-danger" id="btn-destroy_modul" title="Delete Modul" style="display: none;" onclick="return confirm(&quot;Confirm delete?&quot;)">Hapus</button>
+        </form>
+        @endif
+        </div>
             <div class="reader-bg">
 
             </div>
@@ -434,6 +451,11 @@
 
         if(type == 'pdf'){
             var link = $(this).attr("link");
+            var act = '{{ route("modul.destroy", ":id") }}';
+            act = act.replace(':id', $(this).attr("id"));
+            $('#destroy_modul').attr("action", act);
+            $('#btn-destroy_modul').show();
+            
             $('.reader-bg').html("<iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('pdfku/') }}"+"/"+link+"' frameborder='0'></iframe>");
         }else if(type == 'quiz'){
             var link = $(this).attr("link");
