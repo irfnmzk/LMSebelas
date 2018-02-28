@@ -504,5 +504,8 @@
             },
         });
     });
+    $(document).on('click', '#task-control', function(){
+        $('#desc-task').summernote();
+    })
 </script>
 @endsection

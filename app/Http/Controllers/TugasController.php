@@ -63,4 +63,13 @@ class TugasController extends Controller
         
         return Storage::download($item);
     }
+
+    public function edit($id, Request $request)
+    {
+        $tugas = Tugas::findOrFail($id);
+
+        $tugas->update($request->all());
+
+        return redirect()->route('show.kelas', $tugas->materi->kelas->id);
+    }
 }
