@@ -6,6 +6,7 @@ use Auth;
 use Storage;
 use App\Tugas;
 use App\Jawaban_tugas;
+use App\Anggota_kelas;
 use Illuminate\Http\Request;
 
 class TugasController extends Controller
@@ -16,7 +17,8 @@ class TugasController extends Controller
 
     public function store(Request $request){
         $data = $request->all();
-        $data['creator_id'] = Auth::user()->id;
+		$siswa = Anggota_kelas::where('user_id', '=', Auth::user()->id)->first();
+        $data['creator_id'] = $siswa->id;
 
         $tugas = Tugas::create($data);
 
@@ -32,7 +34,8 @@ class TugasController extends Controller
     public function storeSiswa(Request $request){
         $data = $request->all();
 
-        $data['creator_id'] = Auth::user()->id;
+        $siswa = Anggota_kelas::where('user_id', '=', Auth::user()->id)->first();
+        $data['creator_id'] = $siswa->id;
 
         if($request->file('link')){
             $file       = $request->file('link');

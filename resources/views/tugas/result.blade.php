@@ -8,20 +8,21 @@
                             <th>Nilai</th>
                         </tr>
                         @foreach($kelas->anggota_kelas as $item)
-                        @if($item->user->id != $kelas->creator_id)
+                        @if($item->id != $kelas->creator_id)
                             @php($exist = false)
 						<tr>
                             <td>{{$loop->iteration-1}}</td>
                             <td>{{$item->user->name}}</td>
                             <td>
-                            @if($exist == false)
-                                {{'Belum Mengerjakan'}}
-                            @endif
                             @foreach($item->jawaban_tugas as $answer)
                                 @if($answer->tugas_id == $tugas->id)
+									@php($exist = true)
                                     <a href="{{route('task.download', $answer->id)}}" class="status-selesai">Download</a>
                                 @endif
                             @endforeach
+							@if($exist == false)
+                                {{'Belum Mengerjakan'}}
+                            @endif
                             </td>
                             <td>
                             @foreach($item->jawaban_tugas as $answer)

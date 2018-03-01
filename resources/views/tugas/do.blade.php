@@ -15,9 +15,9 @@
                 $done = false;
                 $taskId = '';
             @endphp
-                @if($tugas->creator->id != Auth::user()->id)
+                @if($tugas->creator->user->id != Auth::user()->id)
                     @foreach($tugas->jawaban_tugas as $jawaban)
-                        @if($jawaban->creator_id == Auth::user()->id)
+                        @if($jawaban->creator->user->id == Auth::user()->id)
                             @php
                                 $done = true;
                                 $taskId = $jawaban->id;
