@@ -9,19 +9,24 @@
                         </tr>
                         @foreach($kelas->anggota_kelas as $item)
                         @if($item->user->id != $kelas->creator_id)
+                            @php($exist = false)
 						<tr>
                             <td>{{$loop->iteration-1}}</td>
                             <td>{{$item->user->name}}</td>
                             <td>
+                            @if($exist == false)
+                                {{'Belum Mengerjakan'}}
+                            @endif
                             @foreach($item->jawaban_tugas as $answer)
-                                @if($answer->tugas_id = $tugas->id)
+                                @if($answer->tugas_id == $tugas->id)
                                     <a href="{{route('task.download', $answer->id)}}" class="status-selesai">Download</a>
                                 @endif
                             @endforeach
                             </td>
                             <td>
                             @foreach($item->jawaban_tugas as $answer)
-                                @if($answer->tugas_id = $tugas->id)
+                                @if($answer->tugas_id == $tugas->id)
+                                    @php($exist = true)
                                     @php($n = 0)
                                     @foreach($answer->nilai_tugas as $nilai)
                                         @if($nilai->jawaban_tugas_id == $answer->id)
@@ -38,6 +43,9 @@
                                     </form>
                                 @endif
                             @endforeach
+                            @if($exist == false)
+                                {{'Kosong'}}
+                            @endif
                             </td>
                         </tr>
                         @endif
