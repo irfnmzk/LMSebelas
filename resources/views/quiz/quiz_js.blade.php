@@ -115,7 +115,6 @@ $( document ).ready(function() {
             var token = $('meta[name="csrf_token"]').attr('content');
 
             function stopquiz() {
-                eraseCookie('seconds'+id_user+id_quiz);
                 eraseCookie('choosesoal'+id_user+id_quiz);
                 var idd = $('input').attr("idanswer");
 
@@ -125,12 +124,10 @@ $( document ).ready(function() {
                         data:{id_quiz: id_quiz, idd: idd},
                         success:function(result){
                             iframe_reload();
+                            console.log("cek");
                         }
                     });
             }
-
-
-            var total_seconds = readCookie('seconds'+id_user+id_quiz) || {{ $quiz->durasi * 60}};
             
 
             function startTimer(duration,display)
@@ -140,7 +137,6 @@ $( document ).ready(function() {
                 minutes = parseInt(timer/60,10);
                 seconds = parseInt(timer%60,10);
                 display.text(minutes+":"+seconds);
-                createCookie('seconds'+id_user+id_quiz ,timer, 1);
                 if(--timer<0){
                     stopquiz();
                 }
@@ -247,7 +243,7 @@ $( document ).ready(function() {
                     url:'{{ url('/checkquiz') }}',
                     data:{id_quiz: id_quiz},
                     success:function(result){
-                        startTimer(total_seconds,$(".countdown"));
+                        startTimer(result.sisa_waktu,$(".countdown"));
                         createCookie('choosesoal'+id_user+id_quiz ,true, 1);
                         $("input").attr("idanswer",result.id);
                         $("button.berikutnya").attr("idanswer",result.id);
@@ -266,7 +262,7 @@ $( document ).ready(function() {
                     }
                 });
             });
-            console.log(total_seconds);
+            
             console.log(readCookie('choosesoal'+id_user+id_quiz));
             if(readCookie('choosesoal'+id_user+id_quiz)){
                 $('.startquiz').click();

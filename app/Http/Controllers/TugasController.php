@@ -17,7 +17,7 @@ class TugasController extends Controller
 
     public function store(Request $request){
         $data = $request->all();
-		$siswa = Anggota_kelas::where('user_id', '=', Auth::user()->id)->first();
+		$siswa = Anggota_kelas::where('user_id', '=', Auth::user()->id)->where('kelas_id', '=', $data['kelas_id'])->first();
         $data['creator_id'] = $siswa->id;
 
         $tugas = Tugas::create($data);
@@ -34,7 +34,7 @@ class TugasController extends Controller
     public function storeSiswa(Request $request){
         $data = $request->all();
 
-        $siswa = Anggota_kelas::where('user_id', '=', Auth::user()->id)->first();
+        $siswa = Anggota_kelas::where('user_id', '=', Auth::user()->id)->where('kelas_id', '=', $data['kelas_id'])->first();
         $data['creator_id'] = $siswa->id;
 
         if($request->file('link')){

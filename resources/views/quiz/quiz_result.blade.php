@@ -28,7 +28,7 @@
 				<div class="last-quiz">
 					<div class="last-quiz-desc"><span><strong>Judul Quiz</strong></span><span>{{ $quiz->judul }}</span></div>
 					<div class="last-quiz-desc"><span><strong>Waktu Mulai </strong></span><span>{{ $waktu_mulai->toDayDateTimeString() }}</span></div>
-					<div class="last-quiz-desc"><span><strong>Finish Date</strong></span><span>{{ $waktu_selesai->toDayDateTimeString()}}</span></div>
+					<div class="last-quiz-desc"><span><strong>Waktu Selesai</strong></span><span>{{ $waktu_selesai->toDayDateTimeString()}}</span></div>
 					<div class="last-quiz-desc"><span><strong>Jumlah Benar</strong></span><span><strong>{{ $cek->jumlah_benar }}</strong>/
 					{{ $quiz->soal->count() }}</span></div>
 				</div>

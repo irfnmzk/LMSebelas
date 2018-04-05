@@ -80,6 +80,12 @@ class QuizController extends Controller
         $quiz = Quiz::findOrFail($id);
         $now = Carbon::now();
         $user = Auth::user()->id;
+
+        $quiz->load(array('soal' => function($q) {
+        $user = Auth::user()->id;
+        $q->orderByRaw("RAND(".$user.")");
+        }));
+
         $anggota_kelas = Anggota_kelas::where([['kelas_id', '=', $quiz->materi->kelas_id],['user_id', '=', $user],])->first();
 
         $tanggal_mulai = Carbon::parse($quiz->tanggal_mulai);
@@ -268,17 +274,35 @@ class QuizController extends Controller
                 ]);
             $hasil->save();
             $hid = $hasil->id;
-        }
-        else{
-            $hid = $cek->id;
-        }
+
             $query = Jawaban_user::where('hasil_id', '=', $hid)->get();
             $result = array();
+            $now = Carbon::now();
+            $hasil = Hasil_quiz::findOrFail($hid);
+            $sisa_waktu = $hasil->quiz->durasi * 60;
+
             foreach($query as $item){
                $result[] = array('id_question' => $item->soal_id, 'answer' => $item->jawaban_id);
             }
-            $results = array('id' => $hid, 'detail' => $result);
+            $results = array('id' => $hid, 'detail' => $result, 'sisa_waktu' => $sisa_waktu);
             //dd($results);
+        }
+        else{
+            $hid = $cek->id;
+            $query = Jawaban_user::where('hasil_id', '=', $hid)->get();
+            $result = array();
+            $now = Carbon::now();
+            $hasil = Hasil_quiz::findOrFail($hid);
+            $act_waktu = $now->diffInSeconds(Carbon::parse($hasil->waktu_mulai));
+            $sisa_waktu = intval($hasil->quiz->durasi * 60) - intval($act_waktu);
+
+            foreach($query as $item){
+               $result[] = array('id_question' => $item->soal_id, 'answer' => $item->jawaban_id);
+            }
+            $results = array('id' => $hid, 'detail' => $result, 'sisa_waktu' => $sisa_waktu);
+            //dd($results);
+        }
+
 
         return \Response::json($results);
     }
