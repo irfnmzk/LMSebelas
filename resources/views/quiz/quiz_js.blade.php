@@ -115,7 +115,6 @@ $( document ).ready(function() {
             var token = $('meta[name="csrf_token"]').attr('content');
 
             function stopquiz() {
-                eraseCookie('seconds'+id_user+id_quiz);
                 eraseCookie('choosesoal'+id_user+id_quiz);
                 var idd = $('input').attr("idanswer");
 
@@ -125,6 +124,7 @@ $( document ).ready(function() {
                         data:{id_quiz: id_quiz, idd: idd},
                         success:function(result){
                             iframe_reload();
+                            console.log("cek");
                         }
                     });
             }

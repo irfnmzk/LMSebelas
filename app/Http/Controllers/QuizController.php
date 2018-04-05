@@ -80,6 +80,12 @@ class QuizController extends Controller
         $quiz = Quiz::findOrFail($id);
         $now = Carbon::now();
         $user = Auth::user()->id;
+
+        $quiz->load(array('soal' => function($q) {
+        $user = Auth::user()->id;
+        $q->orderByRaw("RAND(".$user.")");
+        }));
+
         $anggota_kelas = Anggota_kelas::where([['kelas_id', '=', $quiz->materi->kelas_id],['user_id', '=', $user],])->first();
 
         $tanggal_mulai = Carbon::parse($quiz->tanggal_mulai);
