@@ -268,17 +268,35 @@ class QuizController extends Controller
                 ]);
             $hasil->save();
             $hid = $hasil->id;
-        }
-        else{
-            $hid = $cek->id;
-        }
+
             $query = Jawaban_user::where('hasil_id', '=', $hid)->get();
             $result = array();
+            $now = Carbon::now();
+            $hasil = Hasil_quiz::findOrFail($hid);
+            $sisa_waktu = $hasil->quiz->durasi * 60;
+
             foreach($query as $item){
                $result[] = array('id_question' => $item->soal_id, 'answer' => $item->jawaban_id);
             }
-            $results = array('id' => $hid, 'detail' => $result);
+            $results = array('id' => $hid, 'detail' => $result, 'sisa_waktu' => $sisa_waktu);
             //dd($results);
+        }
+        else{
+            $hid = $cek->id;
+            $query = Jawaban_user::where('hasil_id', '=', $hid)->get();
+            $result = array();
+            $now = Carbon::now();
+            $hasil = Hasil_quiz::findOrFail($hid);
+            $act_waktu = $now->diffInSeconds(Carbon::parse($hasil->waktu_mulai));
+            $sisa_waktu = intval($hasil->quiz->durasi * 60) - intval($act_waktu);
+
+            foreach($query as $item){
+               $result[] = array('id_question' => $item->soal_id, 'answer' => $item->jawaban_id);
+            }
+            $results = array('id' => $hid, 'detail' => $result, 'sisa_waktu' => $sisa_waktu);
+            //dd($results);
+        }
+
 
         return \Response::json($results);
     }

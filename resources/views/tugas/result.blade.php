@@ -21,7 +21,7 @@
                                 @endif
                             @endforeach
 							@if($exist == false)
-                                {{'Belum Mengerjakan'}}
+                                {{'Belum Mengumpulkan'}}
                             @endif
                             </td>
                             <td>
