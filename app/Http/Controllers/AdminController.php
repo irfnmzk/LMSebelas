@@ -36,4 +36,8 @@ class AdminController extends Controller
         $user->delete();
         return redirect()->back();
     }
+    
+    public function getUserMenu($id){
+        return view('admin.usermenu', compact('id'));
+    }
 }
