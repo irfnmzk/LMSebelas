@@ -197,7 +197,7 @@
                     </div>
                 </div>
             </nav>
-            <div class="content">
+            <div class="content admin-content">
                 @yield('content')
             </div>
             <footer class="footer">
