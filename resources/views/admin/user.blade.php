@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <div class="card">
+            <div class="card" style="padding:10px;">
                 <table class="table table-striped table-hover table-bordered" id="main-table">
                     <thead>
                         <tr>

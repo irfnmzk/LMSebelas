@@ -6,8 +6,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <div class="card">
-                <table class="table table-striped table-hover table-bordered" id="main-table">
+            <div class="card" style="padding:10px;">
+                <table class="table table-striped table-bordered" id="main-table">
                     <thead>
                         <tr>
                             <th>No</th>
