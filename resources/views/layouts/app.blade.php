@@ -60,12 +60,28 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
+                    @if(!Auth::user()->isAdmin())
                     <li>
                         <a href="{{ url('dashboard') }}">
                             <i class="zmdi zmdi-nature-people"></i>
                             <p>Home</p>
                         </a>
                     </li>
+                    @endif
+                    @if(Auth::user()->isAdmin())
+                    <li>
+                        <a href="{{ route('kelas') }}">
+                            <i class="zmdi zmdi-nature-people"></i>
+                            <p>Kelas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user') }}">
+                            <i class="zmdi zmdi-nature-people"></i>
+                            <p>User</p>
+                        </a>
+                    </li>
+                    @endif
                     @if(Auth::user()->active == 1)
                     <li>
                         <a href="{{ url('classroom') }}">
