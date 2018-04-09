@@ -5,14 +5,6 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-6 col-md-6 add-data-admin">
-            <a href="#">
-                <button class="btn btn-info"><i class="zmdi zmdi-edit"></i> Add data</button>
-            </a>
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <table class="table table-striped table-hover table-bordered" id="main-table">
@@ -26,15 +18,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($kelas as $item)
                         <tr>
-                            <td>1</td>
-                            <td>Jacob</td>
-                            <td>Director</td>
-                            <td>
-                                <p class="text-success">Available</p>
-                            </td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->creator->name}}</td>
+                            <td>{{$item->anggota_kelas_count}}</td>
                             <td class="actions-admin"><a href="#" class="text text-info"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp; <a href="#" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
