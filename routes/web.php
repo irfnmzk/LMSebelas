@@ -85,4 +85,5 @@ Route::get('callback/{provider}', 'Auth\LoginController@handleProviderCallback')
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::get('/', 'AdminController@index');
+    Route::get('/kelas', 'AdminController@allKelas');
 });

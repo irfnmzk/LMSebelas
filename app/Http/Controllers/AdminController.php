@@ -8,6 +8,10 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        return redirect('admin/kelas');
+    }
+    
+    public function allKelas(){
+        return view('admin.kelas');
     }
 }
