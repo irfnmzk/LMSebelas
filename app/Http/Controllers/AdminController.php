@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Kelas;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,6 +13,8 @@ class AdminController extends Controller
     }
     
     public function allKelas(){
-        return view('admin.kelas');
+        $kelas = Kelas::withCount('Anggota_kelas')->get();
+        
+        return view('admin.kelas', compact('kelas'));
     }
 }
