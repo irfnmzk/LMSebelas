@@ -1,12 +1,5 @@
 $( document ).ready(function() {
-           $('.quiz-control').click(function (e) {
-			    e.preventDefault();
-                var link = $(this).val();
-                var url = "{{ url('quiz_control/') }}"+"/"+link+"";
-                console.log(url);
-                $('.reader-bg', window.parent.document).html("<iframe id='if_quiz_control' style='width:100%;height:85vh;position:relative;' height='100%' width='100%' src='"+url+"' frameborder='0'></iframe>");
-			});
-
+    
            $('.quiz-result-all').click(function (e) {
                 e.preventDefault();
                 var link = $(this).val();

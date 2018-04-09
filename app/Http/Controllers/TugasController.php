@@ -75,4 +75,12 @@ class TugasController extends Controller
 
         return redirect()->route('show.kelas', $tugas->materi->kelas->id);
     }
+
+    public function destroy($id){
+
+        $tugas = Tugas::findOrFail($id);
+        Tugas::destroy($id);
+
+        return redirect()->route('show.kelas', $tugas->materi->kelas->id);
+    }
 }

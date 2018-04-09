@@ -44,11 +44,11 @@ class Anggota_kelas extends Model
 
     public function jawaban_user()
     {
-        return $this->hasMany('App\Jawaban_user');
+        return $this->hasMany('App\Jawaban_user','creator_id');
     }
 
     public function hasil_quiz()
     {
-        return $this->hasMany('App\Hasil_quiz');
+        return $this->hasMany('App\Hasil_quiz','creator_id');
     }
 }

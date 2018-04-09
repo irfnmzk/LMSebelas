@@ -159,11 +159,23 @@ class KelasController extends Controller
         return redirect()->route('show.kelas', $modul->materi->kelas_id);
     }
 
-    public function destroyMateri($id)
+    public function destroyMateri(Request $request)
     {
-    	$materi = Materi::findOrFail($id);
-        Materi::destroy($id);
+    	$checked = $request->input('checked');
+    	$materi = Materi::findOrFail($checked[0]);
+    	
+	   	Materi::whereIn('id',$checked)->delete();
 
         return redirect()->route('show.kelas', $materi->kelas_id);
+    }
+
+    public function form_materi($id){
+    	$kelas = Kelas::findOrFail($id);
+    	return view('kelas.form_materi', compact('kelas'));
+    }
+
+    public function nilai_akhir($id){
+    	$kelas = Kelas::findOrFail($id);
+    	return view('kelas.nilai_akhir', compact('kelas'));
     }
 }
