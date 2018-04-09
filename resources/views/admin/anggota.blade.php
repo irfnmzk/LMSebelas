@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="admin-banner">
-    <h3>Data Kelas</h3>
+    <h3>Data Anggota Kelas {{$kelas->name}}</h3>
 </div>
 <div class="container-fluid">
     <div class="row">
@@ -11,20 +11,20 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Kelas</th>
-                            <th>Creator</th>
-                            <th>Jumlah siswa</th>
+                            <th>Nama Siswa</th>
+                            <th>Role</th>
+                            <th>No identitas</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($kelas as $item)
+                        @foreach($kelas->anggota_kelas as $item)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td><a href="{{ route('admin.kelas', $item->id) }}" class="text text-info">{{$item->name}}</a></td>
-                            <td>{{$item->creator->name}}</td>
-                            <td>{{$item->anggota_kelas_count}}</td>
-                            <td class="actions-admin"><a href="#" class="text text-info"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp; <a href="{{ route('delete.kelas', $item->id) }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
+                            <td>{{$item->user->name}}</td>
+                            <td>{{$item->user->role}}</td>
+                            <td>{{$item->user->no_identitas}}</td>
+                            <td class="actions-admin"><a href="{{ url("admin/kelas/".$kelas->id."/kick/".$item->user->id ."/") }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
                         </tr>
                         @endforeach
                     </tbody>

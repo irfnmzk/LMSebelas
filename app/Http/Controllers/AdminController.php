@@ -64,4 +64,22 @@ class AdminController extends Controller
         
         return redirect()->back();
     }
+    
+    public function showKelas($id){
+        $kelas = Kelas::findOrFail($id);
+        
+        return view('admin.anggota', compact('kelas'));
+    }
+    
+    public function kickUser($kelasId, $userId){
+        $kelas = Kelas::findOrFail($kelasId);
+        
+        $anggota = $kelas->anggota_kelas;
+        
+        $user = $anggota->find($userId);
+        
+        $user->delete();
+        
+        return redirect()->back();
+    }
 }
