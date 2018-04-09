@@ -17,4 +17,10 @@ class AdminController extends Controller
         
         return view('admin.kelas', compact('kelas'));
     }
+    
+    public function deleteKelas($id){
+        $kelas = Kelas::findOrFail($id);
+        $kelas->delete();
+        return redirect()->back();
+    }
 }

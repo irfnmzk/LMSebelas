@@ -24,7 +24,7 @@
                             <td>{{$item->name}}</td>
                             <td>{{$item->creator->name}}</td>
                             <td>{{$item->anggota_kelas_count}}</td>
-                            <td class="actions-admin"><a href="#" class="text text-info"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp; <a href="#" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
+                            <td class="actions-admin"><a href="#" class="text text-info"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp; <a href="{{ route('delete.kelas', $item->id) }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
                         </tr>
                         @endforeach
                     </tbody>
