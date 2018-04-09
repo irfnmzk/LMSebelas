@@ -87,4 +87,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::get('/', 'AdminController@index');
     Route::get('/kelas', 'AdminController@allKelas')->name('kelas');
     Route::get('/kelas/delete/{id}', 'AdminController@deleteKelas')->name('delete.kelas');
+    Route::get('/user', 'AdminController@allUser')->name('user');
+    Route::get('/user/delete/{id}', 'AdminController@deleteUser')->name('delete.user');
 });
