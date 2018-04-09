@@ -40,7 +40,7 @@
         }
 
     </style>
-
+    @yield('css')
 </head>
 
 <body>
@@ -299,6 +299,7 @@
 
 <script src="{{ asset('assets/js/jquery.easy-autocomplete.min.js') }}"></script>
 <script src="{{ asset('assets/summernote/summernote-lite.js')}}"></script>
+@yield('js')
 <script type="text/javascript">
     $(window).on('load', function(){
             $(".se-pre-con").fadeOut("slow");
