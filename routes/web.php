@@ -83,6 +83,6 @@ Route::post('/diskusi/add/{id}', 'DiskusiController@store')->name('diskusi.store
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('callback/{provider}', 'Auth\LoginController@handleProviderCallback');
 
-Route::prefix('admin')->group(function (){
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::get('/', 'AdminController@index');
 });
