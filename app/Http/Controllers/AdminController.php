@@ -40,4 +40,28 @@ class AdminController extends Controller
     public function getUserMenu($id){
         return view('admin.usermenu', compact('id'));
     }
+    
+    public function changePasswordUser($id, Request $request){
+        $data = $request->all();
+        
+        $user = User::findOrFail($id);
+        
+        $user->password = bcrypt($data['password']);
+        
+        $user->save();
+        
+        return redirect()->back();
+    }
+    
+    public function changeRoleUser($id, Request $request){
+        $data = $request->all();
+        
+        $user = User::findOrFail($id);
+        
+        $user->role = $data['role'];
+        
+        $user->save();
+        
+        return redirect()->back();
+    }
 }
