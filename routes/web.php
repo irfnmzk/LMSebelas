@@ -89,4 +89,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::get('/kelas/delete/{id}', 'AdminController@deleteKelas')->name('delete.kelas');
     Route::get('/user', 'AdminController@allUser')->name('user');
     Route::get('/user/delete/{id}', 'AdminController@deleteUser')->name('delete.user');
+    Route::post('/user/change/pass/{id}', 'AdminController@changePasswordUser')->name('admin.user.pass');
+    Route::post('/user/change/role/{id}', 'AdminController@changeRoleUser')->name('admin.user.role');
+    
+    Route::get('/ajax/getusermenu/{id}', 'AdminController@getUserMenu')->name('user.menu');
 });
