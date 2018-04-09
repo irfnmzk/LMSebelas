@@ -82,3 +82,7 @@ Route::post('/diskusi/add/{id}', 'DiskusiController@store')->name('diskusi.store
 // Social Login
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('callback/{provider}', 'Auth\LoginController@handleProviderCallback');
+
+Route::prefix('admin')->group(function (){
+    Route::get('/', 'AdminController@index');
+});
