@@ -11,6 +11,7 @@ class DashboardController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('anti.admin');
     }
 
     public function index(){
