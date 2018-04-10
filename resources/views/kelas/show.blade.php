@@ -101,13 +101,11 @@
                                     <li>{{ $tugas->judul }}</li>
                                 </a>
                             @endforeach
-                            @if($loop->last)
                                 @foreach($materi->quiz as $quiz)
                                 <a href="#" class="hell" link="{{ $quiz->id }}" type-sub="quiz">
                                     <li>Quiz : {{ $quiz->judul }}</li>
                                 </a>
                                 @endforeach
-                            @endif
                             </ul>
                         </div>
                     </dd>
