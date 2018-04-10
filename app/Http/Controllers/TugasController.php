@@ -73,7 +73,7 @@ class TugasController extends Controller
 
         $tugas->update($request->all());
 
-        return redirect()->route('show.kelas', $tugas->materi->kelas->id);
+        return "<script>parent.location.reload();</script>";
     }
 
     public function destroy($id){
@@ -81,6 +81,6 @@ class TugasController extends Controller
         $tugas = Tugas::findOrFail($id);
         Tugas::destroy($id);
 
-        return redirect()->route('show.kelas', $tugas->materi->kelas->id);
+        return "<script>parent.location.reload();</script>";
     }
 }

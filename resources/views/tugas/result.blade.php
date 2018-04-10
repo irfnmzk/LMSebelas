@@ -8,7 +8,7 @@
                             <th>Nilai</th>
                         </tr>
                         @foreach($kelas->anggota_kelas as $item)
-                        @if($item->id != $kelas->creator_id)
+                        @if($item->user->id != $kelas->creator_id)
                             @php($exist = false)
 						<tr>
                             <td>{{$loop->iteration-1}}</td>

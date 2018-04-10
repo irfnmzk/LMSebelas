@@ -29,7 +29,6 @@
 						<b>{{ $tanggal_mulai->toDayDateTimeString() }} sd {{ $tanggal_selesai->toDayDateTimeString() }}</b>
 					</div>
 					@if(Auth::user()->role == 1)
-					<button class="btn btn-primary quiz-control" value="{{ $quiz->id }}">Kelola Quiz</button>
 					<button class="btn btn-danger quiz-result-all" value="{{ $quiz->id }}">Lihat Hasil Quiz</button>
 					@elseif($sip && $quiz->active == 1)
 					<button class="btn btn-primary startquiz {{ $classdisabled }}" {{ $disabled }}>Mulai</button>

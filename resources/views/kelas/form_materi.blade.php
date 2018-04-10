@@ -98,15 +98,27 @@
                     <form method="POST" action="{{route('materi.store')}}" class="form-horizontal" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <input type="hidden" value="{{ $kelas->id }}" name="kelas_id">
-                    <input type="text" class="form-control" name="judul" placeholder="Judul"/>
-                    <textarea class="form-control" name="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
-                    <input type="text" class="form-control" name="kkm" placeholder="KKM"/>
-                    <div class="col-md-6">
-                       <input type="text" class="form-control" name="nilai_tugas" placeholder="Nilai Tugas (%)"/> 
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Judul</label>    
+                        <input type="text" class="form-control" name="judul" placeholder="Judul"/>
                     </div>
-                    <div class="col-md-6">
-                    <input type="text" class="form-control" name="nilai_quiz" placeholder="Nilai Quiz (%)"/> 
+                    Deskripsi
+                    <textarea class="form-control deskripsi" name="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">KKM</label>    
+                       <input type="number" class="form-control" name="kkm" placeholder="KKM"/>
                     </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Nilai Tugas</label>    
+                       <input type="number" class="form-control" name="nilai_tugas" placeholder="Nilai Tugas (%)"/> 
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Nilai Quiz</label>    
+                       <input type="number" class="form-control" name="nilai_quiz" placeholder="Nilai Quiz (%)"/>
+                    </div>
+                    
                     <b>Keterangan : nilai tugas dan quiz saat dijumlahkan harus 100 %</b>
                     
                 </div>
@@ -133,9 +145,17 @@
                     {{csrf_field()}}
                     <input type="hidden" value="{{ $kelas->id }}" name="kelas_id">
                     <input type="hidden" value="{{ $materi->id }}" name="materi_id">
-                    <input type="text" class="form-control" name="judul" placeholder="Judul"/>
-                    <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
-                    <input id="deadline" type="date" class="form-control" name="deadline" placeholder="deadline">
+                    <div class="form-group label-floating">
+                        <label class="control-label">Judul</label>    
+                       <input type="text" class="form-control" name="judul" placeholder="Judul"/>
+                    </div>
+                    Deskripsi
+                    <textarea class="form-control deskripsi" name="deskripsi" id="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Deadline</label>    
+                       <input id="deadline" type="date" class="form-control" name="deadline" placeholder="deadline">
+                    </div>
+                    
                     
                 </div>
                 <div class="modal-footer">
@@ -160,11 +180,17 @@
                     <form method="POST" action="{{route('modul.store')}}" class="form-horizontal" enctype="multipart/form-data">
                     {{csrf_field()}}
                     
-                    <input type="text" class="form-control" name="judul" placeholder="Judul"/>
+                    
                     <input type="hidden" value="{{ $materi->id }}" name="materi_id">
-                    <div class="fallback">
-                        <input name="link" type="file"/>
-                      </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Judul</label>    
+                       <input type="text" class="form-control" name="judul" placeholder="Judul"/>
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">File</label>    
+                       <input name="link" type="file"/>
+                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <div class="form-group form-button">
@@ -193,14 +219,29 @@
                     <input type="hidden" name="creator_id" value="{{ $anggota_kelas->id }}">
                     @endif
                     @endforeach
-                    <input id="judul" type="text" class="form-control" name="judul" placeholder="Judul">
-                    <textarea rows="3" id="deskripsi" class="form-control" name="deskripsi" placeholder="Deskripsi"></textarea>
-                    <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi">
-                    <input id="jumlah_soal" type="number" class="form-control" name="jumlah_soal" placeholder="Jumlah Soal">
-                    Tanggal Mulai 
-                    <input id="tanggal_mulai" type="date" class="form-control" name="tanggal_mulai" placeholder="Tanggal Mulai">
-                    Tanggal Selesai 
-                    <input id="tanggal_selesai" type="date" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai">         
+                    <div class="form-group label-floating">
+                        <label class="control-label">Judul</label>    
+                       <input id="judul" type="text" class="form-control" name="judul" placeholder="Judul">
+                    </div>
+                    Deskripsi
+                    <textarea rows="3" class="form-control deskripsi" name="deskripsi" placeholder="Deskripsi"></textarea>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Durasi</label>    
+                       <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi">
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Jumlah Soal</label>    
+                       <input id="jumlah_soal" type="number" class="form-control" name="jumlah_soal" placeholder="Jumlah Soal">
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Tanggal Mulai</label>    
+                       <input id="tanggal_mulai" type="date" class="form-control" name="tanggal_mulai" placeholder="Tanggal Mulai">
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Tanggal Selesai</label>    
+                       <input id="tanggal_selesai" type="date" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai">
+                    </div>
+                             
                 </div>
                 <div class="modal-footer">
                     <div class="form-group form-button">
@@ -222,9 +263,16 @@
                 <div class="modal-body">
                     <form method="POST" action="{{route('task.edit', $tugas->id)}}" class="form-horizontal">
                     {{csrf_field()}}
-                    <input type="text" class="form-control" name="judul" value="{{$tugas->judul}}"/><br/>
-                    <textarea class="form-control" name="deskripsi" id="desc-task" cols="20" rows="3">{{$tugas->deskripsi}}</textarea><br/>
-                    <input id="deadline" type="date" class="form-control" name="deadline" value="{{$tugas->deadline}}"><br/>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Judul</label>    
+                       <input type="text" class="form-control" name="judul" value="{{$tugas->judul}}"/>
+                    </div>
+                    Deskripsi
+                    <textarea class="form-control deskripsi" name="deskripsi" id="desc-task" cols="20" rows="3">{{$tugas->deskripsi}}</textarea>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Deadline</label>    
+                       <input id="deadline" type="date" class="form-control" name="deadline" value="{{$tugas->deadline}}">
+                    </div>
                     <input type="submit" class="btn btn-primary" />
                 </div>
                 <div class="modal-footer">
@@ -247,18 +295,30 @@
                 <div class="modal-body">
                     <form method="POST" action="{{route('quiz.update', $quiz->id)}}" class="form-horizontal" enctype="multipart/form-data">
                     {{csrf_field()}}
+                    <div class="form-group label-floating">
+                        <label class="control-label">Judul</label>    
+                       <input id="judul" type="text" class="form-control" name="judul" placeholder="Judul" value="{{ $quiz->judul }}">
+                    </div>
+                    Deskripsi
+                    <textarea rows="3" id="deskripsi" class="form-control deskripsi" name="deskripsi" placeholder="Deskripsi">{{ $quiz->deskripsi }}</textarea>
                     
-
-                    <input id="judul" type="text" class="form-control" name="judul" placeholder="Judul" value="{{ $quiz->judul }}">
-                    <textarea rows="3" id="deskripsi" class="form-control summernote" name="deskripsi" placeholder="Deskripsi">{{ $quiz->deskripsi }}</textarea>
-                    Durasi
-                    <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi" value="{{ $quiz->durasi }}">
-                    Jumlah Soal
-                    <input id="jumlah_soal" type="number" class="form-control" name="jumlah_soal" placeholder="Jumlah Soal" value="{{ $quiz->jumlah_soal }}">
-                    Tanggal Mulai 
-                    <input id="tanggal_mulai" type="date" class="form-control" name="tanggal_mulai" placeholder="Tanggal Mulai" value="{{ $quiz->tanggal_mulai }}">
-                    Tanggal Selesai 
-                    <input id="tanggal_selesai" type="date" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai" value="{{ $quiz->tanggal_selesai }}">         
+                    <div class="form-group label-floating">
+                        <label class="control-label">Durasi</label>    
+                       <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi" value="{{ $quiz->durasi }}">
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Jumlah Soal</label>    
+                       <input id="jumlah_soal" type="number" class="form-control" name="jumlah_soal" placeholder="Jumlah Soal" value="{{ $quiz->jumlah_soal }}">
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Tanggal Mulai</label>    
+                       <input id="tanggal_mulai" type="date" class="form-control" name="tanggal_mulai" placeholder="Tanggal Mulai" value="{{ $quiz->tanggal_mulai }}">
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Tanggal Selesai</label>    
+                       <input id="tanggal_selesai" type="date" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai" value="{{ $quiz->tanggal_selesai }}"> 
+                    </div>
+                            
                 </div>
                 <button class="btn btn-fill btn-warning" id="kelola_soal" value="{{ $quiz->id}}">Kelola Soal</button>
                 <div style="float: right; padding-bottom: 50px; padding-right: 20px;"><button type="submit" class="btn btn-fill btn-primary">Simpan</button></div>
@@ -298,5 +358,16 @@
         top.location = url;
         }
     });
+
+    $(document).ready(function(){
+        $('.deskripsi').summernote({
+            height: 100,
+            placeholder: 'Deskripsi',
+            tabsize: 2
+        });
+        $('.dropdown-toggle').dropdown();
+        
+    });
+
 
 </script>

@@ -38,12 +38,13 @@ class KelasController extends Controller
 
 		$kelas = Kelas::create($data);
 
-		$anggota = new Anggota_kelas([
-			'kelas_id' => $kelas->id,
-			'user_id' => Auth::user()->id,
-			]);
-		$anggota->save();
+		// $anggota = new Anggota_kelas([
+		// 	'kelas_id' => $kelas->id,
+		// 	'user_id' => Auth::user()->id,
+		// 	]);
+		// $anggota->save();
 
+		\DB::select('call storeAnggotaKelas("'.$kelas->id.'", "'.Auth::user()->id.'")');
 		return redirect()->route('show.kelas', $kelas->id);
 	}
 
@@ -133,7 +134,7 @@ class KelasController extends Controller
 
 		$materi = Materi::create($data);
 
-		return redirect()->route('show.kelas', $materi->kelas_id);
+		return "<script>parent.location.reload();</script>";
 	}
 
 	public function storeModul(Request $request)
@@ -148,7 +149,7 @@ class KelasController extends Controller
         }
 
 		$modul = Modul::create($data);
-		return redirect()->route('show.kelas', $modul->materi->kelas->id);
+		return "<script>parent.location.reload();</script>";
 	}
 
 	public function destroyModul($id)
@@ -156,7 +157,7 @@ class KelasController extends Controller
     	$modul = Modul::findOrFail($id);
         Modul::destroy($id);
 
-        return redirect()->route('show.kelas', $modul->materi->kelas_id);
+        return "<script>parent.location.reload();</script>";
     }
 
     public function destroyMateri(Request $request)
@@ -166,7 +167,7 @@ class KelasController extends Controller
     	
 	   	Materi::whereIn('id',$checked)->delete();
 
-        return redirect()->route('show.kelas', $materi->kelas_id);
+        return "<script>parent.location.reload();</script>";
     }
 
     public function form_materi($id){
