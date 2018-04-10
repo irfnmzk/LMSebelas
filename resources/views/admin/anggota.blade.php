@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card" style="padding:10px;">
-                <table class="table table-striped table-bordered" id="main-table">
+                <table class="mdl-data-table" id="main-table">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -37,14 +37,24 @@
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/DataTables/datatables.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/material.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/datatables.material.min.css')}}" type="text/css" />
 @endsection
 @section('js')
     <script type="text/javascript" src="{{ asset('assets/DataTables/datatables.min.js')}}"></script>
+    <script src="{{ asset('assets/vendors/jquery.datatables.material.min.js') }}"></script>
 @endsection
 @section('script')
     <script type="text/javascript" >
         $(document).ready(function(){
-            $('#main-table').DataTable()
+            $('#main-table').DataTable( {
+                columnDefs: [
+                    {
+                        targets: [ 0, 1, 2 ],
+                        className: 'mdl-data-table__cell--non-numeric'
+                    }
+                ]
+            } );
         })
     </script>
 @endsection
