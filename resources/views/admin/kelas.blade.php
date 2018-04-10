@@ -20,12 +20,12 @@
                     </thead>
                     <tbody>
                         @foreach($kelas as $item)
-                        <tr>
+                        <tr data-child-id="{{$item->id}}">
                             <td>{{$loop->iteration}}</td>
                             <td><a href="{{ route('admin.kelas', $item->id) }}" class="text text-info">{{$item->name}}</a></td>
                             <td>{{ ucwords($item->creator['name']) }}</td>
                             <td>{{$item->anggota_kelas_count}}</td>
-                            <td class="actions-admin"><a href="#" class="text text-info"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp; <a href="{{ route('delete.kelas', $item->id) }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
+                            <td class="actions-admin"><a href="#" class="text text-info details-control" id="details-control"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp; <a href="{{ route('delete.kelas', $item->id) }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -47,8 +47,21 @@
 @endsection
 @section('script')
     <script type="text/javascript" >
+    function format(id){
+        var div = $('<div/>').text('Loading...');
+        
+        $.ajax({
+            url : "{{ url('admin/ajax/getkelasmenu/') }}/"+id,
+            success: function ( json ) {
+                
+                div.html(json)
+            }
+        });
+        
+        return div
+    }
         $(document).ready(function(){
-            $('#main-table').DataTable( {
+            var table = $('#main-table').DataTable( {
                 columnDefs: [
                     {
                         targets: [ 0, 1, 2 ],
@@ -56,6 +69,20 @@
                     }
                 ]
             } );
+            
+        $('#main-table').on('click', 'a.details-control', function() {
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+            if (row.child.isShown()) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            } else {
+                // Open this row
+                row.child(format(tr.data('child-id'))).show();
+                tr.addClass('shown');
+            }
+        });
         })
     </script>
 @endsection
