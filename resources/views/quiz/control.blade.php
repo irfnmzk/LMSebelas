@@ -17,8 +17,8 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                 
-                                <div class="card-finish" id="more-number">&plus;
-                                </div>
+                                <button class="card-finish" id="more-number" @if($quiz->soal->count() < $quiz->jumlah_soal)disabled @endif>&plus;
+                                </button>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <br/>
@@ -38,7 +38,7 @@
                                 
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
-                                Jumlah Maks Pertanyaan : <span>{{$quiz->soal->count()}}</span>
+                                Jumlah Maks Pertanyaan : <span>{{$quiz->jumlah_soal}}</span>
                             </div>
                             
                             @foreach($quiz->soal as $soal)
@@ -110,7 +110,11 @@
                                     
                                     @for($i=1; $i<=5; $i++)
                                         <div class="col-lg-2 col-md-2 col-sm-2">
+                                        <div class="radio">
+                                        <label>
                                         <input type="radio" name="benar" value="{{$i-1}}" @if($i==1) checked @endif >
+                                        </label>
+                                        </div>
                                         </div>
                                     <div class="col-lg-9 col-md-9 col-sm-9">
                                         <input type="text" class="form-control" id="pilihan" name="pilihan[]" placeholder="Pilihan {{$i}}" required>
