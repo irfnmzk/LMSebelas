@@ -39,6 +39,11 @@ body {
 		=================================*/
 		.timeline-card {
 			padding: 10px;
+			cursor: pointer;
+			transition: 0.2s;
+		}
+		.timeline-card:hover {
+			background: #eee;
 		}
 		.profpic-user-timeline {
 			height: 100px;
