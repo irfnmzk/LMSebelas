@@ -72,7 +72,7 @@ class QuizController extends Controller
          //dd($data);
          Jawaban::insert($data);    
 
-        return response()->json(array('status'=>'success', 'data' => $data));
+        return redirect()->route('quiz.control',$request->input('quiz_id'));
     }
 
     public function start_quiz($id)

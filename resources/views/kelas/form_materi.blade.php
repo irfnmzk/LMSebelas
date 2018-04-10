@@ -22,7 +22,7 @@
                         
                         @foreach($kelas->materi as $materi)
                         <div class="card">
-                            <div class="card timeline-card timeline-others">
+                            <div class="card timeline-card timeline-others" id="comment-{{$loop->iteration}}">
                             
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="content-timeline">
@@ -30,7 +30,7 @@
                                 <input type="checkbox" class="check-materi" name="checked[]" value="{{ $materi->id}}" form="del_materi"/></div>
                                 <div class="username-timeline">{{$loop->iteration}}. {{ $materi->judul}}</div>
                                 <br/>
-                                <div class="text-content-timeline">
+                                <div class="text-content-timeline" id="text-content-timeline-{{$loop->iteration}}">
                                 <ol>
                                 @foreach($materi->modul as $modul)
                                     <li>
@@ -369,5 +369,18 @@
         
     });
 
+    function handleElement(i) {
+        var c = $("#comment-"+i);
+        console.log(c);
+        c.click(function(){
+            $('#text-content-timeline-'+i).slideToggle();
+        });
+    }
 
+    var tct = $(".text-content-timeline");
+    tct.slideUp(0);
+
+    for(var i=0; i<={{$kelas->materi->count()}}; i++){
+        handleElement(i);
+    }
 </script>

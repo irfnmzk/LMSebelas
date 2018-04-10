@@ -21,8 +21,9 @@
                                 </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <button class="btn btn-primary pull-left">Previous</button>
-                                    <button class="btn btn-info pull-right">Next</button>
+                                    <br/>
+                                    <br/>
+                                    <br/>
                                 </div>
                                 
                             </div>
@@ -46,6 +47,7 @@
                                 {{ csrf_field() }}
                             </form>
                             <form method="POST" id="form_edit_soal" action="{{ route('question.update', $soal->id) }}" class="form-horizontal form_soal" enctype="multipart/form-data">
+                            {{csrf_field()}}
                             <div class="col-lg-12 col-md-12 col-sm-12 soal-{{ $loop->iteration }} soal-quiz" style="display: none;">
                             <button form="del_quiz" class="btn btn-sm btn-danger" title="Delete soal" onclick="return confirm(&quot;Hapus Soal Ini?&quot;)"><i class="material-icons">close</i>Hapus Soal</button>
                                 <div class="card">
@@ -58,7 +60,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                 <label class="control-label">Pertanyaan</label>
                                     <div class="form-group label-floating">
-                                        <textarea class="form-control pertanyaan">{{ $soal->pertanyaan }}</textarea>
+                                        <textarea class="form-control pertanyaan" name="pertanyaan">{{ $soal->pertanyaan }}</textarea>
                                     </div>
                                 </div>
                                     
@@ -89,16 +91,17 @@
                             </form>
                             @endforeach
                             <form method="POST" action="{{route('question.store')}}" class="form-horizontal form_soal" enctype="multipart/form-data">
+                            {{csrf_field()}}
                             <div class="col-lg-12 col-md-12 col-sm-12 soal-quiz tambah-soal" style="display: none;">
                                 <div class="card">
                                     
                                 </div>
-                                
+                                <input type="hidden" name="quiz_id" value="{{$quiz->id}}">
                                     
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                 <label class="control-label">Pertanyaan</label>
                                     <div class="form-group label-floating">
-                                        <textarea class="form-control pertanyaan"></textarea>
+                                        <textarea class="form-control pertanyaan" name="pertanyaan"></textarea>
                                     </div>
                                 </div>
                                     
