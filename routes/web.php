@@ -99,7 +99,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::post('/user/change/role/{id}', 'AdminController@changeRoleUser')->name('admin.user.role');
     Route::get('/kelas/{id}', 'AdminController@showKelas')->name('admin.kelas');
     Route::get('/kelas/{kelas}/kick/{user}', 'AdminController@kickUser')->name('kick.user');
+    Route::get('/kelas/{kelas}/code/new', 'AdminController@kelasCode')->name('kelas.code');
     
     
     Route::get('/ajax/getusermenu/{id}', 'AdminController@getUserMenu')->name('user.menu');
+    Route::get('/ajax/getkelasmenu/{id}', 'AdminController@getKelasMenu')->name('kelas.menu');
 });

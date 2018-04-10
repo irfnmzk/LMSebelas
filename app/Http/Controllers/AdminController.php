@@ -40,6 +40,11 @@ class AdminController extends Controller
         return view('admin.usermenu', compact('id'));
     }
     
+    public function getKelasMenu($id){
+        $kelas = Kelas::findOrFail($id);
+        return view('admin.kelasmenu', compact('id', 'kelas'));
+    }
+    
     public function changePasswordUser($id, Request $request){
         $data = $request->all();
         
@@ -78,6 +83,16 @@ class AdminController extends Controller
         $user = $anggota->find($userId);
         
         $user->delete();
+        
+        return redirect()->back();
+    }
+    
+    function kelasCode($id){
+        $kelas = Kelas::findOrFail($id);
+        
+        $kelas->code = strtoupper(str_random(6));
+        
+        $kelas->save();
         
         return redirect()->back();
     }
