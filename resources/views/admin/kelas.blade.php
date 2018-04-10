@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="admin-banner">
     <h3>Data Kelas</h3>
 </div>
@@ -7,7 +8,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card" style="padding:10px;">
-                <table class="table table-striped table-bordered" id="main-table">
+                <table class="mdl-data-table" id="main-table">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -22,7 +23,7 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td><a href="{{ route('admin.kelas', $item->id) }}" class="text text-info">{{$item->name}}</a></td>
-                            <td>{{$item->creator->name}}</td>
+                            <td>{{ ucwords($item->creator['name']) }}</td>
                             <td>{{$item->anggota_kelas_count}}</td>
                             <td class="actions-admin"><a href="#" class="text text-info"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp; <a href="{{ route('delete.kelas', $item->id) }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
                         </tr>
@@ -37,14 +38,24 @@
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/DataTables/datatables.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/material.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/datatables.material.min.css')}}" type="text/css" />
 @endsection
 @section('js')
     <script type="text/javascript" src="{{ asset('assets/DataTables/datatables.min.js')}}"></script>
+    <script src="{{ asset('assets/vendors/jquery.datatables.material.min.js') }}"></script>
 @endsection
 @section('script')
     <script type="text/javascript" >
         $(document).ready(function(){
-            $('#main-table').DataTable()
+            $('#main-table').DataTable( {
+                columnDefs: [
+                    {
+                        targets: [ 0, 1, 2 ],
+                        className: 'mdl-data-table__cell--non-numeric'
+                    }
+                ]
+            } );
         })
     </script>
 @endsection

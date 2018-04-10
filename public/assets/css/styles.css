@@ -1,5 +1,5 @@
-		body {
-			overflow-y:  hidden;
+body {
+			overflow-y:  scroll;
 		}
 		nav .ul li {
 			border-radius: 32px;
@@ -18,6 +18,20 @@
 		.card {
 			box-shadow: 1px 1px 5px rgba(0,0,0,0.05);
 			overflow: hidden;
+		}
+		.sidebar {
+			position: fixed;
+		}
+		::-webkit-scrollbar {
+			width: 15px;
+			background: #eee;
+			border-radius: 16px;
+		}
+		::-webkit-scrollbar-thumb {
+			width: 100%;
+			border: 2px solid #eee;
+			background: #777;
+			border-radius: 16px;
 		}
 		
 		/*=================================
@@ -421,18 +435,12 @@
 		/*===========================================
 						Class Page
 		===========================================*/
-		
-		.class-welcome {
-			background: -webkit-linear-gradient(right,#2678cc 75%,#267899);
-			background: linear-gradient(right,#2678cc 75%,#267899);
-			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		button.join-class {
+			margin: 10px;
 		}
-		.card-icon-w, .card-icon-y, .title-w {
-			display: inline-block;
-			vertical-align: middle;
-		}
-		.welcome-say {
-			margin: 50px;
+		button.join-class i {
+			font-size: 16px;
+			margin-right: 5px;
 		}
 		.input-enroll {
 			height: 100%;
@@ -470,41 +478,198 @@
 			text-align: center;
 		}
 		/*=======================================
-					Join Class Page
+					Inside Class Page
 		=======================================*/
-		.class-info {
-			height: 450px;
-			overflow: hidden;
+		.in-class-header {
+			box-shadow: 0 0 10px rgba(0,0,0,0.1);
 		}
-		.class-about {
-			margin: 20px 0;
-			padding: 0 20px;
-			border-right: 1px solid #ddd;
+		.in-class-header-content {
 			text-align: center;
+			padding: 10px;
+			transition: 0.2s;
+			border-bottom: 3px solid transparent;
+			cursor: pointer;
 		}
-		.class-about .join-this-class button {
-			font-size: 20px;
+		.in-class-header-content:hover {
+			border-bottom: 3px solid #ff6000;
 		}
-		.class-about img {
-			margin: 25px 0;
-			border-radius: 50%;
-			width: 200px;
+		/*=== info ===*/
+		.info {
+			padding: 0 15px;
+		}
+		.info .card {
+			box-shadow: 0 0 5px rgba(0,0,0,0.1);
+		}
+		.info .card-class-info {
+			padding: 20px;
+		}
+		.info .card-class-bio img,h3,h4,p {
+			display: block;
+			margin: 0;
+		}
+		.class-photo button {
+			position: absolute;
+			top: 0;
+			right: 10px;
+			padding: 10px;
+			height: 40px;
+			font-size: 14px;
+			text-transform: capitalize;
+		}
+		.class-photo img {
+			width: 100%;
 			height: 200px;
 		}
-		.class-members {
-			height: 450px;
-			overflow-y: scroll;
+		.class-bio {
+			padding: 20px;
 		}
-		.class-members::-webkit-scrollbar {
-			width:7.5px;
-			background: rgba(0,0,0,0.1);
-			border-radius: 16px;
+		.class-bio h3 {
+			text-align: center;
+			margin-bottom: 10px;
 		}
-		.class-members::-webkit-scrollbar-thumb {
+		.class-bio p {
+			text-align: left;
+		}
+		/*=== materi ===*/
+		dl.accordion a {
+			color: #444;
+		}
+		dl.accordion dt {
+			padding: 20px;
 			width: 100%;
-			background: rgba(0,0,0,0.25);
-			border: 2px solid transparent;
-			border-radius: 16px;
+			text-transform: uppercase;
+			transition: 0.35s;
+		}
+		dl.accordion dt:hover {
+			background: #eee;
+		}
+		dd .accordion-content ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		dd .accordion-content ul li {
+			padding: 10px 30px;
+			transition: 0.3s;
+			margin: 0;
+		}
+		dd .accordion-content ul li:hover {
+			background: rgba(0,50,255,0.75);
+			color: #fff;
+		}
+		dd .accordion-content ul li:hover a {
+			color: #fff;
+		}
+		dd .accordion-content ul li a {
+			color: #555;
+			margin: 0;
+		}
+		
+		.reader-bg {
+			position: relative;
+			margin: 10px 0;
+			min-height: 450px;
+			width: 100%;
+			background-color: #EEEEEE;
+		}
+		.reader-bg  h3 {
+			margin: 10px;
+		}
+		.reader-bg .detail-tugas {
+			position: relative;
+			min-height: 450px;
+			width: 100%;
+			background: #fff;
+			padding: 25px;
+		}
+		.detail-tugas #desc-tugas,
+		.detail-tugas .upload-tugas {
+			margin-bottom: 30px;
+		}
+		.detail-tugas .upload-tugas form {
+			width: 100%;
+		}
+		.detail-tugas .upload-tugas form input {
+			margin: 0;	
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.detail-tugas .upload-tugas form input[type=file]{
+			width: calc(85% - 5px);
+			box-shadow: 0 0 5px rgba(0,0,0,0.2);
+			padding: 10px;
+			border-radius: 4px 0 0 4px;
+		}
+		.detail-tugas .upload-tugas form input[type=submit]{
+			width: calc(15% - 5px);
+			box-shadow: 0 0 5px rgba(0,0,0,0.2);
+			padding: 11px;
+			border: none;
+			background: #2678ff;
+			color: #fff;
+			border-radius: 0 4px 4px 0;
+		}
+		
+		.reader-bg .data-tugas {
+			background: #fff;
+			padding: 25px;
+		}
+		.data-tugas {
+			width: 100%;
+		}
+		.data-tugas table {
+			width: 100%;
+		}
+		.data-tugas table tr th, .data-tugas table tr td {
+			padding: 15px;
+			font-size: 16px;
+			color: #222;
+			text-align: center;
+		}
+		.data-tugas table tr td a {
+			padding: 10px;
+			color: #fff;
+			border-radius: 4px;
+			font-size: 14px;
+		}
+		.data-tugas table tr td a.status-selesai {
+			background: #20bb20;
+		}
+		.data-tugas table tr td a.status-belum {
+			background: #bbbb20;
+		}
+		.data-tugas table tr td:last-child {
+			width: 50px;
+		}
+		
+		.data-tugas table tr td form input {
+			padding: 10px;
+			border: none;
+			box-shadow: 0 0 5px rgba(0,0,0,0.25);
+		}
+		/* ==== Members ==== */
+		.member-list {
+			padding: 25px 30px;
+		}
+		.member-panel {
+			height: 225px;
+			text-align: center;
+			box-shadow: 0 0 5px rgba(0,0,0,0.25);
+			padding: 20px;
+			margin: 10px 0;
+		}
+		.member-profpic img {
+			border-radius: 50%;
+			width: 100px;
+			height: 100px;
+		}
+		.member-panel span {
+			display: block;
+			margin: 1px;
+		}
+		.member-panel span.member-name {
+			font-size: 20px;
+			margin-top: 15px;
 		}
 		/*=================================
 					Group Page
@@ -757,12 +922,17 @@
 					Enroll Code Page
 		======================================*/
 		.input-enroll-code {
-			height: 475px;
-			position: relative;
+			width: calc(80% + 12px);
+			background: rgba(0,0,0,0.5);
+			position: fixed;
+			z-index: 999;
+			top: -20px;
+			bottom: -20px;
+			left: calc(20% - 12.5px);
 		}
 		.enroll-title {
 			position: absolute;
-			top: 25%;
+			top: 20%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 			text-align: center;
@@ -771,17 +941,20 @@
 			width: 375px;
 		}
 		.input-enroll-code form {
+			background: #fff;
+			padding: 20px;
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+			border-radius: 4px;
 		}
 		.input-enroll-code form .form-group {
 			margin: 2px;
 		}
 		.input-enroll-code form input, button {
 			display: block;
-			height: 100%;
+			/*height: 100%;*/
 		}
 		.input-enroll-code form input {
 			padding: 15px 25px;
@@ -812,6 +985,18 @@
 		.input-enroll-code form button:hover {
 			background: #2688ff;
 		}
+		.input-enroll-code span.close {
+			position: absolute;
+			top: -10%;
+			right: -10%;
+			transform: translate(-50%,-50%);
+			font-size: 30px;
+			color: #fff;
+			font-weight: 800;
+			font-family: "helvetica";
+			cursor: pointer;
+			z-index: 1000;
+		}
 		/*======================
 				Un Footer
 		======================*/
@@ -826,4 +1011,270 @@
 		.un-footer h2 {
 			color: #ff9000;
 		}
-		
+		.un-footer button {
+			height: 50px;
+		}
+/*===============================
+			Quiz Page
+===============================*/
+.card-start-quiz {
+	padding: 20px 50px;
+}
+.card-start-quiz .quiz-desc {
+	width: 75%;
+}
+.card-start-quiz .quiz-desc p, b {
+	display: block;
+}
+.quiz .quiz-question #q-image {
+	margin: 10px 0;
+}
+.quiz .quiz-question {
+	padding: 10px;
+}
+.quiz .quiz-question .options {
+	margin: 10px;
+}
+.quiz .quiz-question .options form span {
+	display: block;
+	margin: 5px;
+}
+.quiz .switch-q button {
+	width: 100%;
+}
+.quiz .number-now {
+	background: #eee;
+	color: #111;
+	border-radius: 6px;
+	padding: 5px;
+	display: block;
+	margin: 10px;
+	text-align: center;
+}
+.quiz .time-count {
+	padding: 10px;
+	border-bottom: 3px solid #ff6000;
+}
+.quiz .number-list a{
+	text-align: center;
+	width: 100%;
+	padding: 10px 0;
+	color: #fff;
+} 
+.quiz .quiz-finish button {
+	width: 100%;
+	margin: 0;
+}
+
+/*=====================================
+			Quiz Result Page
+=====================================*/
+.card-result-quiz .result-header {
+	position: relative;
+	width: 100%;
+	height: 200px;
+	background: #113;
+}
+.card-result-quiz .result-header img.pp {
+	position: absolute;
+	top: calc(50% - 15px);
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 3px solid #fff;
+}
+.card-result-quiz .result-header span {
+	position: absolute;
+	top: calc(50% + 60px);
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: #fff;
+	font-size: 30px;
+}
+.result-content {
+	padding: 10px;
+}
+.user-score {
+	width: 100%;
+	text-align: center;
+	padding: 20px;
+}
+.user-score span {
+	display: block;
+	font-size: 45px;
+	font-weight: bold;
+	margin: 10px 0;
+}
+.last-quiz {
+	width: 100%;
+}
+.last-quiz .last-quiz-desc {
+	width: calc(100% / 4 - 3px);
+	height: 80px;
+	display: inline-block;
+	vertical-align: top;
+	border-right: 1px solid #eee;
+	padding: 10px;
+}
+.last-quiz .last-quiz-desc:nth-child(4) {
+	border-right: 1px solid transparent;
+}
+.last-quiz .last-quiz-desc span {
+	display: block;
+	font-size: 14px;
+}
+.quiz-comment {
+	width: 100%;
+	text-align: center;
+	padding: 0 20px 20px 20px;
+	font-size: 30px;
+	color: #33e;
+}
+
+/*==============================================================
+
+===                        Admin Page                        ===
+
+==============================================================*/
+.admin-banner {
+	position: relative;
+	width: 100%;
+	height: 100px;
+	background: #0356cc;
+	margin-top: -15px;
+	border-bottom: 3px solid #258;
+}
+.admin-banner h3 {
+	color: #fff;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.admin-content table tr td.actions-admin {
+	width: 20%;
+}
+.add-data-admin, 
+.search-admin {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 10px;
+}
+.search-admin form input,
+.search-admin form button {
+	display: inline-block;
+	vertical-align: middle;
+	transition: 0.2s;
+}
+.search-admin form input {
+	width: calc(100% - 50px);
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+}
+.search-admin form input:focus {
+	border: 1px solid #26bcde;
+	box-shadow: 0 0 2.5px rgba(0,0,0,0.1);
+}
+.search-admin form button {
+	border-radius: 0 4px 4px 0;
+	margin-left: -3px;
+	padding:  13px 20px;
+}
+.admin-pagination {
+	height: 40px;
+	background: #999;
+	width: 35%;
+	display: block;
+	margin: 10px auto;
+}
+.to-remove {
+	text-align: center;
+	color: #555;
+}
+#more-number, #less-number {
+}
+#more-number {
+	background: #2a78cc;
+}
+#less-number {
+	background: #cc222a;
+} 
+.admin-list-number::-webkit-scrollbar {
+	width: 7.5px;
+	border-radius: 16px;
+	background: #ddd;
+}
+.admin-list-number::-webkit-scrollbar-thumb {
+	width: 100px;
+	background: #777;
+	border-radius: 16px;
+	border: 1px solid #fff;
+}
+.admin-list-number {
+	padding-right: 15px;
+	max-height: 150px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	margin-bottom: 10px;
+}
+.card-finish { background: #2a56dd;}
+.card-reset {background: #dd5665;}
+.card-finish, .card-reset {
+	width: 100%;
+	margin: 5px 0;
+}
+.admin-list-number .card {
+	width: 40px;
+	background: #2a78ff;
+}
+.card-finish, .card-reset, 
+.admin-list-number .card {
+	height: 40px;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+	border-radius: 2px;
+	cursor: pointer;
+	transition: 0.2s;
+	margin-top: 2.5px;
+	margin-bottom: 2.5px;
+}
+.admin-list-number .card:hover {
+	transform: scale(1.01);
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+#multi-choice { background: #2a78ff; }
+#essay { background: #777; }
+#multi-choice, #essay {
+	color: #fff;
+	width: 100%;
+	height: 30px;
+	padding: 5px 0;
+	text-align: center;
+	border-radius: 4px;
+	transition: 0.2s;
+	cursor: pointer;
+}
+/*=================================
+			 Kelas Guru
+=================================*/
+.responds-timeline-guru a button {
+	padding: 5px 10px;
+}
+.text-content-timeline {
+	background: #ddd;
+	padding: 5px 0;
+}
+.text-content-timeline ol li {
+	margin: 5px;
+	padding: 5px 10px;
+	transition: 0.2s;
+}
+.text-content-timeline ol li:hover {
+	background: #ccc;
+}
+/*==================*/

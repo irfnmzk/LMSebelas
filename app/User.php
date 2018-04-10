@@ -48,6 +48,6 @@ class User extends Authenticatable
 
     public function kelas()
     {
-        return $this->hasMany('App\Kelas');
+        return $this->hasMany('App\Kelas', 'creator_id');
     }
 }

@@ -15,7 +15,6 @@ class AdminController extends Controller
     
     public function allKelas(){
         $kelas = Kelas::withCount('Anggota_kelas')->get();
-        
         return view('admin.kelas', compact('kelas'));
     }
     
