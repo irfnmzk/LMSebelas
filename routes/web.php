@@ -44,21 +44,24 @@ Route::get('/sekolah/find', 'UserController@find');
 Route::post('/question/find', 'QuizController@findQuestion')->name('question.find');
 
 // Class area
-Route::get('/classroom/{id}', 'KelasController@showKelas')->name('show.kelas');
-Route::post('/classroom/add', 'KelasController@storeKelas')->name('kelas.store');
-Route::get('/classroom/edit/{id}', 'KelasController@editKelas')->name('kelas.edit');
-Route::post('/classroom/edit/{id}', 'KelasController@updateKelas')->name('kelas.update');
-Route::post('/classroom/edit/{id}', 'KelasController@updateMateri')->name('materi.update');
-Route::get('/classroom/edit_material/{id}', 'KelasController@editMateri')->name('materi.edit');
-Route::post('/classroom/join', 'KelasController@joinKelas')->name('kelas.join');
-Route::post('/classroom/add_material', 'KelasController@storeMateri')->name('materi.store');
-Route::post('/classroom/add_modul', 'KelasController@storeModul')->name('modul.store');
-Route::delete('/classroom/delete_materi/{id}', 'KelasController@destroyMateri')->name('materi.destroy');
-Route::delete('/classroom/delete_modul/{id}', 'KelasController@destroyModul')->name('modul.destroy');
+
+Route::get('/classroom/{id}', 'kelasController@showKelas')->name('show.kelas');
+Route::post('/classroom/add', 'kelasController@storeKelas')->name('kelas.store');
+Route::get('/classroom/edit/{id}', 'kelasController@editKelas')->name('kelas.edit');
+Route::post('/classroom/edit/{id}', 'kelasController@updateKelas')->name('kelas.update');
+Route::post('/classroom/edit_material/{id}', 'kelasController@updateMateri')->name('materi.update');
+Route::get('/classroom/edit_material/{id}', 'kelasController@editMateri')->name('materi.edit');
+Route::post('/classroom/join', 'kelasController@joinKelas')->name('kelas.join');
+Route::post('/classroom/add_material', 'kelasController@storeMateri')->name('materi.store');
+Route::post('/classroom/add_modul', 'kelasController@storeModul')->name('modul.store');
+Route::post('/classroom/delete_materi', 'kelasController@destroyMateri')->name('materi.destroy');
+Route::delete('/classroom/delete_modul/{id}', 'kelasController@destroyModul')->name('modul.destroy');
+
 Route::post('/classroom/add_tugas', 'TugasController@store')->name('tugas.store');
 Route::get('/task/{id}', 'TugasController@show')->name('tugas.show');
 Route::get('/task_result/{id}', 'TugasController@result')->name('task.result');
 route::post('/task/edit/{id}', 'TugasController@edit')->name('task.edit');
+route::post('/task/delete/{id}', 'TugasController@destroy')->name('task.destroy');
 Route::post('/classroom/add_quiz', 'QuizController@store')->name('quiz.store');
 Route::get('task/download/{id}', 'TugasController@download')->name('task.download');
 route::post('nilai/add/{id}', 'NilaiController@tugas')->name('tugas.nilai.store');
@@ -78,6 +81,9 @@ Route::get('/quiz_result_all/{id}', 'QuizController@result_all');
 Route::get('/quiz_result_excel/{id}', 'QuizController@quiz_result_excel');
 
 Route::post('/diskusi/add/{id}', 'DiskusiController@store')->name('diskusi.store');
+Route::get('/form_materi/{id}', 'KelasController@form_materi');
+Route::get('/nilai_akhir/{id}', 'KelasController@nilai_akhir');
+
 
 // Social Login
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');

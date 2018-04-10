@@ -73,6 +73,14 @@ class TugasController extends Controller
 
         $tugas->update($request->all());
 
-        return redirect()->route('show.kelas', $tugas->materi->kelas->id);
+        return "<script>parent.location.reload();</script>";
+    }
+
+    public function destroy($id){
+
+        $tugas = Tugas::findOrFail($id);
+        Tugas::destroy($id);
+
+        return "<script>parent.location.reload();</script>";
     }
 }

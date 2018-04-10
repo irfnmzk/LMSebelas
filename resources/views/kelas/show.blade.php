@@ -32,7 +32,13 @@
         <div class="card in-class-header">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="in-class-header-content" id="info"><h4>INFO</h4></div>
+                    <div class="in-class-header-content" id="info"><h4>
+                        @if(Auth::user()->role == 1)
+                        FORM MATERI
+                        @else
+                        INFO
+                        @endif
+                    </h4></div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <div class="in-class-header-content" id="materi"><h4>MATERI</h4></div>
@@ -46,8 +52,9 @@
 
     <div class="info">
             <div class="row">
-                <div class="col-lg-7 col-md-7 col-sm-7">
-                    <div class="card card-class-info">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                <button class="btn btn-success btn-sm" id="toggle-pengumuman">Show Pengumuman</button>
+                    <div id="pengumuman-div" class="card card-class-info" @if(Auth::user()->role == 1) style="display:none;" @endif>
                     <div class="content-timeline">
                     @if(Auth::user()->role == 1)
                         <h4>Tambah Pengumuman</h4>
@@ -57,26 +64,18 @@
                     
                         <button type="submit" class="post-status btn btn-info pull-right">Post</button>
                         </form>
-                    @endif
                         @include('timeline.kelas')
+                    @else
+                        @include('timeline.kelas')
+                    @endif
+                        
                     </div>
                     </div>
-                </div>
-                <div class="col-lg-5 col-md-5 col-sm-5">
-                    <div class="card card-class-bio">
-                        <div class="class-photo">
-                            <a href="{{ route('kelas.edit', $kelas->id) }}"><button class="btn btn-info edit-bio"><i class="zmdi zmdi-edit"></i> <span>Edit</span></button></a>
-                            <img src="@empty(!$kelas->cover){{ asset('img/'.$kelas->cover) }} @else ../assets/img/catfall.jpeg @endempty"/>
-                        </div>
-                        <div class="class-bio">
-                            <h3>{{ $kelas->name }}</h3>
-                            <h4>Guru : <span>{{ ucwords($kelas->creator->name) }}</span></h4>
-                            <p>
-                            Kode Kelas : {{ $kelas->code }}<br>
-                            {!! $kelas->deskripsi !!}
-                            </p>
-                        </div>
-                    </div>
+                    <br>
+                    @if(Auth::user()->role == 1)
+                    <iframe style='width:100%;height:85vh' height='100%' width='100%' src='{{ url('/form_materi/'.$kelas->id)}}' frameborder='0'>
+                    </iframe>
+                    @endif
                 </div>
             </div>
         </div>
@@ -110,14 +109,6 @@
                                 @endforeach
                             @endif
                             </ul>
-                            @if(Auth::user()->role == '1')
-                            <a href="{{ route('materi.edit',$materi->id) }}" class="btn btn-sm btn-info btn-hover">Edit</a>&nbsp;
-                            <form method="POST" action="{{ route('materi.destroy', $materi->id) }}" accept-charset="UTF-8" style="display:inline">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button class="btn btn-sm btn-danger btn-hover" title="Delete Materi" onclick="return confirm(&quot;Hapus Materi Ini?&quot;)">Hapus</button>
-                            </form>
-                            @endif
                         </div>
                     </dd>
                 @endforeach
@@ -125,15 +116,6 @@
             </div>
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9">
-        <div class="tombol">
-        @if(Auth::user()->role == '1')
-        <form id="destroy_modul" method="POST" action="" accept-charset="UTF-8" style="display:inline">
-            {{ method_field('DELETE') }}
-            {{ csrf_field() }}
-            <button class="btn btn-sm btn-danger" id="btn-destroy_modul" title="Delete Modul" style="display: none;" onclick="return confirm(&quot;Confirm delete?&quot;)">Hapus</button>
-        </form>
-        @endif
-        </div>
             <div class="reader-bg">
 
             </div>
@@ -168,198 +150,38 @@
     @if(Auth::user()->role == '1')
     <div class="row">
     <div class="col-md-12">
-      <div class="btn-group-sm hidden" id="mini-fab">
-      <span data-toggle="modal" data-target="#TambahMateri">
-        <a href="#" class="btn btn-info btn-fab"  data-toggle="tooltip" data-placement="left" data-original-title="Tambah Materi" title="" id="autre">
+      <div class="btn-group">
+        <a data-toggle="modal" data-target="#KelasDetail" class="btn btn-success btn-fab" id="main">
           <i class="material-icons">
             <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0z" fill="none"/>
-                <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h10v4h8v10z"/>
-            </svg>
-          </i>
-        </a>  
-      </span>
-        
-        <span data-toggle="modal" data-target="#TambahModul">
-          <a href="#" class="btn btn-warning btn-fab" data-toggle="tooltip" data-placement="left" data-original-title="Tambah Modul" title="" id="sms">
-          <i class="material-icons">
-           <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
-            <path d="M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M15,18V16H6V18H15M18,14V12H6V14H18Z" />
-            </svg>
-          </i>
-        </a>  
-        </span>
-        
-        <span data-toggle="modal" data-target="#TambahTugas">
-            <a href="#" class="btn btn-danger btn-fab" data-toggle="tooltip" data-placement="left" data-original-title="Tambah Tugas" title="" id="mail">
-              <i class="material-icons">
-                <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
-                    <path d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                </svg>
-              </i>
-            </a>
-        </span>
-
-        <span data-toggle="modal" data-target="#TambahQuiz">
-            <a href="#" class="btn btn-fab" data-toggle="tooltip" data-placement="left" data-original-title="Tambah Quiz" title="" id="quiz">
-              <i class="material-icons">
-                <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
-                  <path fill="#000000" d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
-                </svg>
-              </i>
-            </a>
-        </span>
-        
-      </div>
-      <div class="btn-group">
-        <a href="javascript:void(0)" class="btn btn-success btn-fab" id="main">
-          <i class="material-icons">
-            <svg fill="#000000" style="width:24px;height:24px" viewBox="0 0 24 24">
-            <path d="M19,11H15V15H13V11H9V9H13V5H15V9H19M20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M4,6H2V20A2,2 0 0,0 4,22H18V20H4V6Z" />
+                <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
             </svg>
           </i>
         </a>
       </div>
     </div>
   </div>
-  <div class="modal fade" id="TambahMateri" tabindex="-1" role="dialog" aria-labelledby="TambahMateri">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Tambah Materi</h4>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{route('materi.store')}}" class="form-horizontal" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                    <input type="hidden" value="{{ $kelas->id }}" name="kelas_id">
-                    <input type="text" class="form-control" name="judul" placeholder="Judul"/>
-                    <textarea class="form-control" name="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
-                    <input type="text" class="form-control" name="kkm" placeholder="KKM"/>
-                    <div class="col-md-6">
-                       <input type="text" class="form-control" name="nilai_tugas" placeholder="Nilai Tugas (%)"/> 
-                    </div>
-                    <div class="col-md-6">
-                    <input type="text" class="form-control" name="nilai_quiz" placeholder="Nilai Quiz (%)"/> 
-                    </div>
-                    <b>Keterangan : nilai tugas dan quiz saat dijumlahkan harus 100 %</b>
-                    
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group form-button">
-                    <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
-                    </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="TambahTugas" tabindex="-1" role="dialog" aria-labelledby="TambahTugas">
+  <div class="modal fade" id="KelasDetail" tabindex="-1" role="dialog" aria-labelledby="TambahMateri">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Tambah Tugas</h4>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{route('tugas.store')}}" class="form-horizontal" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                    <input type="hidden" value="{{ $kelas->id }}" name="kelas_id">
-                    <div class="select">
-                        <select name="materi_id" class="form-control">
-                            @foreach($kelas->materi as $opt)
-                                <option value="{{ $opt->id }}">{{ $opt->judul }}</option>
-                            @endforeach
-                        </select>
+             <div class="col-lg-10 col-md-10 col-sm-10">
+                    <div class="card card-class-bio">
+                        <div class="class-photo">
+                            <a href="{{ route('kelas.edit', $kelas->id) }}"><button class="btn btn-info edit-bio"><i class="zmdi zmdi-edit"></i> <span>Edit</span></button></a>
+                            <img src="@empty(!$kelas->cover){{ asset('img/'.$kelas->cover) }} @else ../assets/img/catfall.jpeg @endempty"/>
+                        </div>
+                        <div class="class-bio">
+                            <h3>{{ $kelas->name }}</h3>
+                            <h4>Guru : <span>{{ ucwords($kelas->creator->name) }}</span></h4>
+                            <p>
+                            Kode Kelas : {{ $kelas->code }}<br>
+                            {!! $kelas->deskripsi !!}
+                            </p>
+                        </div>
                     </div>
-                    <input type="text" class="form-control" name="judul" placeholder="Judul"/>
-                    <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi" cols="20" rows="3"></textarea>
-                    <input id="deadline" type="date" class="form-control" name="deadline" placeholder="deadline">
-                    
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group form-button">
-                    <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
-                    </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="TambahModul" tabindex="-1" role="dialog" aria-labelledby="TambahModul">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Tambah Modul</h4>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{route('modul.store')}}" class="form-horizontal" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                    
-                    <input type="text" class="form-control" name="judul" placeholder="Judul"/>
-                    <div class="select">
-                        <select name="materi_id" class="form-control">
-                            @foreach($kelas->materi as $opt)
-                                <option value="{{ $opt->id }}">{{ $opt->judul }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="fallback">
-                        <input name="link" type="file"/>
-                      </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group form-button">
-                    <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
-                    </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="TambahQuiz" tabindex="-1" role="dialog" aria-labelledby="TambahQuiz">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Tambah Quiz</h4>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{route('quiz.store')}}" class="form-horizontal" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                    
-                    <div class="select">
-                        <select name="materi_id" class="form-control">
-                            @foreach($kelas->materi as $opt)
-                                <option value="{{ $opt->id }}">{{ $opt->judul }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @foreach(Auth::user()->anggota_kelas as $anggota_kelas)
-                    @if($anggota_kelas->kelas_id == $kelas->id)
-                    <input type="hidden" name="creator_id" value="{{ $anggota_kelas->id }}">
-                    @endif
-                    @endforeach
-                    <input id="judul" type="text" class="form-control" name="judul" placeholder="Judul">
-                    <textarea rows="3" id="deskripsi" class="form-control" name="deskripsi" placeholder="Deskripsi"></textarea>
-                    <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi">
-                    <input id="jumlah_soal" type="number" class="form-control" name="jumlah_soal" placeholder="Jumlah Soal">
-                    Tanggal Mulai 
-                    <input id="tanggal_mulai" type="date" class="form-control" name="tanggal_mulai" placeholder="Tanggal Mulai">
-                    Tanggal Selesai 
-                    <input id="tanggal_selesai" type="date" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai">         
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group form-button">
-                    <button type="submit" class="btn btn-fill btn-primary">Simpan</button>
-                    </form>
-                    </div>
-                </div>
+                </div>                  
             </div>
         </div>
     </div>
@@ -406,6 +228,7 @@
         // });
         
     //=== /accordion ===//
+
     
     //choose materi/members
     
@@ -444,6 +267,17 @@
         inf.fadeOut();
         mmbrs.fadeIn();
     });
+
+    $("#toggle-pengumuman").click(function() {
+        var x = document.getElementById("pengumuman-div");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                this.innerHTML = "Hide Pengumuman";
+            } else {
+                x.style.display = "none";
+                this.innerHTML = "Show Pengumuman";
+            }
+        });
 
     $('.hell').click(function (e) {
         e.preventDefault();
