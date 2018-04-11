@@ -190,8 +190,9 @@
                                     <span class="caret" style="margin-top:-15px;"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li>
+                                    <li>@if(!Auth::user()->isAdmin())
                                         <a href="{{ url('user/profile') }}"><i class="zmdi zmdi-account" style="font-size:20px;margin-right:10px;"></i><span>Profile</span></a>
+                                        @endif
                                     </li>
                                     <!-- <li>
                                         <a href="#"><i class="zmdi zmdi-settings" style="font-size:20px;margin-right:10px;"></i><span>Settings</span></a>
