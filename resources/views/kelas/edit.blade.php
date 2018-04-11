@@ -11,10 +11,11 @@
                             {{csrf_field()}}
 
                             <div class="row">
-                            <div class="col-lg-2 col-md-2">
-                            <h3>Edit Kelas</h3>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-lg-12 col-md-12">
+                            <h3 style="text-align:center;margin: 20px 0 0 0;">Edit Kelas</h3>
                             </div>
-                            <div class="col-lg-8 col-md-8 col-sm-12">
+                            <div class="col-lg-7 col-md-7 col-sm-12">
                             <div class="">
                                 <div class="card-content">
                                     
@@ -36,32 +37,34 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <label class="col-md-3 label-on-left">Cover</label>
-                                            <div class="col-md-9">
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="control-label"></label>
-                                                    <img style="max-height: 400px;max-width: 400px;" id="cover" src="{{ asset('img/'.$kelas->cover) }}" @if($kelas->cover == null) style="display:none;" @endif>
-                                                </div>
-                                                <div class="fallback">
-                                                        <input name="cover" type="file"/>
-                                                      </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class=" col-lg-12 col-md-12 col-sm-12">
-                                                <div class="form-group form-button">
-                                                    <button type="submit" class="btn btn-fill btn-info">SIMPAN</button>
-                                                </div>
-                                            </div>
-                                        </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2"></div>
+                        <div class="col-lg-5 col-md-5 col-sm-12">
+                        
+                            <legend>Class Image</legend>
+                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                    <div class="fileinput-new thumbnail">
+                                        <img src="{{ asset('assets/img/image_placeholder.jpg') }}"/>
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                    <div>
+                                        <span class="btn btn-round btn-file">
+                                            <span class="fileinput-new">Select image</span>
+                                        <span class="fileinput-exists">Change</span>
+                                        <input type="file" name="..." />
+                                        </span>
+                                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="text-align:left;">
+                            <button class="btn btn-info"><i class="zmdi zmdi-save"></i> SIMPAN</button>
+                            <p></p>
                         </div>
                         </div>
+                        </div>
+                        
                          </form>   
                     </div>
 @endsection
