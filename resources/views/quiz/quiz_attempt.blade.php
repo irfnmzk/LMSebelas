@@ -23,7 +23,7 @@
 					<h3>{{ $quiz->judul }}</h3>
 					<div class="quiz-desc">
 					<p>
-						{{ $quiz->deskripsi }} 
+						{!! $quiz->deskripsi !!} 
 					</p>
 						<span>{{ $quiz->soal->count() }} / {{ $quiz->jumlah_soal }}</span> Pertanyaan
 						<b>{{ $tanggal_mulai->toDayDateTimeString() }} sd {{ $tanggal_selesai->toDayDateTimeString() }}</b>
@@ -93,9 +93,7 @@
 		            @endif
 
 		            @if($loop->last)
-		            <div class="pull-right">
-		                <div class="col-lg-4 col-md-4 col-sm-12 pull-right"><button class="btn btn-info finishquiz">Selesai</button></div>
-		            </div>
+		            
 		            @else
 		            <div class="pull-right">
 		                <div class="col-lg-4 col-md-4 col-sm-12 pull-right"><button class="btn btn-info berikutnya" idquestion="{{ $soal->id }}" type="button" ke="{{ $loop->iteration }}">Berikutnya</button></div>

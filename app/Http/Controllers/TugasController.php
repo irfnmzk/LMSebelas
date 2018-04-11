@@ -22,7 +22,7 @@ class TugasController extends Controller
 
         $tugas = Tugas::create($data);
 
-        return "<script>parent.location.reload();</script>";
+        return redirect(url('/form_materi/'.$tugas->materi->kelas->id));
     }
 
     public function show($id){
@@ -73,7 +73,7 @@ class TugasController extends Controller
 
         $tugas->update($request->all());
 
-        return "<script>parent.location.reload();</script>";
+        return redirect(url('/form_materi/'.$tugas->materi->kelas->id));
     }
 
     public function destroy($id){
@@ -81,6 +81,6 @@ class TugasController extends Controller
         $tugas = Tugas::findOrFail($id);
         Tugas::destroy($id);
 
-        return "<script>parent.location.reload();</script>";
+        return redirect(url('/form_materi/'.$tugas->materi->kelas->id));
     }
 }

@@ -30,7 +30,7 @@ class QuizController extends Controller
         $requestData = $request->all();
         $quiz = Quiz::create($requestData);
 
-        return "<script>parent.location.reload();</script>";
+        return redirect(url('/form_materi/'.$quiz->materi->kelas->id));
     }
 
     public function storeQuestion(Request $request)
@@ -111,7 +111,7 @@ class QuizController extends Controller
             $this->stopquiz_time_over($cek->quiz_id, $cek->id);
         }
         else{
-            return view('quiz.quiz_attempt', compact('quiz', 'sip', 'tanggal_mulai', 'tanggal_selesai', 'disabled', 'classdisabled'));
+            return view('quiz.quiz_attempt', compact('cek','quiz', 'sip', 'tanggal_mulai', 'tanggal_selesai', 'disabled', 'classdisabled'));
         }
     }
 
@@ -134,7 +134,7 @@ class QuizController extends Controller
         $quiz = Quiz::findOrFail($id);
         Quiz::destroy($id);
 
-        return "<script>parent.location.reload();</script>";
+        return redirect(url('/form_materi/'.$quiz->materi->kelas->id));
     }
 
     public function result_all($quiz_id){
@@ -189,7 +189,8 @@ class QuizController extends Controller
         $quiz = Quiz::findOrFail($id);
         $quiz->update($data);
 
-        return redirect()->route('quiz.control',$id);
+        return redirect(url('/form_materi/'.$quiz->materi->kelas->id));
+        
     }
 
 

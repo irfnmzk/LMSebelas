@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="content admin-content">
  <div class="container-fluid">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                     <h2>Mengelola Soal</h2>
@@ -17,11 +16,11 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                 
-                                <button class="card-finish" id="more-number" @if($quiz->soal->count() < $quiz->jumlah_soal)disabled @endif>&plus;
+                                <button class="btn btn-primary" id="more-number" @if($quiz->soal->count() >= $quiz->jumlah_soal)disabled @endif>&plus;
                                 </button>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <br/>
+                                    <a href="{{route('show.kelas', $quiz->materi->kelas->id)}}" class="btn btn-warning">Kembali</a>
                                     <br/>
                                     <br/>
                                 </div>
@@ -36,7 +35,6 @@
                                     <input readonly type="text" class="form-control" value="{{ $quiz->judul }}" placeholder="Judul">
                                 </div>
                                 
-                            </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 Jumlah Maks Pertanyaan : <span>{{$quiz->jumlah_soal}}</span>
                             </div>
@@ -52,8 +50,10 @@
                             <button form="del_quiz" class="btn btn-sm btn-danger" title="Delete soal" onclick="return confirm(&quot;Hapus Soal Ini?&quot;)"><i class="material-icons">close</i>Hapus Soal</button>
                                 <div class="card">
                                     @if(!empty($soal->picture))
-                                        <div class="col-lg-12 col-md-12 col-sm-12" id="q-image"><img src="{{ asset('img/'.$soal->picture) }}"></div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12" id="q-image"><img src="{{ asset('img/'.$soal->picture) }}" style="max-height: 200px; max-width: 200px;"></div>
                                     @endif
+                                    <label>Pilih Gambar</label>
+                                    <input type="file" name="picture" accept="image/*">
                                 </div>
                                 
                                     
@@ -68,13 +68,16 @@
                                     <div class="multiple-choice-type">
                                     
                                     @foreach($soal->jawaban as $jawaban)
-                                        <div class="col-lg-2 col-md-2 col-sm-2">
-                                        <input type="radio" id="benar_edit-{{$loop->iteration-1}}" name="benar" value="{{$loop->iteration-1}}" @if($jawaban->benar == 1) checked @endif >
+                                        <div class="col-lg-11 col-md-11 col-sm-11">
+                                        <div class="radio">
+                                        <label>
+                                        <input type="radio" id="benar_edit-{{$loop->iteration-1}}" name="benar" value="{{$loop->iteration-1}}" @if($jawaban->benar == 1) checked @endif > Pilih Sebagai Jawaban Benar
+                                        </label>
                                         </div>
-                                    <div class="col-lg-9 col-md-9 col-sm-9">
                                         <input type="hidden" name="pilihan_id-{{$loop->iteration-1}}" id="pilihan_id-{{$loop->iteration-1}}" value="{{ $jawaban->id }}">
                                         <input type="text" class="form-control" id="pilihan_edit-{{$loop->iteration-1}}" name="pilihan_edit-{{$loop->iteration-1}}" placeholder="Pilihan {{$loop->iteration}}" value="{{ $jawaban->isi }}" required>
-                                    </div>
+                                        </div>
+                                    
                                     @endforeach
                                     
                                     <br/>
@@ -90,13 +93,16 @@
                             </div>
                             </form>
                             @endforeach
+
                             <form method="POST" action="{{route('question.store')}}" class="form-horizontal form_soal" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="col-lg-12 col-md-12 col-sm-12 soal-quiz tambah-soal" style="display: none;">
                                 <div class="card">
-                                    
+                                <label>Pilih Gambar</label>
+                                    <input type="file" name="picture" accept="image/*">
                                 </div>
                                 <input type="hidden" name="quiz_id" value="{{$quiz->id}}">
+                                
                                     
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                 <label class="control-label">Pertanyaan</label>
@@ -109,18 +115,17 @@
                                     <div class="multiple-choice-type">
                                     
                                     @for($i=1; $i<=5; $i++)
-                                        <div class="col-lg-2 col-md-2 col-sm-2">
+                                        <div class="col-lg-11 col-md-11 col-sm-11">
                                         <div class="radio">
                                         <label>
-                                        <input type="radio" name="benar" value="{{$i-1}}" @if($i==1) checked @endif >
+                                        <input type="radio" name="benar" value="{{$i-1}}" @if($i==1) checked @endif > Pilih Sebagai Jawaban Benar
                                         </label>
                                         </div>
-                                        </div>
-                                    <div class="col-lg-9 col-md-9 col-sm-9">
                                         <input type="text" class="form-control" id="pilihan" name="pilihan[]" placeholder="Pilihan {{$i}}" required>
-                                    </div>
-                                    @endfor
+                                        </div>
                                     
+                                    @endfor
+                                    <br />
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                     <button class="btn btn-success" type="submit">Simpan</button>
@@ -132,11 +137,12 @@
                             </div>
                             </form>
                             
-                            
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
 @endsection
 
 @section('script')

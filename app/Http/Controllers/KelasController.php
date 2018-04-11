@@ -134,7 +134,7 @@ class KelasController extends Controller
 
 		$materi = Materi::create($data);
 
-		return "<script>parent.location.reload();</script>";
+		return redirect(url('/form_materi/'.$materi->kelas->id));
 	}
 
 	public function storeModul(Request $request)
@@ -149,7 +149,7 @@ class KelasController extends Controller
         }
 
 		$modul = Modul::create($data);
-		return "<script>parent.location.reload();</script>";
+		return redirect(url('/form_materi/'.$modul->materi->kelas->id));
 	}
 
 	public function destroyModul($id)
@@ -157,7 +157,7 @@ class KelasController extends Controller
     	$modul = Modul::findOrFail($id);
         Modul::destroy($id);
 
-        return "<script>parent.location.reload();</script>";
+        return redirect(url('/form_materi/'.$modul->materi->kelas->id));
     }
 
     public function destroyMateri(Request $request)
@@ -167,7 +167,7 @@ class KelasController extends Controller
     	
 	   	Materi::whereIn('id',$checked)->delete();
 
-        return "<script>parent.location.reload();</script>";
+        return redirect(url('/form_materi/'.$materi->kelas->id));
     }
 
     public function form_materi($id){

@@ -26,7 +26,7 @@
                             
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="content-timeline">
-                                <div class="pull-right"><a href="{{ route('materi.edit',$materi->id) }}" class="btn btn-sm btn-info btn-hover">Edit</a> &nbsp;
+                                <div class="pull-right"><button onclick="handleMateri({{ $materi->id }})" class="btn btn-sm btn-info btn-hover">Edit</button> &nbsp;
                                 <input type="checkbox" class="check-materi" name="checked[]" value="{{ $materi->id}}" form="del_materi"/></div>
                                 <div class="username-timeline">{{$loop->iteration}}. {{ $materi->judul}}</div>
                                 <br/>
@@ -36,11 +36,11 @@
                                     <li>
                                         {{ $modul->judul }}                              
                                         <div class="pull-right">
-                                        <form id="destroy_modul" method="POST" action="" accept-charset="UTF-8" style="display:inline">
+                                        <form id="destroy_modul" method="POST" action="{{ route('modul.destroy', $modul->id) }}" accept-charset="UTF-8" style="display:inline">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
-                                            <a href="#" class="text-danger" onclick="return confirm(&quot;Hapus Modul {{ $modul->judul }}?&quot;)">
-                                            <i class="zmdi zmdi-delete"></i> Hapus</a>
+                                            <button class="btn btn-xs btn-danger" onclick="return confirm(&quot;Hapus Modul {{ $modul->judul }}?&quot;)">
+                                            <i class="zmdi zmdi-delete"></i> Hapus</button>
                                         </form>
                                         </div>
                                     </li>
@@ -49,11 +49,11 @@
                                     <li>
                                         Tugas : {{ $tugas->judul }}                               
                                         <div class="pull-right">
-                                            <a data-toggle="modal" data-target="#TaskControl-{{ $tugas->id }}"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp;
+                                            <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#TaskControl-{{ $tugas->id }}"><i class="zmdi zmdi-edit"></i> Edit</button> &nbsp;
                                             <form method="POST" action="{{ route('task.destroy', $tugas->id) }}" accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
-                                            <a href="#" class="text-danger" onclick="return confirm(&quot;Hapus Tugas : {{$tugas->judul}}?&quot;)"><i class="zmdi zmdi-delete"></i> Hapus</a>
+                                            <button class="btn btn-xs btn-danger" onclick="return confirm(&quot;Hapus Tugas : {{$tugas->judul}}?&quot;)"><i class="zmdi zmdi-delete"></i> Hapus</button>
                                             </form>
                                         </div>
                                     </li>
@@ -62,11 +62,11 @@
                                     <li>
                                         Quiz : {{ $quiz->judul }}                               
                                         <div class="pull-right">
-                                            <a data-toggle="modal" data-target="#EditQuiz-{{ $quiz->id }}"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp;
+                                            <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#EditQuiz-{{ $quiz->id }}"><i class="zmdi zmdi-edit"></i> Edit</button> &nbsp;
                                             <form method="POST" action="{{ route('quiz.destroy', $quiz->id) }}" accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
-                                            <a href="#" class="text-danger" onclick="return confirm(&quot;Hapus Quiz : {{$quiz->judul}}?&quot;)"><i class="zmdi zmdi-delete"></i> Hapus</a>
+                                            <button class="btn btn-xs btn-danger" onclick="return confirm(&quot;Hapus Quiz : {{$quiz->judul}}?&quot;)"><i class="zmdi zmdi-delete"></i> Hapus</button>
                                             </form>
                                         </div>
                                     </li>
@@ -186,10 +186,8 @@
                         <label class="control-label">Judul</label>    
                        <input type="text" class="form-control" name="judul" placeholder="Judul"/>
                     </div>
-                    <div class="form-group label-floating">
-                        <label class="control-label">File</label>    
-                       <input name="link" type="file"/>
-                    </div>
+                        <label class="control-label">File</label> 
+                            <input name="link" type="file"/>
                     
                 </div>
                 <div class="modal-footer">
@@ -226,7 +224,7 @@
                     Deskripsi
                     <textarea rows="3" class="form-control deskripsi" name="deskripsi" placeholder="Deskripsi"></textarea>
                     <div class="form-group label-floating">
-                        <label class="control-label">Durasi</label>    
+                        <label class="control-label">Durasi (Menit)</label>    
                        <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi">
                     </div>
                     <div class="form-group label-floating">
@@ -303,7 +301,7 @@
                     <textarea rows="3" id="deskripsi" class="form-control deskripsi" name="deskripsi" placeholder="Deskripsi">{{ $quiz->deskripsi }}</textarea>
                     
                     <div class="form-group label-floating">
-                        <label class="control-label">Durasi</label>    
+                        <label class="control-label">Durasi (Menit)</label>    
                        <input id="durasi" type="number" class="form-control" name="durasi" placeholder="Durasi" value="{{ $quiz->durasi }}">
                     </div>
                     <div class="form-group label-floating">
@@ -320,7 +318,7 @@
                     </div>
                             
                 </div>
-                <button class="btn btn-fill btn-warning" id="kelola_soal" value="{{ $quiz->id}}">Kelola Soal</button>
+                <button class="btn btn-fill btn-warning" id="kelola_soal-{{ $quiz->id }}" value="{{ $quiz->id}}" onclick="handleQuiz({{ $quiz->id }})">Kelola Soal</button>
                 <div style="float: right; padding-bottom: 50px; padding-right: 20px;"><button type="submit" class="btn btn-fill btn-primary">Simpan</button></div>
                 <div class="modal-footer">
                     <div class="form-group form-button">
@@ -345,18 +343,13 @@
 <!--  DataTables.net Plugin    -->
 <script src="{{ asset('assets/vendors/jquery.datatables.js') }}"></script>
 <script type="text/javascript">
-    $(".check-materi").click(function() {
-      $("#btn-del-materi").attr("disabled", !this.checked);
+    $(function() {
+      var checkboxes = $('.check-materi').click(function(event){
+        $("#btn-del-materi").prop("disabled", checkboxes.filter(':checked').length == 0);
+    });
     });
     $("#nilai_akhir").click(function() {
       document.location.href = "{{ url('nilai_akhir/'. $kelas->id) }}";
-    });
-    $("#kelola_soal").click(function() {
-        var url = "{{ route('quiz.control', ':id') }}";
-        url = url.replace(':id', $("#kelola_soal").val());
-      if (top.location!= self.location) {
-        top.location = url;
-        }
     });
 
     $(document).ready(function(){
@@ -368,6 +361,22 @@
         $('.dropdown-toggle').dropdown();
         
     });
+
+    function handleQuiz(i){
+        var url = "{{ route('quiz.control', ':id') }}";
+        url = url.replace(':id', $("#kelola_soal-"+i).val());
+      if (top.location!= self.location) {
+        top.location = url;
+        }
+    }
+
+    function handleMateri(i){
+        var url = "{{ route('materi.edit', ':id') }}";
+        url = url.replace(':id', i);
+      if (top.location!= self.location) {
+        top.location = url;
+        }
+    }
 
     function handleElement(i) {
         var c = $("#comment-"+i);
