@@ -142,6 +142,8 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function(){
+        document.getElementById("minimizeSidebar").click();
+        
         $('.pertanyaan').summernote({
             height: 100,
             tabsize: 2,
