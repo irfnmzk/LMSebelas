@@ -22,7 +22,7 @@ class TugasController extends Controller
 
         $tugas = Tugas::create($data);
 
-        return redirect()->route('show.kelas', $tugas->materi->kelas_id);
+        return "<script>parent.location.reload();</script>";
     }
 
     public function show($id){

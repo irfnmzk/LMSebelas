@@ -30,7 +30,7 @@ class QuizController extends Controller
         $requestData = $request->all();
         $quiz = Quiz::create($requestData);
 
-        return redirect()->route('show.kelas', $quiz->materi->kelas_id);
+        return "<script>parent.location.reload();</script>";
     }
 
     public function storeQuestion(Request $request)
