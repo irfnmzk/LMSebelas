@@ -1,12 +1,31 @@
 @extends('layouts.app') @section('content')
+<style>
+    button.btn-action {
+        padding: 5px 10px;
+    }
+    table.table-m {
+        width:100%;
+        margin: 0;
+        border: 1px solid #ddd;
+    }
+    table.table-m tr th {
+        font-size: 16px;
+    }
+    table.table-m tr td {
+        font-size: 14px;
+    }
+    table.table-m tbody tr:nth-child(odd) {
+        background: #eee;
+    }
+</style>
 <div class="admin-banner">
     <h3>Data User</h3>
 </div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <div class="card" style="padding:10px;">
-                <table class="mdl-data-table" id="main-table">
+            <div class="card" style="padding:20px;">
+                <table class="table-m" id="main-table">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -23,7 +42,10 @@
                             <td>{{$item->name}}</td>
                             <td>{{$item->role}}</td>
                             <td>{{$item->no_identitas}}</td>
-                            <td class="actions-admin"><a href="#" class="text text-info details-control"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp; <a href="{{ route('delete.user', $item->id) }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
+                            <td class="actions-admin">
+                                <a href="#" class="text text-info details-control"><button class="btn btn-info btn-action"><i class="zmdi zmdi-edit"></i> Edit</button></a> &nbsp; 
+                                <a href="{{ route('delete.user', $item->id) }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><button class="btn btn-danger btn-action"><i class="zmdi zmdi-delete"></i> Delete</button></a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

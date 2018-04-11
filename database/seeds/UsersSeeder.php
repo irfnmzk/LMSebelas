@@ -16,12 +16,16 @@ class UsersSeeder extends Seeder
         	'name' => 'Guru',
         	'email' => 'guru@gmail.com',
         	'password' => bcrypt('persib'),
+            'role' => '1',
+            'active' => '1',
         ]);
 
         DB::table('users')->insert([
         	'name' => 'Siswa',
         	'email' => 'siswa@gmail.com',
         	'password' => bcrypt('persib'),
+            'role' => '2',
+            'active' => '1',
         ]);
 
         DB::table('users')->insert([
@@ -29,6 +33,7 @@ class UsersSeeder extends Seeder
         	'email' => 'admin@gmail.com',
             'password' => bcrypt('persib'),
             'role' => 3,
+            'active' => '1',
         ]);
     }
 }

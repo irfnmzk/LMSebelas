@@ -82,7 +82,7 @@
                         </a>
                     </li>
                     @endif
-                    @if(Auth::user()->active == 1)
+                    @if(Auth::user()->active == 1 and !Auth::user()->isAdmin())
                     <li>
                         <a href="{{ url('classroom') }}">
                             <i class="zmdi zmdi-home"></i>
