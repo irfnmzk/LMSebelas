@@ -61,7 +61,7 @@ Route::post('/classroom/add_tugas', 'TugasController@store')->name('tugas.store'
 Route::get('/task/{id}', 'TugasController@show')->name('tugas.show');
 Route::get('/task_result/{id}', 'TugasController@result')->name('task.result');
 route::post('/task/edit/{id}', 'TugasController@edit')->name('task.edit');
-route::post('/task/delete/{id}', 'TugasController@destroy')->name('task.destroy');
+route::delete('/task/delete/{id}', 'TugasController@destroy')->name('task.destroy');
 Route::post('/classroom/add_quiz', 'QuizController@store')->name('quiz.store');
 Route::get('task/download/{id}', 'TugasController@download')->name('task.download');
 route::post('nilai/add/{id}', 'NilaiController@tugas')->name('tugas.nilai.store');

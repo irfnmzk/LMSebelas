@@ -62,7 +62,7 @@
                                             @foreach($materi->quiz as $quiz)
                                             <td>
                                                 @foreach($anggota_kelas->hasil_quiz as $hasil_quiz)
-                                                    @if($hasil_quiz->quiz->id == $quiz->id)
+                                                    @if($hasil_quiz->quiz['id'] == $quiz->id)
                                                     {{ $hasil_quiz->nilai }}
                                                     @endif
                                                 @endforeach
