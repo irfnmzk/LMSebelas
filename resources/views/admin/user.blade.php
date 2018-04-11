@@ -1,23 +1,4 @@
 @extends('layouts.app') @section('content')
-<style>
-    button.btn-action {
-        padding: 5px 10px;
-    }
-    table.table-m {
-        width:100%;
-        margin: 0;
-        border: 1px solid #ddd;
-    }
-    table.table-m tr th {
-        font-size: 16px;
-    }
-    table.table-m tr td {
-        font-size: 14px;
-    }
-    table.table-m tbody tr:nth-child(odd) {
-        background: #eee;
-    }
-</style>
 <div class="admin-banner">
     <h3>Data User</h3>
 </div>
@@ -40,7 +21,7 @@
                         <tr data-child-id="{{$item->id}}">
                             <td>{{$loop->iteration}}</td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->role}}</td>
+                            <td>{{$item->role == '1'?'Guru':($item->role == '2'?'Siswa':($item->role == '3'?'Admin':''))}}</td>
                             <td>{{$item->no_identitas}}</td>
                             <td class="actions-admin">
                                 <a href="#" class="text text-info details-control"><button class="btn btn-info btn-action"><i class="zmdi zmdi-edit"></i> Edit</button></a> &nbsp; 
@@ -70,11 +51,9 @@
     
     function format(id){
         var div = $('<div/>').text('Loading...');
-        
         $.ajax({
             url : "{{ url('admin/ajax/getusermenu/') }}/"+id,
             success: function ( json ) {
-                
                 div.html(json)
             }
         });

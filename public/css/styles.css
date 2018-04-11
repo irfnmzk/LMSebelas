@@ -1282,9 +1282,43 @@ body {
 .text-content-timeline ol li:hover {
 	background: #ccc;
 }
-<<<<<<< HEAD
-/*==================*/
-=======
-/*=============================
-==============================*/
->>>>>>> add style to admin
+
+.form-in-edit {
+            display: block;
+            margin: -15px auto 5px auto;
+            width: 50%;
+        }
+        .form-in-edit form {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 20px;
+        }
+        .form-in-edit form input,.form-in-edit form select {
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            margin: 0;
+        }
+        .form-in-edit form input[type=submit]{
+            padding: 7px 15px;
+            border-radius: 3px;
+            margin-top: -2px;
+        }
+        button.btn-action {
+        padding: 5px 10px;
+    }
+    table.table-m {
+        width:100%;
+        margin: 0;
+        border: 1px solid #ddd;
+    }
+    table.table-m tr th {
+        font-size: 16px;
+    }
+    table.table-m tr td {
+        font-size: 14px;
+    }
+    table.table-m tbody tr:nth-child(odd) {
+        background: #eee;
+    }

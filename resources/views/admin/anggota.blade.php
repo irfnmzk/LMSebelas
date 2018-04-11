@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card" style="padding:10px;">
-                <table class="mdl-data-table" id="main-table">
+                <table class="table-m" id="main-table">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -22,9 +22,9 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$item->user->name}}</td>
-                            <td>{{$item->user->role}}</td>
+                            <td>{{$item->user->role == '1'?'Guru':($item->user->role == '2'?'Siswa':($item->user->role == '3'?'Admin':''))}}</td>
                             <td>{{$item->user->no_identitas}}</td>
-                            <td class="actions-admin"><a href="{{ url("admin/kelas/".$kelas->id."/kick/".$item->user->id ."/") }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
+                            <td class="actions-admin"><a href="{{ url("admin/kelas/".$kelas->id."/kick/".$item->user->id ."/") }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><button class="btn btn-danger btn-action"><i class="zmdi zmdi-delete"></i> Kick</button></a></td>
                         </tr>
                         @endforeach
                     </tbody>

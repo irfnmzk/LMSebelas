@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card" style="padding:10px;">
-                <table class="mdl-data-table" id="main-table">
+                <table class="table-m" id="main-table">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -25,7 +25,10 @@
                             <td><a href="{{ route('admin.kelas', $item->id) }}" class="text text-info">{{$item->name}}</a></td>
                             <td>{{ ucwords($item->creator['name']) }}</td>
                             <td>{{$item->anggota_kelas_count}}</td>
-                            <td class="actions-admin"><a href="#" class="text text-info details-control" id="details-control"><i class="zmdi zmdi-edit"></i> Edit</a> &nbsp; <a href="{{ route('delete.kelas', $item->id) }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><i class="zmdi zmdi-delete"></i> Delete</a></td>
+                            <td class="actions-admin">
+                                <a href="#" class="text text-info details-control"><button class="btn btn-info btn-action"><i class="zmdi zmdi-edit"></i> Edit</button></a> &nbsp; 
+                                <a href="{{ route('delete.kelas', $item->id) }}" onClick="return confirm('Apa kamu yakin untuk melakukan operasi tersebut?')" class="text text-danger"><button class="btn btn-danger btn-action"><i class="zmdi zmdi-delete"></i> Delete</button></a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -110,12 +110,13 @@ $( document ).ready(function() {
             function stopquiz() {
                 eraseCookie('choosesoal'+id_user+id_quiz);
                 var idd = $('input').attr("idanswer");
-
+                $(".se-pre-con").show();
                     $.ajax({
                         method:"POST",
                         url:'{{ url('/stopquiz') }}',
                         data:{id_quiz: id_quiz, idd: idd},
                         success:function(result){
+                            $(".se-pre-con").hide();
                             iframe_reload();
                             console.log("cek");
                         }
