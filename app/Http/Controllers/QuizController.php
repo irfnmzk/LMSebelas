@@ -107,6 +107,9 @@ class QuizController extends Controller
             
             return view('quiz.quiz_result', compact('cek','waktu_mulai', 'waktu_selesai', 'total_waktu', 'quiz'));
         }
+        else if($cek != null && $now->diffInSeconds(Carbon::parse($cek->waktu_mulai)) > intval($quiz->durasi * 60)){
+            $this->stopquiz_time_over($cek->quiz_id, $cek->id);
+        }
         else{
             return view('quiz.quiz_attempt', compact('quiz', 'sip', 'tanggal_mulai', 'tanggal_selesai', 'disabled', 'classdisabled'));
         }
@@ -329,5 +332,35 @@ class QuizController extends Controller
         $hasil->save();
 
         return \Response::json($hasil);
+    }
+
+    public function stopquiz_time_over($idquiz, $idhasil)
+    {
+        $id_quiz = $idquiz;
+        $id_hasil = $idhasil;
+        $user = Auth::user()->id;
+        $now = Carbon::now();
+        $quiz = Quiz::findOrFail($id_quiz);
+
+        $jumlah_soal = Soal::where('quiz_id', '=', $id_quiz)->count();
+        $jumlah_benar = Jawaban_user::where('hasil_id', '=', $id_hasil)->sum('benar');
+        $nilai = $jumlah_benar / $jumlah_soal * 100;
+
+        $hasil = Hasil_quiz::find($id_hasil);
+        $waktu_mulai = Carbon::parse($hasil->waktu_mulai);
+
+        $hasil->jumlah_benar = $jumlah_benar;
+        $hasil->nilai = intval($nilai);
+        $hasil->waktu_selesai = Carbon::parse($hasil->waktu_mulai)->addMinutes($quiz->durasi);
+        $hasil->total_waktu = intval($quiz->durasi * 60);
+        $hasil->status = "Selesai dikerjakan";
+        $hasil->save();
+
+        $waktu_mulai = Carbon::parse($hasil->waktu_mulai);
+        $waktu_selesai = Carbon::parse($hasil->waktu_selesai);
+        $total_waktu = intval($hasil->total_waktu / 60).":".intval($hasil->total_waktu%60);
+        $cek = $hasil;
+            
+            return view('quiz.quiz_result', compact('cek','waktu_mulai', 'waktu_selesai', 'total_waktu', 'quiz'));
     }
 }

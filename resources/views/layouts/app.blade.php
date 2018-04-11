@@ -152,7 +152,7 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
+                            <!-- <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="zmdi zmdi-notifications" style="font-size:25px;"></i>
                                     <span class="notification" style="border-radius:50%;">6</span>
@@ -181,7 +181,7 @@
                                         <a href="#">'Prepare Marketing Report' is overdue</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
