@@ -53,7 +53,8 @@
     <div class="info">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                <button class="btn btn-success btn-sm" id="toggle-pengumuman">Show Pengumuman</button>
+                <button class="btn btn-success btn-sm" id="toggle-pengumuman" 
+                @if(Auth::user()->role == 2) style="display:none;" @endif>Show Pengumuman</button>
                     <div id="pengumuman-div" class="card card-class-info" @if(Auth::user()->role == 1) style="display:none;" @endif>
                     <div class="content-timeline">
                     @if(Auth::user()->role == 1)
