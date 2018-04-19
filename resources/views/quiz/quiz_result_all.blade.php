@@ -27,6 +27,9 @@
                     <a href="{{ url('/quiz_result_excel/'.$quiz->id ) }}" class="btn btn-success btn-sm" title="Cetak Hasil">
                             <i class="fa fa-file-excel-o" aria-hidden="true"></i> Cetak Excel
                         </a>
+                    <a href="{{ url('/quiz_result_pdf/'.$quiz->id ) }}" class="btn btn-warning btn-sm" title="Cetak Hasil">
+                            <i class="fa fa-file-excel-o" aria-hidden="true" target="_blank"></i> Cetak PDF
+                        </a>
                     
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="example" style="font-size: 12px;">

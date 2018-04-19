@@ -10,6 +10,7 @@ use App\Anggota_kelas;
 use App\Result_tugas;
 use Illuminate\Http\Request;
 use Excel;
+use PDF;
 
 class TugasController extends Controller
 {
@@ -95,5 +96,13 @@ class TugasController extends Controller
                 $sheet->fromArray($hasil);
             });
         })->export('xlsx');
+    }
+
+    public function task_result_pdf($tugas_id){    
+        $tugas = Tugas::find($tugas_id);
+        $hasil = Result_tugas::select('name','link','nilai')->where('id', '=', $tugas_id)->where('role','=',2)->get()->merge(Result_tugas::select('name','link','nilai')->where('role','=',2)->get());
+        
+        $pdf = PDF::loadView('tugas.pdf', compact('hasil','tugas'));
+        return $pdf->stream('hasil tugas '.$tugas->judul.'.pdf');
     }
 }
