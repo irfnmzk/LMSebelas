@@ -15,6 +15,7 @@ use App\Result_all_quiz;
 use Input;
 use Auth;
 use Excel;
+use PDF;
 use Carbon\Carbon;
 
 class QuizController extends Controller
@@ -151,6 +152,13 @@ class QuizController extends Controller
                 $sheet->fromArray($hasil);
             });
         })->export('xlsx');
+    }
+
+    public function quiz_result_pdf($quiz_id){    
+        $quiz = Quiz::find($quiz_id);
+        $hasil = Result_all_quiz::select('id','name','jumlah_benar', 'nilai', 'total_waktu')->where('quiz_id', '=', $quiz_id)->get();
+        $pdf = PDF::loadView('quiz.pdf', compact('hasil','quiz'));
+        return $pdf->stream('hasil_quiz '.$quiz->judul.'.pdf');
     }
 
     public function update_question($id, Request $request)

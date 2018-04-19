@@ -39,7 +39,7 @@
                                         <form id="destroy_modul" method="POST" action="{{ route('modul.destroy', $modul->id) }}" accept-charset="UTF-8" style="display:inline">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
-                                            <button class="btn btn-xs btn-danger" onclick="return confirm(&quot;Hapus Modul {{ $modul->judul }}?&quot;)">
+                                            <button style="margin: 0; padding: 0;" class="btn btn-xs btn-danger" onclick="return confirm(&quot;Hapus Modul {{ $modul->judul }}?&quot;)">
                                             <i class="zmdi zmdi-delete"></i> Hapus</button>
                                         </form>
                                         </div>
@@ -49,11 +49,11 @@
                                     <li>
                                         Tugas : {{ $tugas->judul }}                               
                                         <div class="pull-right">
-                                            <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#TaskControl-{{ $tugas->id }}"><i class="zmdi zmdi-edit"></i> Edit</button> &nbsp;
+                                            <button style="margin: 0; padding: 0;" class="btn btn-xs btn-info" data-toggle="modal" data-target="#TaskControl-{{ $tugas->id }}"><i class="zmdi zmdi-edit"></i> Edit</button> &nbsp;
                                             <form method="POST" action="{{ route('task.destroy', $tugas->id) }}" accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
-                                            <button class="btn btn-xs btn-danger" onclick="return confirm(&quot;Hapus Tugas : {{$tugas->judul}}?&quot;)"><i class="zmdi zmdi-delete"></i> Hapus</button>
+                                            <button style="margin: 0; padding: 0;" class="btn btn-xs btn-danger" onclick="return confirm(&quot;Hapus Tugas : {{$tugas->judul}}?&quot;)"><i class="zmdi zmdi-delete"></i> Hapus</button>
                                             </form>
                                         </div>
                                     </li>
@@ -62,11 +62,11 @@
                                     <li>
                                         Quiz : {{ $quiz->judul }}                               
                                         <div class="pull-right">
-                                            <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#EditQuiz-{{ $quiz->id }}"><i class="zmdi zmdi-edit"></i> Edit</button> &nbsp;
+                                            <button style="margin: 0; padding: 0;" class="btn btn-xs btn-info" data-toggle="modal" data-target="#EditQuiz-{{ $quiz->id }}"><i class="zmdi zmdi-edit"></i> Edit</button> &nbsp;
                                             <form method="POST" action="{{ route('quiz.destroy', $quiz->id) }}" accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
-                                            <button class="btn btn-xs btn-danger" onclick="return confirm(&quot;Hapus Quiz : {{$quiz->judul}}?&quot;)"><i class="zmdi zmdi-delete"></i> Hapus</button>
+                                            <button style="margin: 0; padding: 0;" class="btn btn-xs btn-danger" onclick="return confirm(&quot;Hapus Quiz : {{$quiz->judul}}?&quot;)"><i class="zmdi zmdi-delete"></i> Hapus</button>
                                             </form>
                                         </div>
                                     </li>
@@ -380,7 +380,6 @@
 
     function handleElement(i) {
         var c = $("#comment-"+i);
-        console.log(c);
         c.click(function(){
             $('#text-content-timeline-'+i).slideToggle();
         });

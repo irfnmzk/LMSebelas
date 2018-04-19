@@ -25,16 +25,16 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
-                                <table class="table table-striped table-hover table-no-bordered">
+                                <table class="table table-striped table-hover table-no-bordered" id="sample">
                                     <thead>
                                     <tr>
-                                        <th>No</th><th>Nama</th>
+                                        <th class="ambil">No</th><th class="ambil">Nama</th>
                                         @foreach($kelas->materi as $materi)
                                         @foreach($materi->tugas as $tugas)
-                                        <th>Tugas : {{ $tugas->judul }}</th>
+                                        <th class="ambil">Tugas : {{ $tugas->judul }}</th>
                                         @endforeach
                                         @foreach($materi->quiz as $quiz)
-                                        <th>Quiz : {{ $quiz->judul }}</th>
+                                        <th class="ambil">Quiz : {{ $quiz->judul }}</th>
                                         @endforeach
                                         @endforeach
                                     </tr>
@@ -44,12 +44,12 @@
                                    
                                     <tr>
                                         @if($anggota_kelas->user->role == 2)
-                                        <td>{{$loop->iteration-1}}</td>
-                                        <td>{{ $anggota_kelas->user->name }}</td>
+                                        <td class="ambil">{{$loop->iteration-1}}</td>
+                                        <td class="ambil">{{ $anggota_kelas->user->name }}</td>
                                         
                                         @foreach($kelas->materi as $materi)
                                             @foreach($materi->tugas as $tugas)
-                                            <td>
+                                            <td class="ambil">
                                                 @foreach($anggota_kelas->jawaban_tugas as $jawaban_tugas)
                                                     @foreach($jawaban_tugas->nilai_tugas as $nilai_tugas)
                                                     @if($jawaban_tugas->tugas->id == $tugas->id)
@@ -60,7 +60,7 @@
                                             </td>
                                             @endforeach
                                             @foreach($materi->quiz as $quiz)
-                                            <td>
+                                            <td class="ambil">
                                                 @foreach($anggota_kelas->hasil_quiz as $hasil_quiz)
                                                     @if($hasil_quiz->quiz['id'] == $quiz->id)
                                                     {{ $hasil_quiz->nilai }}

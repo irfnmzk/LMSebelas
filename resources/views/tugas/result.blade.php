@@ -1,5 +1,11 @@
 <div class="data-tugas">
 	<h3>Data Nilai Tugas</h3>
+    <a href="{{ url('/task_result_excel/'.$tugas->id ) }}" class="btn btn-success btn-sm" title="Cetak Hasil">
+                            <i class="fa fa-file-excel-o" aria-hidden="true"></i> Cetak Excel
+                        </a>
+    <a href="{{ url('/task_result_pdf/'.$tugas->id ) }}" class="btn btn-warning btn-sm" title="Cetak Hasil">
+        <i class="fa fa-file-excel-o" aria-hidden="true" target="_blank"></i> Cetak PDF
+    </a>
 	<table colspacing="0" border="1px">
 						<tr>
                             <th>No</th>
