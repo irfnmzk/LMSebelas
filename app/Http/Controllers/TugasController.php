@@ -7,7 +7,9 @@ use Storage;
 use App\Tugas;
 use App\Jawaban_tugas;
 use App\Anggota_kelas;
+use App\Result_tugas;
 use Illuminate\Http\Request;
+use Excel;
 
 class TugasController extends Controller
 {
@@ -82,5 +84,16 @@ class TugasController extends Controller
         Tugas::destroy($id);
 
         return redirect(url('/form_materi/'.$tugas->materi->kelas->id));
+    }
+
+    public function task_result_excel($tugas_id){    
+        $tugas = Tugas::find($tugas_id);
+        $hasil = Result_tugas::select('name','link','nilai')->where('id', '=', $tugas_id)->where('role','=',2)->get()->merge(Result_tugas::select('name','link','nilai')->where('role','=',2)->get());
+        
+        Excel::create('result_tugas-'.$tugas_id."-".$tugas->judul, function($excel) use($hasil) {
+            $excel->sheet('Sheet 1', function($sheet) use($hasil) {
+                $sheet->fromArray($hasil);
+            });
+        })->export('xlsx');
     }
 }

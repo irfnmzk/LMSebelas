@@ -79,6 +79,7 @@ Route::post('/checkquiz', 'QuizController@checkquiz');
 Route::post('/stopquiz', 'QuizController@stopquiz');
 Route::get('/quiz_result_all/{id}', 'QuizController@result_all');
 Route::get('/quiz_result_excel/{id}', 'QuizController@quiz_result_excel');
+Route::get('/task_result_excel/{id}', 'TugasController@task_result_excel');
 
 Route::post('/diskusi/add/{id}', 'DiskusiController@store')->name('diskusi.store');
 Route::get('/form_materi/{id}', 'KelasController@form_materi');
