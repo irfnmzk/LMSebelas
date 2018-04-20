@@ -28,6 +28,7 @@
                     <form method="POST" action="{{route('siswa.tugas.store')}}" class="form_tugas">
                         {{csrf_field()}}
                         <input type="hidden" name="tugas_id" value="{{ $tugas->id }}"/>
+                        <input type="hidden" name="kelas_id" value="{{ $tugas->materi->kelas->id }}"/>
                         <input type="file" name="link" placeholder="Upload Tugas" />
                         <input type="submit" name="upload-tugas" value="Upload" class="submit_tugas" id="task_btn"/>
                     </form>

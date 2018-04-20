@@ -45,14 +45,18 @@
                             <legend>Class Image</legend>
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                     <div class="fileinput-new thumbnail">
-                                        <img src="{{ asset('assets/img/image_placeholder.jpg') }}"/>
+                                    @if($kelas->cover != null)
+                                    <img src="{{ asset('img/'.$kelas->cover) }}"/>
+                                    @else
+                                    <img src="{{ asset('assets/img/image_placeholder.jpg') }}"/>
+                                    @endif
                                     </div>
                                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                     <div>
                                         <span class="btn btn-round btn-file">
                                             <span class="fileinput-new">Select image</span>
                                         <span class="fileinput-exists">Change</span>
-                                        <input type="file" name="..." />
+                                        <input type="file" name="cover" accept="image/*" />
                                         </span>
                                         <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                                     </div>
