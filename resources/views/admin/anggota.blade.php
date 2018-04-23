@@ -11,7 +11,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Siswa</th>
+                            <th>Nama</th>
                             <th>Role</th>
                             <th>No identitas</th>
                             <th>Action</th>
