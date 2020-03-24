@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/pdfku/{link}', function ($link){
     //dd(asset('pdf/pdf.pdf'));
-    return response()->file(public_path().'/pdf/'.$link);
+    // return response()->file(public_path().'/pdf/'.$link);
 });
 
 Auth::routes();
